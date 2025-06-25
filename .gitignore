@@ -1,0 +1,111 @@
+# Mynco - Git Ignore File
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.staging
+firebase-config.js
+
+# API Keys & Secrets
+config/
+secrets/
+*.key
+*.pem
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+.output/
+.vercel/
+.netlify/
+
+# Cache
+.cache/
+.temp/
+.tmp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Firebase
+.firebaserc
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Local development
+.local/
+
+# Backup files
+*.backup
+*.bak
+*.orig
+
+# Compressed files
+*.zip
+*.tar.gz
+*.rar
+
+# Documentation drafts
+docs/drafts/
+*.draft.md
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary uploads
+uploads/temp/
+temp/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Don't commit large assets
+assets/videos/
+assets/large-images/
+*.mov
+*.mp4
+*.avi
+
+# Analytics & tracking (if added later)
+analytics/
+tracking/
+
+# Comments for team
+# Add project-specific ignores below this line
+# ===============================================
+
+# Example: Ignore specific config files
+# config/local.json
+
+# Example: Ignore user-specific files
+# .user-preferences

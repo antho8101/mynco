@@ -123,7 +123,7 @@ mynco/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/mynco.git
+   git clone https://github.com/antho8101/mynco
    cd mynco
    ```
 
