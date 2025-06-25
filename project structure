@@ -1,0 +1,34 @@
+mynco/
+├── index.html                    # Landing page
+├── auth/
+│   ├── login.html               
+│   ├── signup.html              
+│   └── forgot-password.html     
+├── dashboard/
+│   ├── index.html               # Dashboard freelance
+│   ├── new-project.html         
+│   ├── project.html             # Détails projet (/dashboard/project.html?id=xxx)
+│   └── settings.html            
+├── client/
+│   └── portal.html              # Portal client (/client/portal.html?id=abc123)
+├── assets/
+│   ├── css/
+│   │   ├── globals.css          # Reset, variables, utilities
+│   │   ├── components.css       # Buttons, cards, modals
+│   │   ├── landing.css          
+│   │   ├── auth.css             
+│   │   ├── dashboard.css        
+│   │   └── client-portal.css    
+│   ├── js/
+│   │   ├── app.js               # Utils globaux, navigation
+│   │   ├── auth.js              # Firebase auth
+│   │   ├── dashboard.js         
+│   │   ├── client-portal.js     
+│   │   └── firebase-config.js   
+│   └── images/
+│       └── logo.svg
+├── components/                   # HTML partials (à inclure via JS)
+│   ├── header.js                # Export du HTML header
+│   ├── footer.js                
+│   └── modals.js                
+└── README.md

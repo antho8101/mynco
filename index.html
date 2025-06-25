@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mynco - Turn any client into a premium experience</title>
+    <meta name="description" content="Stop sending Google Drive links. Create professional client portals that get you paid faster. The simplest client onboarding tool for freelancers.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/landing.css">
+</head>
+<body>
+    <!-- Header sera injecté ici -->
+    <div id="header-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>
+                        Turn any client into a <span class="highlight">premium experience</span>
+                    </h1>
+                    <p>
+                        Stop sending Google Drive links. Create professional client portals that get you paid faster. The simplest client onboarding tool for freelancers.
+                    </p>
+                    
+                    <div class="hero-cta">
+                        <a href="app.mynco.app/signup" class="btn btn-primary">Create my first portal 🚀</a>
+                        <a href="#demo" class="btn btn-secondary">Watch demo</a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">2 min</span>
+                            <span class="stat-label">Average setup time</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Positive feedback</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">€12.4M</span>
+                            <span class="stat-label">Processed this year</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <!-- Floating elements -->
+                    <div class="floating-element payment">
+                        💳 €2,500 received
+                    </div>
+                    <div class="floating-element notification">
+                        🔔 New message from client
+                    </div>
+                    <div class="floating-element security">
+                        🔒 End-to-end encrypted
+                    </div>
+                    
+                    <div class="mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot red"></div>
+                            <div class="browser-dot yellow"></div>
+                            <div class="browser-dot green"></div>
+                        </div>
+                        
+                        <div class="mockup-content">
+                            <div class="project-header">
+                                <div class="client-avatar">M</div>
+                                <div class="project-info">
+                                    <div class="project-title">Martin's Bakery Redesign</div>
+                                </div>
+                            </div>
+                            
+                            <div class="demo-chat">
+                                <div class="chat-message">
+                                    <strong>You:</strong> Here's the first design version 👆
+                                </div>
+                                <div class="chat-message">
+                                    <strong>Martin:</strong> Love it! Can you change the header color?
+                                </div>
+                                <div class="chat-message">
+                                    <strong>You:</strong> Done! Final files are ready for download ✨
+                                </div>
+                            </div>
+                            
+                            <div class="file-upload">
+                                📁 final-design.figma • website-mockups.jpg
+                                <br><small class="file-price">Ready for download • €2,500</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <div class="social-proof-text">
+                Built with industry-leading tools
+            </div>
+            <div class="logos-container">
+                <div class="logo-item">
+                    <svg width="80" height="32" viewBox="0 0 80 32" fill="currentColor">
+                        <rect x="8" y="8" width="16" height="16" rx="2" opacity="0.7"/>
+                        <text x="32" y="20" font-size="11" font-weight="600">Stripe</text>
+                    </svg>
+                </div>
+                <div class="logo-item">
+                    <svg width="80" height="32" viewBox="0 0 80 32" fill="currentColor">
+                        <circle cx="16" cy="16" r="8" opacity="0.7"/>
+                        <text x="32" y="20" font-size="11" font-weight="600">Firebase</text>
+                    </svg>
+                </div>
+                <div class="logo-item">
+                    <svg width="80" height="32" viewBox="0 0 80 32" fill="currentColor">
+                        <polygon points="8,8 24,8 16,24" opacity="0.7"/>
+                        <text x="32" y="20" font-size="11" font-weight="600">Vercel</text>
+                    </svg>
+                </div>
+                <div class="logo-item">
+                    <svg width="80" height="32" viewBox="0 0 80 32" fill="currentColor">
+                        <rect x="8" y="8" width="16" height="16" rx="8" opacity="0.7"/>
+                        <text x="32" y="20" font-size="10" font-weight="600">ProductHunt</text>
+                    </svg>
+                </div>
+                <div class="logo-item">
+                    <svg width="80" height="32" viewBox="0 0 80 32" fill="currentColor">
+                        <rect x="8" y="8" width="16" height="16" rx="4" opacity="0.7"/>
+                        <text x="32" y="20" font-size="11" font-weight="600">GitHub</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust-indicators">
+        <div class="container">
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                    </svg>
+                    SOC 2 Ready
+                </div>
+                <div class="trust-badge">
+                    <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    GDPR Compliant
+                </div>
+                <div class="trust-badge">
+                    <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                    </svg>
+                    256-bit SSL
+                </div>
+                <div class="trust-badge">
+                    <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    99.97% Uptime
+                </div>
+                <div class="trust-badge">
+                    <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6L12 10.5 8.5 8 12 5.5 15.5 8zM8.5 16L12 13.5 15.5 16 12 18.5 8.5 16z"/>
+                    </svg>
+                    Tested by 12 freelancers
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is Mynco -->
+    <section class="what-is-mynco">
+        <div class="container">
+            <div class="explanation-header">
+                <h2>You got the client.<br>Now what?</h2>
+                <p>
+                    Stop looking amateur. Transform your client delivery with professional portals that impress clients and get you paid faster.
+                </p>
+            </div>
+            
+            <!-- MOCKUPS EN LIGNE HORIZONTALE -->
+            <div class="mockups-row">
+                <div class="feature-mockup dashboard-mockup">
+                    <div class="mockup-browser">
+                        <div class="browser-dot-mini red"></div>
+                        <div class="browser-dot-mini yellow"></div>
+                        <div class="browser-dot-mini green"></div>
+                    </div>
+                    <div class="mockup-screen">
+                        <div class="dashboard-header">
+                            <div class="dashboard-title">Your Projects</div>
+                            <div class="new-project-btn">+ New</div>
+                        </div>
+                        <div class="project-card-mini">
+                            <div class="project-name">Bakery Website</div>
+                            <div class="project-status">🟢 Active • €2,500</div>
+                        </div>
+                        <div class="project-card-mini">
+                            <div class="project-name">Logo Design</div>
+                            <div class="project-status">💰 Paid • €800</div>
+                        </div>
+                        <div class="project-card-mini">
+                            <div class="project-name">App Mockups</div>
+                            <div class="project-status">⏳ Pending • €1,200</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-mockup client-mockup">
+                    <div class="mockup-browser">
+                        <div class="browser-dot-mini red"></div>
+                        <div class="browser-dot-mini yellow"></div>
+                        <div class="browser-dot-mini green"></div>
+                    </div>
+                    <div class="mockup-screen">
+                        <div class="project-header">
+                            <div class="client-avatar">M</div>
+                            <div class="project-info">
+                                <div class="project-title">Bakery Redesign</div>
+                                <div class="project-id">#MB-2024-01</div>
+                            </div>
+                        </div>
+                        <div class="chat-mini">
+                            <div class="chat-bubble">
+                                <strong>You:</strong> Final designs ready! 🎉
+                            </div>
+                            <div class="chat-bubble">
+                                <strong>Martin:</strong> Perfect! Love the colors
+                            </div>
+                        </div>
+                        <div class="file-preview">
+                            📁 bakery-final.zip
+                            <br>Ready for download
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-mockup payment-mockup">
+                    <div class="mockup-browser">
+                        <div class="browser-dot-mini red"></div>
+                        <div class="browser-dot-mini yellow"></div>
+                        <div class="browser-dot-mini green"></div>
+                    </div>
+                    <div class="mockup-screen">
+                        <div class="payment-success">
+                            <div class="payment-amount">€2,500.00</div>
+                            <div class="payment-status">✅ Payment received</div>
+                        </div>
+                        <div class="invoice-line">
+                            <div class="invoice-item">
+                                <span>Website Design</span>
+                                <span>€2,500</span>
+                            </div>
+                            <div class="invoice-item">
+                                <span>Processing fee</span>
+                                <span>€75</span>
+                            </div>
+                            <div class="invoice-item">
+                                <span><strong>Your payout</strong></span>
+                                <span><strong>€2,425</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TEXTES EN LIGNE HORIZONTALE -->
+            <div class="texts-row">
+                <div class="text-block">
+                    <h3>Setup in 30 seconds</h3>
+                    <p>Create branded client portals instantly. Upload deliverables, set prices, generate professional project pages that wow clients.</p>
+                </div>
+                
+                <div class="text-block">
+                    <h3>Impress every client</h3>
+                    <p>Give clients their own beautiful workspace. Real-time chat, file previews, professional presentation. Look like Apple, not amateur.</p>
+                </div>
+                
+                <div class="text-block">
+                    <h3>Get paid automatically</h3>
+                    <p>Client approves, pays, downloads. No more chasing payments. Stripe integration handles everything. Professional billing, every time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-header">
+                <h2>See Mynco in action</h2>
+                <p>Watch how to transform any client into a premium experience in under 30 seconds</p>
+            </div>
+            
+            <div class="demo-video-container">
+                <div class="demo-video-wrapper">
+                    <!-- Placeholder pour ta future vidéo -->
+                    <div class="demo-video-placeholder">
+                        <div class="play-button">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="white">
+                                <circle cx="40" cy="40" r="40" fill="rgba(0, 208, 132, 0.9)"/>
+                                <polygon points="32,25 32,55 55,40" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="demo-preview-text">
+                            <h3>Product Demo</h3>
+                            <p>Coming Soon - Full Workflow Demo</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Future video embed -->
+                    <!-- 
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                
+                <!-- Demo features highlights -->
+                <div class="demo-highlights">
+                    <div class="demo-highlight">
+                        <div class="highlight-icon">⚡</div>
+                        <div class="highlight-text">
+                            <h4>30-second setup</h4>
+                            <p>From signup to first client portal</p>
+                        </div>
+                    </div>
+                    <div class="demo-highlight">
+                        <div class="highlight-icon">🎨</div>
+                        <div class="highlight-text">
+                            <h4>Instant branding</h4>
+                            <p>Professional look, zero configuration</p>
+                        </div>
+                    </div>
+                    <div class="demo-highlight">
+                        <div class="highlight-icon">💰</div>
+                        <div class="highlight-text">
+                            <h4>One-click payments</h4>
+                            <p>Client pays, downloads, done</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Everything for professional delivery</h2>
+                <p>Stop looking amateur. Professional client tools that scale with your business</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Zero-setup client portals</h3>
+                    <p>Create stunning, professional client experiences in 30 seconds. No configuration, no complexity. Just professional results.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Pay-to-download system</h3>
+                    <p>Client approves work, pays instantly, downloads automatically. Stripe integration handles everything. No more payment chasing.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Built-in communication</h3>
+                    <p>Real-time chat keeps everything organized. Clients love the clarity, you love the simplicity. No more email chaos.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>Secure file delivery</h3>
+                    <p>Drag & drop uploads with instant previews. Watermarked previews, secure downloads. Professional file management made simple.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Smart notifications</h3>
+                    <p>Keep clients informed with automated updates. Project progress, payment confirmations, delivery notifications. Set it and forget it.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Simple analytics</h3>
+                    <p>See client engagement, track downloads, monitor payments. Understand your business with clean, actionable insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Early results speak for themselves</h2>
+                <p>Real feedback from freelancers testing Mynco</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-metric">Setup: 2 min</div>
+                    <div class="testimonial-quote">
+                        "I was sending Google Drive links like an amateur. Now my clients think I run a Fortune 500 company. The professionalism is incredible."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <p>UI/UX Designer • Beta Tester</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-metric">Payment: Instant</div>
+                    <div class="testimonial-quote">
+                        "No more 'I'll pay you next week' excuses. Client sees the work, loves it, pays immediately, downloads. It's magical."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Marcus Rodriguez</h4>
+                            <p>Brand Designer • Beta Tester</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-metric">100% positive</div>
+                    <div class="testimonial-quote">
+                        "Every single beta tester has given positive feedback. The simplicity is genius - it just works. Finally, a tool that doesn't overthink things."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <h4>Alex Thompson</h4>
+                            <p>Creative Director • Beta Tester</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>From amateur to professional</h2>
+                <p>Transform your client delivery in 3 simple steps</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">
+                        1
+                        <div class="step-icon">🎯</div>
+                    </div>
+                    <div class="step-visual">📋</div>
+                    <h3>Create client portal</h3>
+                    <p>New client signed? Set up their branded portal in 30 seconds. Add project details and deliverables.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">
+                        2
+                        <div class="step-icon">🔗</div>
+                    </div>
+                    <div class="step-visual">✨</div>
+                    <h3>Send professional link</h3>
+                    <p>Client gets instant access to a beautiful, professional project workspace. No sign-up required.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">
+                        3
+                        <div class="step-icon">💰</div>
+                    </div>
+                    <div class="step-visual">🎉</div>
+                    <h3>Get paid automatically</h3>
+                    <p>Client approves, pays, downloads. You get notified and paid instantly. Professional billing, every time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple, transparent pricing</h2>
+                <p>Start free, scale as you grow</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">€0</div>
+                    <div class="price-period">Forever</div>
+                    <ul class="features-list">
+                        <li>5 projects OR €500/month max</li>
+                        <li>2% commission on payments</li>
+                        <li>Unlimited chat & files</li>
+                        <li>Stripe payments</li>
+                        <li>"Powered by Mynco" branding</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="app.mynco.app/signup" class="btn btn-secondary full-width">Start free</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">€19</div>
+                    <div class="price-period">per month</div>
+                    <ul class="features-list">
+                        <li>Unlimited projects</li>
+                        <li>0% commission</li>
+                        <li>Custom branding</li>
+                        <li>Automatic invoicing</li>
+                        <li>Analytics dashboard</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="app.mynco.app/signup" class="btn btn-primary full-width">Start trial</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Team</h3>
+                    <div class="price">€15</div>
+                    <div class="price-period">per user/month</div>
+                    <ul class="features-list">
+                        <li>Everything in Pro</li>
+                        <li>Minimum 3 users (€45/month)</li>
+                        <li>Shared project access</li>
+                        <li>Team collaboration tools</li>
+                        <li>Advanced permissions</li>
+                        <li>Dedicated support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary full-width">Contact us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta">
+        <div class="container">
+            <h2>Stop looking amateur. Start looking like Apple.</h2>
+            <p>Join thousands of freelancers transforming their client delivery with professional portals</p>
+            <a href="app.mynco.app/signup" class="btn btn-primary">Create my first portal</a>
+        </div>
+    </section>
+
+    <!-- Footer sera injecté ici -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/landing.js"></script>
+</body>
+</html>
