@@ -97,6 +97,71 @@ const footerHTML = `
 </footer>
 `;
 
+// Cookie Banner HTML
+const cookieBannerHTML = `
+<!-- Cookie Banner -->
+<div id="cookie-banner" class="cookie-banner hidden">
+    <div class="cookie-content">
+        <div class="cookie-text">
+            <h4>🍪 We use cookies</h4>
+            <p>We use cookies to enhance your experience, analyze site traffic, and personalize content. By continuing to browse, you consent to our use of cookies.</p>
+        </div>
+        <div class="cookie-actions">
+            <button id="cookie-settings" class="btn btn-ghost btn-sm">Settings</button>
+            <button id="cookie-accept" class="btn btn-primary btn-sm">Accept All</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cookie Settings Modal -->
+<div id="cookie-modal" class="modal-overlay hidden">
+    <div class="modal cookie-modal">
+        <div class="modal-header">
+            <h3 class="modal-title">🍪 Cookie Preferences</h3>
+            <button id="cookie-modal-close" class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h4>Essential Cookies</h4>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" checked disabled>
+                        <span class="cookie-slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-description">These cookies are necessary for the website to function and cannot be switched off.</p>
+            </div>
+            
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h4>Analytics Cookies</h4>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="analytics-cookies">
+                        <span class="cookie-slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-description">These cookies help us understand how visitors interact with our website.</p>
+            </div>
+            
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h4>Marketing Cookies</h4>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="marketing-cookies">
+                        <span class="cookie-slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-description">These cookies are used to deliver personalized advertisements.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="cookie-save" class="btn btn-primary">Save Preferences</button>
+            <button id="cookie-accept-all" class="btn btn-secondary">Accept All</button>
+        </div>
+    </div>
+</div>
+`;
+
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Inject header and footer components
@@ -123,6 +188,9 @@ function injectComponents() {
     if (footerContainer) {
         footerContainer.innerHTML = footerHTML;
     }
+    
+    // Ajoute le cookie banner au body
+    document.body.insertAdjacentHTML('beforeend', cookieBannerHTML);
 }
 
 // Navigation management
@@ -260,5 +328,3 @@ const utils = {
 
 // Make utils available globally
 window.myncoUtils = utils;
-
-loadComponent('cookie-banner-container', 'components/cookie-banner.html');
