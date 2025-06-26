@@ -260,3 +260,5 @@ const utils = {
 
 // Make utils available globally
 window.myncoUtils = utils;
+
+loadComponent('cookie-banner-container', 'components/cookie-banner.html');
