@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mynco Changelog - Latest Updates & Features</title>
+    <meta name="description" content="Stay updated with the latest Mynco features, improvements, and bug fixes. Track our progress as we build the ultimate client portal platform for freelancers.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/changelog.css">
+</head>
+<body>
+    <!-- Header sera injecté ici -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main class="changelog-page">
+        <div class="container">
+            <!-- Changelog Header -->
+            <div class="changelog-header">
+                <div class="header-content">
+                    <h1>Changelog</h1>
+                    <p class="subtitle">Track our progress as we build the ultimate client portal platform for freelancers</p>
+                    
+                    <div class="header-stats">
+                        <div class="stat">
+                            <span class="stat-number">24</span>
+                            <span class="stat-label">Updates this month</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">156</span>
+                            <span class="stat-label">Total updates</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">99.7%</span>
+                            <span class="stat-label">Uptime</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <a href="https://changelog.mynco.app/rss" class="btn btn-ghost btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M6.18 4a2.18 2.18 0 0 1 2.18 2.18C8.36 7.38 7.38 8.36 6.18 8.36C5 8.36 4 7.38 4 6.18A2.18 2.18 0 0 1 6.18 4m0 5.64c1.38 0 2.5 1.12 2.5 2.5S7.56 14.64 6.18 14.64S3.68 13.52 3.68 12.14S4.8 9.64 6.18 9.64M12 22c2.05 0 3.71-1.67 3.71-3.71S14.05 14.58 12 14.58S8.29 16.24 8.29 18.29S9.95 22 12 22m0-5.64c1.05 0 1.9.85 1.9 1.9S13.05 20.16 12 20.16S10.1 19.31 10.1 18.26S10.95 16.36 12 16.36m0-7.28c2.05 0 3.71-1.67 3.71-3.71S14.05 1.67 12 1.67S8.29 3.33 8.29 5.38S9.95 12.08 12 12.08m0-5.64c1.05 0 1.9.85 1.9 1.9S13.05 8.34 12 8.34S10.1 7.49 10.1 6.44S10.95 4.54 12 4.54"/>
+                        </svg>
+                        RSS Feed
+                    </a>
+                    <a href="mailto:changelog@mynco.app" class="btn btn-ghost btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        Email Updates
+                    </a>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">
+                        All Updates
+                    </button>
+                    <button class="filter-btn" data-filter="new">
+                        <span class="filter-icon new">🆕</span>
+                        New Features
+                    </button>
+                    <button class="filter-btn" data-filter="improvement">
+                        <span class="filter-icon improvement">⚡</span>
+                        Improvements
+                    </button>
+                    <button class="filter-btn" data-filter="fix">
+                        <span class="filter-icon fix">🐛</span>
+                        Bug Fixes
+                    </button>
+                    <button class="filter-btn" data-filter="security">
+                        <span class="filter-icon security">🔒</span>
+                        Security
+                    </button>
+                </div>
+                
+                <div class="search-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Search updates...">
+                </div>
+            </div>
+
+            <!-- Changelog Timeline -->
+            <div class="changelog-timeline">
+                <!-- March 2025 -->
+                <div class="timeline-month" data-category="new improvement fix security">
+                    <div class="month-header">
+                        <h2>March 2025</h2>
+                        <span class="update-count">8 updates</span>
+                    </div>
+                    
+                    <div class="timeline-items">
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">March 15</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>Automatic Invoice Generation</h3>
+                                </div>
+                                <p>Freelancers can now generate professional invoices automatically when clients make payments. No more manual paperwork!</p>
+                                <div class="item-tags">
+                                    <span class="tag">Billing</span>
+                                    <span class="tag">Automation</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="improvement">
+                            <div class="item-date">
+                                <span class="date">March 12</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type improvement">⚡ Improvement</span>
+                                    <h3>Enhanced File Preview</h3>
+                                </div>
+                                <p>Improved file preview system with support for more file types and better mobile experience.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Files</span>
+                                    <span class="tag">Mobile</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="fix">
+                            <div class="item-date">
+                                <span class="date">March 10</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type fix">🐛 Bug Fix</span>
+                                    <h3>Fixed Chat Notification Issues</h3>
+                                </div>
+                                <p>Resolved issues with real-time chat notifications not appearing for some users.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Chat</span>
+                                    <span class="tag">Notifications</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="security">
+                            <div class="item-date">
+                                <span class="date">March 8</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type security">🔒 Security</span>
+                                    <h3>Enhanced Data Encryption</h3>
+                                </div>
+                                <p>Upgraded encryption standards for all file uploads and communications to ensure maximum security.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Security</span>
+                                    <span class="tag">Encryption</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">March 5</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>Project Templates</h3>
+                                </div>
+                                <p>Save and reuse project configurations to speed up your workflow. Perfect for recurring client types.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Templates</span>
+                                    <span class="tag">Workflow</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="improvement">
+                            <div class="item-date">
+                                <span class="date">March 3</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type improvement">⚡ Improvement</span>
+                                    <h3>Faster Page Loading</h3>
+                                </div>
+                                <p>Optimized performance across all pages. 40% faster loading times on average.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Performance</span>
+                                    <span class="tag">Speed</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="fix">
+                            <div class="item-date">
+                                <span class="date">March 1</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type fix">🐛 Bug Fix</span>
+                                    <h3>Mobile Responsiveness Fixes</h3>
+                                </div>
+                                <p>Fixed various mobile display issues and improved touch interactions on mobile devices.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Mobile</span>
+                                    <span class="tag">UI/UX</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- February 2025 -->
+                <div class="timeline-month" data-category="new improvement fix security">
+                    <div class="month-header">
+                        <h2>February 2025</h2>
+                        <span class="update-count">12 updates</span>
+                    </div>
+                    
+                    <div class="timeline-items">
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">February 28</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>Automatic Quote Generation</h3>
+                                </div>
+                                <p>Generate professional quotes automatically when creating new projects. Customizable templates included.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Quotes</span>
+                                    <span class="tag">Templates</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">February 25</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>Client Portal Status Page</h3>
+                                </div>
+                                <p>New status page to keep clients informed about service availability and any ongoing issues.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Status</span>
+                                    <span class="tag">Transparency</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="improvement">
+                            <div class="item-date">
+                                <span class="date">February 20</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type improvement">⚡ Improvement</span>
+                                    <h3>Enhanced File Watermarking</h3>
+                                </div>
+                                <p>Improved watermarking system with better positioning and opacity controls for preview files.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Security</span>
+                                    <span class="tag">Files</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">February 15</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>Real-time Chat System</h3>
+                                </div>
+                                <p>Built-in chat system for seamless communication between freelancers and clients. No more switching between apps!</p>
+                                <div class="item-tags">
+                                    <span class="tag">Communication</span>
+                                    <span class="tag">Real-time</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="improvement">
+                            <div class="item-date">
+                                <span class="date">February 10</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type improvement">⚡ Improvement</span>
+                                    <h3>Improved Payment Flow</h3>
+                                </div>
+                                <p>Streamlined payment process with better error handling and clearer success messages.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Payments</span>
+                                    <span class="tag">UX</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="fix">
+                            <div class="item-date">
+                                <span class="date">February 5</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type fix">🐛 Bug Fix</span>
+                                    <h3>Fixed Timezone Issues</h3>
+                                </div>
+                                <p>Resolved timezone display issues in project timelines and notifications.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Timezone</span>
+                                    <span class="tag">Notifications</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- January 2025 -->
+                <div class="timeline-month" data-category="new improvement fix security">
+                    <div class="month-header">
+                        <h2>January 2025</h2>
+                        <span class="update-count">15 updates</span>
+                    </div>
+                    
+                    <div class="timeline-items">
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">January 30</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>Project Checklist System</h3>
+                                </div>
+                                <p>Add custom checklists to track project progress. Perfect for keeping clients updated on deliverables.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Project Management</span>
+                                    <span class="tag">Checklists</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">January 25</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>Stripe Payment Integration</h3>
+                                </div>
+                                <p>Secure payment processing with Stripe. Clients can pay directly through the portal.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Payments</span>
+                                    <span class="tag">Stripe</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">January 20</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>File Upload & Management</h3>
+                                </div>
+                                <p>Drag & drop file uploads with automatic watermarking for preview files.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Files</span>
+                                    <span class="tag">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">January 15</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>Client Portal Creation</h3>
+                                </div>
+                                <p>Create personalized client portals with custom URLs for each project.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Portals</span>
+                                    <span class="tag">Custom URLs</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">January 10</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>User Authentication</h3>
+                                </div>
+                                <p>Secure user registration and login system for freelancers.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Authentication</span>
+                                    <span class="tag">Security</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-category="new">
+                            <div class="item-date">
+                                <span class="date">January 5</span>
+                                <span class="year">2025</span>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-type new">🆕 New Feature</span>
+                                    <h3>Mynco Beta Launch</h3>
+                                </div>
+                                <p>Welcome to Mynco! The ultimate client portal platform for freelancers is now live.</p>
+                                <div class="item-tags">
+                                    <span class="tag">Launch</span>
+                                    <span class="tag">Beta</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div class="subscribe-section">
+                <div class="subscribe-content">
+                    <h2>Stay Updated</h2>
+                    <p>Never miss an update. Get notified about new features, improvements, and important announcements.</p>
+                    
+                    <div class="subscribe-options">
+                        <a href="https://changelog.mynco.app/rss" class="btn btn-secondary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M6.18 4a2.18 2.18 0 0 1 2.18 2.18C8.36 7.38 7.38 8.36 6.18 8.36C5 8.36 4 7.38 4 6.18A2.18 2.18 0 0 1 6.18 4m0 5.64c1.38 0 2.5 1.12 2.5 2.5S7.56 14.64 6.18 14.64S3.68 13.52 3.68 12.14S4.8 9.64 6.18 9.64M12 22c2.05 0 3.71-1.67 3.71-3.71S14.05 14.58 12 14.58S8.29 16.24 8.29 18.29S9.95 22 12 22m0-5.64c1.05 0 1.9.85 1.9 1.9S13.05 20.16 12 20.16S10.1 19.31 10.1 18.26S10.95 16.36 12 16.36m0-7.28c2.05 0 3.71-1.67 3.71-3.71S14.05 1.67 12 1.67S8.29 3.33 8.29 5.38S9.95 12.08 12 12.08m0-5.64c1.05 0 1.9.85 1.9 1.9S13.05 8.34 12 8.34S10.1 7.49 10.1 6.44S10.95 4.54 12 4.54"/>
+                            </svg>
+                            RSS Feed
+                        </a>
+                        <a href="mailto:changelog@mynco.app" class="btn btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            Email Updates
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer sera injecté ici -->
+    <div id="footer-container"></div>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/changelog.js"></script>
+</body>
+</html> 
