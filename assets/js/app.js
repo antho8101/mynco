@@ -56,8 +56,8 @@ const footerHTML = `
                     <li><a href="index.html#features">Features</a></li>
                     <li><a href="index.html#pricing">Pricing</a></li>
                     <li><a href="https://docs.mynco.app">API Docs</a></li>
-                    <li><a href="https://status.mynco.app">Status</a></li>
-                    <li><a href="https://changelog.mynco.app">Changelog</a></li>
+                    <li><a href="status.html">Status</a></li>
+                    <li><a href="changelog.html">Changelog</a></li>
                 </ul>
             </div>
             
