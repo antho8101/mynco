@@ -6,9 +6,9 @@ const headerHTML = `
     <nav class="container nav">
         <a href="/" class="logo">mynco</a>
         <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#how-it-works">How it works</a></li>
-            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#how-it-works">How it works</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
         </ul>
         <div class="nav-actions">
             <a href="auth/login.html" class="btn btn-secondary">Sign In</a>
@@ -53,8 +53,8 @@ const footerHTML = `
             <div class="footer-section">
                 <h4>Product</h4>
                 <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#pricing">Pricing</a></li>
                     <li><a href="https://docs.mynco.app">API Docs</a></li>
                     <li><a href="https://status.mynco.app">Status</a></li>
                     <li><a href="https://changelog.mynco.app">Changelog</a></li>
@@ -208,6 +208,38 @@ function initNavigation() {
             }
         });
     }, 100);
+
+    // Handle navigation links to landing page with anchors
+    setTimeout(() => {
+        const navLinks = document.querySelectorAll('.nav-links a[href*="index.html#"]');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                const anchor = href.split('#')[1];
+                
+                // If we're already on the landing page, use smooth scroll
+                if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
+                    e.preventDefault();
+                    const target = document.querySelector('#' + anchor);
+                    if (target) {
+                        // Use the smooth scroll function from landing.js if available
+                        if (typeof window.myncoUtils !== 'undefined' && window.myncoUtils.smoothScrollToSection) {
+                            window.myncoUtils.smoothScrollToSection(anchor);
+                        } else {
+                            // Fallback to basic smooth scroll
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                }
+                // If we're on another page, let the normal navigation happen
+                // (redirect to landing page with anchor)
+            });
+        });
+    }, 200);
 
     // Header hide/show on scroll
     let lastScrollTop = 0;

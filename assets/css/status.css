@@ -1,0 +1,522 @@
+/* Status Page Styles */
+
+.status-page {
+    padding: 120px 0 80px;
+    background: linear-gradient(135deg, #FAFBFC 0%, #F9FAFB 100%);
+    min-height: 100vh;
+}
+
+/* Status Header */
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 60px;
+    gap: 40px;
+}
+
+.status-overview h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.status-subtitle {
+    font-size: 18px;
+    color: var(--text-gray);
+    margin-bottom: 32px;
+}
+
+.overall-status {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E7EB;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #10B981;
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.operational .status-dot {
+    background: #10B981;
+}
+
+.status-indicator.degraded .status-dot {
+    background: #F59E0B;
+}
+
+.status-indicator.outage .status-dot {
+    background: #EF4444;
+}
+
+.status-text {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.uptime-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E7EB;
+}
+
+.uptime-label {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 4px;
+}
+
+.uptime-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.status-actions {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* Services Section */
+.services-section {
+    margin-bottom: 60px;
+}
+
+.services-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--text-dark);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E7EB;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.service-card.operational {
+    border-left: 4px solid #10B981;
+}
+
+.service-card.degraded {
+    border-left: 4px solid #F59E0B;
+}
+
+.service-card.outage {
+    border-left: 4px solid #EF4444;
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.service-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-dark);
+}
+
+.service-info p {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.service-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.service-status .status-dot {
+    width: 8px;
+    height: 8px;
+}
+
+.service-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.metric-label {
+    font-size: 12px;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.metric-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Metrics Section */
+.metrics-section {
+    margin-bottom: 60px;
+}
+
+.metrics-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--text-dark);
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.metric-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E7EB;
+    transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.metric-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.metric-trend {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.metric-trend.positive {
+    color: #10B981;
+    background: #D1FAE5;
+}
+
+.metric-trend.negative {
+    color: #EF4444;
+    background: #FEE2E2;
+}
+
+.metric-value-large {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.metric-description {
+    font-size: 14px;
+    color: var(--text-gray);
+    line-height: 1.5;
+}
+
+/* Incidents Section */
+.incidents-section {
+    margin-bottom: 60px;
+}
+
+.incidents-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--text-dark);
+}
+
+.incidents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.incident-item {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E7EB;
+    transition: all 0.3s ease;
+}
+
+.incident-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.incident-item.resolved {
+    border-left: 4px solid #10B981;
+}
+
+.incident-item.investigating {
+    border-left: 4px solid #F59E0B;
+}
+
+.incident-item.outage {
+    border-left: 4px solid #EF4444;
+}
+
+.incident-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.incident-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.incident-status.resolved {
+    color: #10B981;
+}
+
+.incident-status.investigating {
+    color: #F59E0B;
+}
+
+.incident-status.outage {
+    color: #EF4444;
+}
+
+.incident-date {
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+.incident-item h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-dark);
+}
+
+.incident-item p {
+    font-size: 14px;
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.incident-duration {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.duration-label {
+    color: var(--text-gray);
+}
+
+.duration-value {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* Subscribe Section */
+.subscribe-section {
+    background: white;
+    border-radius: 20px;
+    padding: 48px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E7EB;
+}
+
+.subscribe-content h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-dark);
+}
+
+.subscribe-content p {
+    font-size: 18px;
+    color: var(--text-gray);
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subscribe-options {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.subscribe-options .btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--mint-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 208, 132, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--mint-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 208, 132, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .status-header {
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .status-overview h1 {
+        font-size: 36px;
+    }
+    
+    .overall-status {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-metrics {
+        grid-template-columns: 1fr;
+    }
+    
+    .incident-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .subscribe-section {
+        padding: 32px 24px;
+    }
+    
+    .subscribe-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+} 

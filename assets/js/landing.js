@@ -1,5 +1,55 @@
 // Landing page specific JavaScript
 
+// Expose smooth scroll function globally
+window.myncoUtils = window.myncoUtils || {};
+
+window.myncoUtils.smoothScrollToSection = function(sectionId) {
+    const target = document.querySelector('#' + sectionId);
+    if (target) {
+        // Calculate target position with header offset
+        const headerHeight = document.querySelector('.header')?.offsetHeight || 80;
+        const targetPosition = target.offsetTop - headerHeight - 20; // 20px extra margin
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 1000; // 1 second for smooth animation
+        let start = null;
+
+        // Custom easing function - smoother without harsh overshoot
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
+
+        // Animation function
+        function animation(currentTime) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const progress = Math.min(timeElapsed / duration, 1);
+            
+            // Apply smooth easing
+            const easedProgress = easeOutCubic(progress);
+            const newPosition = startPosition + (distance * easedProgress);
+            
+            window.scrollTo(0, newPosition);
+            
+            if (progress < 1) {
+                requestAnimationFrame(animation);
+            } else {
+                // Add a subtle highlight effect to the target section
+                target.style.transition = 'all 0.3s ease';
+                target.style.transform = 'scale(1.01)';
+                target.style.boxShadow = '0 0 20px rgba(0, 208, 132, 0.15)';
+                
+                setTimeout(() => {
+                    target.style.transform = '';
+                    target.style.boxShadow = '';
+                }, 300);
+            }
+        }
+
+        requestAnimationFrame(animation);
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // Header scroll effect
@@ -16,18 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Smooth scrolling for anchor links
+    // Smooth scrolling for anchor links with gentle overshoot effect
     function initSmoothScrolling() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                const sectionId = this.getAttribute('href').substring(1);
+                window.myncoUtils.smoothScrollToSection(sectionId);
             });
         });
     }

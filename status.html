@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mynco Status - Service Status & Uptime</title>
+    <meta name="description" content="Real-time status of Mynco services. Monitor uptime, performance, and any ongoing issues.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/status.css">
+</head>
+<body>
+    <!-- Header sera injecté ici -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main class="status-page">
+        <div class="container">
+            <!-- Status Header -->
+            <div class="status-header">
+                <div class="status-overview">
+                    <h1>Mynco Status</h1>
+                    <p class="status-subtitle">Real-time service status and performance metrics</p>
+                    
+                    <div class="overall-status">
+                        <div class="status-indicator operational">
+                            <div class="status-dot"></div>
+                            <span class="status-text">All Systems Operational</span>
+                        </div>
+                        <div class="uptime-display">
+                            <span class="uptime-label">Uptime (30 days)</span>
+                            <span class="uptime-value">99.97%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="status-actions">
+                    <a href="https://status.mynco.app/rss" class="btn btn-ghost btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M6.18 4a2.18 2.18 0 0 1 2.18 2.18C8.36 7.38 7.38 8.36 6.18 8.36C5 8.36 4 7.38 4 6.18A2.18 2.18 0 0 1 6.18 4m0 5.64c1.38 0 2.5 1.12 2.5 2.5S7.56 14.64 6.18 14.64S3.68 13.52 3.68 12.14S4.8 9.64 6.18 9.64M12 22c2.05 0 3.71-1.67 3.71-3.71S14.05 14.58 12 14.58S8.29 16.24 8.29 18.29S9.95 22 12 22m0-5.64c1.05 0 1.9.85 1.9 1.9S13.05 20.16 12 20.16S10.1 19.31 10.1 18.26S10.95 16.36 12 16.36m0-7.28c2.05 0 3.71-1.67 3.71-3.71S14.05 1.67 12 1.67S8.29 3.33 8.29 5.38S9.95 12.08 12 12.08m0-5.64c1.05 0 1.9.85 1.9 1.9S13.05 8.34 12 8.34S10.1 7.49 10.1 6.44S10.95 4.54 12 4.54"/>
+                        </svg>
+                        RSS Feed
+                    </a>
+                    <a href="mailto:status@mynco.app" class="btn btn-ghost btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        Status Updates
+                    </a>
+                </div>
+            </div>
+
+            <!-- Services Status -->
+            <div class="services-section">
+                <h2>Service Status</h2>
+                
+                <div class="services-grid">
+                    <div class="service-card operational">
+                        <div class="service-header">
+                            <div class="service-info">
+                                <h3>Client Portals</h3>
+                                <p>Main application for creating and managing client portals</p>
+                            </div>
+                            <div class="service-status">
+                                <div class="status-dot"></div>
+                                <span>Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Response Time</span>
+                                <span class="metric-value">45ms</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Uptime (24h)</span>
+                                <span class="metric-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card operational">
+                        <div class="service-header">
+                            <div class="service-info">
+                                <h3>Payment Processing</h3>
+                                <p>Stripe integration for secure payment handling</p>
+                            </div>
+                            <div class="service-status">
+                                <div class="status-dot"></div>
+                                <span>Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Response Time</span>
+                                <span class="metric-value">120ms</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Uptime (24h)</span>
+                                <span class="metric-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card operational">
+                        <div class="service-header">
+                            <div class="service-info">
+                                <h3>File Storage</h3>
+                                <p>Secure file upload, storage, and delivery system</p>
+                            </div>
+                            <div class="service-status">
+                                <div class="status-dot"></div>
+                                <span>Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Response Time</span>
+                                <span class="metric-value">85ms</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Uptime (24h)</span>
+                                <span class="metric-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card operational">
+                        <div class="service-header">
+                            <div class="service-info">
+                                <h3>Real-time Chat</h3>
+                                <p>Live communication between freelancers and clients</p>
+                            </div>
+                            <div class="service-status">
+                                <div class="status-dot"></div>
+                                <span>Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Response Time</span>
+                                <span class="metric-value">65ms</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Uptime (24h)</span>
+                                <span class="metric-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card operational">
+                        <div class="service-header">
+                            <div class="service-info">
+                                <h3>Authentication</h3>
+                                <p>User authentication and session management</p>
+                            </div>
+                            <div class="service-status">
+                                <div class="status-dot"></div>
+                                <span>Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Response Time</span>
+                                <span class="metric-value">35ms</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Uptime (24h)</span>
+                                <span class="metric-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card operational">
+                        <div class="service-header">
+                            <div class="service-info">
+                                <h3>API</h3>
+                                <p>REST API for integrations and automation</p>
+                            </div>
+                            <div class="service-status">
+                                <div class="status-dot"></div>
+                                <span>Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Response Time</span>
+                                <span class="metric-value">55ms</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Uptime (24h)</span>
+                                <span class="metric-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="metrics-section">
+                <h2>Performance Metrics</h2>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>Global Response Time</h3>
+                            <div class="metric-trend positive">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 14l5-5 5 5z"/>
+                                </svg>
+                                <span>-12%</span>
+                            </div>
+                        </div>
+                        <div class="metric-value-large">67ms</div>
+                        <div class="metric-description">Average response time across all services</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>Error Rate</h3>
+                            <div class="metric-trend positive">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 14l5-5 5 5z"/>
+                                </svg>
+                                <span>-8%</span>
+                            </div>
+                        </div>
+                        <div class="metric-value-large">0.03%</div>
+                        <div class="metric-description">Percentage of failed requests</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>Active Users</h3>
+                            <div class="metric-trend positive">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 14l5-5 5 5z"/>
+                                </svg>
+                                <span>+15%</span>
+                            </div>
+                        </div>
+                        <div class="metric-value-large">1,247</div>
+                        <div class="metric-description">Concurrent users in the last hour</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>Data Transfer</h3>
+                            <div class="metric-trend positive">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 14l5-5 5 5z"/>
+                                </svg>
+                                <span>+23%</span>
+                            </div>
+                        </div>
+                        <div class="metric-value-large">2.4TB</div>
+                        <div class="metric-description">Data transferred in the last 24 hours</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Incidents -->
+            <div class="incidents-section">
+                <h2>Recent Incidents</h2>
+                
+                <div class="incidents-list">
+                    <div class="incident-item resolved">
+                        <div class="incident-header">
+                            <div class="incident-status resolved">
+                                <div class="status-dot"></div>
+                                <span>Resolved</span>
+                            </div>
+                            <div class="incident-date">March 15, 2025</div>
+                        </div>
+                        <h3>Increased latency on file uploads</h3>
+                        <p>We experienced higher than normal response times for file upload operations. The issue was resolved within 15 minutes. No data was lost.</p>
+                        <div class="incident-duration">
+                            <span class="duration-label">Duration:</span>
+                            <span class="duration-value">15 minutes</span>
+                        </div>
+                    </div>
+
+                    <div class="incident-item resolved">
+                        <div class="incident-header">
+                            <div class="incident-status resolved">
+                                <div class="status-dot"></div>
+                                <span>Resolved</span>
+                            </div>
+                            <div class="incident-date">March 8, 2025</div>
+                        </div>
+                        <h3>Scheduled maintenance completed</h3>
+                        <p>Routine database maintenance was completed successfully. All services are operating normally with improved performance.</p>
+                        <div class="incident-duration">
+                            <span class="duration-label">Duration:</span>
+                            <span class="duration-value">30 minutes</span>
+                        </div>
+                    </div>
+
+                    <div class="incident-item resolved">
+                        <div class="incident-header">
+                            <div class="incident-status resolved">
+                                <div class="status-dot"></div>
+                                <span>Resolved</span>
+                            </div>
+                            <div class="incident-date">February 28, 2025</div>
+                        </div>
+                        <h3>Payment processing delay</h3>
+                        <p>Some payment confirmations were delayed due to a third-party service issue. All payments were processed successfully within 2 hours.</p>
+                        <div class="incident-duration">
+                            <span class="duration-label">Duration:</span>
+                            <span class="duration-value">2 hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subscribe to Updates -->
+            <div class="subscribe-section">
+                <div class="subscribe-content">
+                    <h2>Stay Updated</h2>
+                    <p>Get notified about service status updates and incidents</p>
+                    
+                    <div class="subscribe-options">
+                        <a href="https://status.mynco.app/rss" class="btn btn-secondary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M6.18 4a2.18 2.18 0 0 1 2.18 2.18C8.36 7.38 7.38 8.36 6.18 8.36C5 8.36 4 7.38 4 6.18A2.18 2.18 0 0 1 6.18 4m0 5.64c1.38 0 2.5 1.12 2.5 2.5S7.56 14.64 6.18 14.64S3.68 13.52 3.68 12.14S4.8 9.64 6.18 9.64M12 22c2.05 0 3.71-1.67 3.71-3.71S14.05 14.58 12 14.58S8.29 16.24 8.29 18.29S9.95 22 12 22m0-5.64c1.05 0 1.9.85 1.9 1.9S13.05 20.16 12 20.16S10.1 19.31 10.1 18.26S10.95 16.36 12 16.36m0-7.28c2.05 0 3.71-1.67 3.71-3.71S14.05 1.67 12 1.67S8.29 3.33 8.29 5.38S9.95 12.08 12 12.08m0-5.64c1.05 0 1.9.85 1.9 1.9S13.05 8.34 12 8.34S10.1 7.49 10.1 6.44S10.95 4.54 12 4.54"/>
+                            </svg>
+                            RSS Feed
+                        </a>
+                        <a href="mailto:status@mynco.app" class="btn btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            Email Updates
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer sera injecté ici -->
+    <div id="footer-container"></div>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/status.js"></script>
+</body>
+</html> 

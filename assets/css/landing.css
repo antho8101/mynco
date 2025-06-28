@@ -661,6 +661,8 @@
     border: 1px solid #E5E7EB;
     transition: all 0.3s ease;
     flex: 1;
+    height: 120px;
+    box-sizing: border-box;
 }
 
 .demo-highlight:hover {
@@ -681,17 +683,26 @@
     flex-shrink: 0;
 }
 
+.highlight-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
 .highlight-text h4 {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 4px;
     color: var(--text-dark);
+    line-height: 1.2;
 }
 
 .highlight-text p {
     font-size: 14px;
     color: var(--text-gray);
     margin: 0;
+    line-height: 1.4;
 }
 
 /* Features Section */
@@ -1288,4 +1299,39 @@
     .pricing-card.featured {
         transform: none;
     }
+}
+
+/* Smooth scroll target sections */
+section[id] {
+    scroll-margin-top: 100px; /* Account for fixed header */
+    transition: all 0.3s ease;
+}
+
+/* Highlight effect for sections when scrolled to */
+section[id].scroll-highlight {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(0, 208, 132, 0.2);
+}
+
+/* Smooth scroll behavior for the whole page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--mint-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--mint-dark);
 }
