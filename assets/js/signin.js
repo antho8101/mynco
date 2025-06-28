@@ -60,12 +60,9 @@ function initSignIn() {
             // Sign in
             const userCredential = await auth.signInWithEmailAndPassword(email, password);
             console.log('Signed in successfully:', userCredential.user);
-            showSuccess('Welcome back!');
             
-            // Redirect to dashboard after a short delay
-            setTimeout(() => {
-                window.location.href = 'https://dashboard.mynco.app/';
-            }, 1500);
+            // Redirect to dashboard immediately
+            window.location.href = 'https://dashboard.mynco.app/';
         } catch (error) {
             console.error('Auth error:', error);
             handleAuthError(error);
@@ -81,12 +78,9 @@ function initSignIn() {
         try {
             const result = await auth.signInWithPopup(googleProvider);
             console.log('Google sign in successful:', result.user);
-            showSuccess('Welcome!');
             
-            // Redirect to dashboard after a short delay
-            setTimeout(() => {
-                window.location.href = 'https://dashboard.mynco.app/';
-            }, 1500);
+            // Redirect to dashboard immediately
+            window.location.href = 'https://dashboard.mynco.app/';
         } catch (error) {
             console.error('Google auth error:', error);
             handleAuthError(error);

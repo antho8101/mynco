@@ -1,6 +1,6 @@
 // Import Firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 
 // Your web app's Firebase configuration
@@ -26,6 +26,21 @@ const auth = getAuth(app);
 console.log('📊 Initializing Firebase Analytics...');
 const analytics = getAnalytics(app);
 
+// Global sign out function
+window.signOutUser = async function() {
+    try {
+        console.log('🚪 Signing out user...');
+        await signOut(auth);
+        console.log('✅ User signed out successfully');
+        
+        // Redirect to signin page
+        window.location.href = '/auth/signin.html';
+    } catch (error) {
+        console.error('❌ Error signing out:', error);
+        alert('Erreur lors de la déconnexion. Veuillez réessayer.');
+    }
+};
+
 // Make auth available globally
 window.firebaseAuth = auth;
 window.firebaseApp = app;
@@ -33,6 +48,7 @@ window.firebaseAnalytics = analytics;
 
 console.log('✅ Firebase initialized successfully');
 console.log('✅ Firebase Auth available globally as window.firebaseAuth');
+console.log('✅ Sign out function available as window.signOutUser');
 
 // Export for module usage
-export { auth, app, analytics };
+export { auth, app, analytics, signOut };
