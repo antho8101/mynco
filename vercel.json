@@ -1,16 +1,14 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
+  "rewrites": [
     {
       "source": "/status",
-      "destination": "https://status.mynco.app",
-      "permanent": false
+      "destination": "/status.html"
     },
     {
       "source": "/changelog",
-      "destination": "https://changelog.mynco.app",
-      "permanent": false
+      "destination": "/changelog.html"
     }
   ],
   "headers": [
