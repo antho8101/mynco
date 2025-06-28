@@ -162,14 +162,13 @@ class Sidebar {
             signOutBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Confirm before signing out
-                if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
-                    if (window.signOutUser) {
-                        window.signOutUser();
-                    } else {
-                        console.error('Sign out function not available');
-                        alert('Fonction de déconnexion non disponible. Veuillez recharger la page.');
-                    }
+                // Direct sign out without confirmation
+                if (window.signOutUser) {
+                    window.signOutUser();
+                } else {
+                    console.error('Sign out function not available');
+                    // Fallback: redirect to landing page
+                    window.location.href = '/';
                 }
             });
         }
