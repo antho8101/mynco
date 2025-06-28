@@ -9,6 +9,10 @@
     {
       "source": "/changelog",
       "destination": "/changelog.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
     }
   ],
   "headers": [
