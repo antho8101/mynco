@@ -56,8 +56,8 @@ const footerHTML = `
                     <li><a href="index.html#features">Features</a></li>
                     <li><a href="index.html#pricing">Pricing</a></li>
                     <li><a href="https://docs.mynco.app">API Docs</a></li>
-                    <li><a href="status.html">Status</a></li>
-                    <li><a href="changelog.html">Changelog</a></li>
+                    <li><a href="/status">Status</a></li>
+                    <li><a href="/changelog">Changelog</a></li>
                 </ul>
             </div>
             
@@ -87,10 +87,10 @@ const footerHTML = `
         <div class="footer-bottom">
             <p>&copy; 2025 Mynco Inc. Made with ❤️ for freelancers worldwide.</p>
             <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="cookies.html">Cookie Policy</a>
-                <a href="security.html">Security</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/cookies">Cookie Policy</a>
+                <a href="/security">Security</a>
             </div>
         </div>
     </div>
