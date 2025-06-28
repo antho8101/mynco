@@ -532,6 +532,13 @@
     <!-- Footer sera injecté ici -->
     <div id="footer-container"></div>
 
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
     <!-- Avant les scripts existants -->
     <div id="cookie-banner-container"></div>
 
@@ -539,6 +546,25 @@
     <script src="assets/js/app.js"></script>
     <script src="assets/js/cookies.js"></script>  <!-- ← Après app.js -->
     <script src="assets/js/landing.js"></script>
+    <script>
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 
 </body>
 </html>

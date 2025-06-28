@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security - Mynco</title>
+    <meta name="description" content="Security information for Mynco - Learn about our security practices and how we protect your data.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/legal.css">
+</head>
+<body>
+    <!-- Header sera injecté ici -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main class="legal-page">
+        <div class="legal-container">
+            <div class="legal-header">
+                <h1>Security</h1>
+                <p>Learn about our comprehensive security measures and how we protect your data and client information on Mynco.</p>
+            </div>
+
+            <div class="legal-content-wrapper">
+                <!-- Table of Contents -->
+                <aside class="legal-toc">
+                    <h3 class="toc-title">Table of Contents</h3>
+                    <ul class="toc-list">
+                        <li class="toc-item"><a href="#security-overview" class="toc-link">Security Overview</a></li>
+                        <li class="toc-item"><a href="#data-protection" class="toc-link">Data Protection</a></li>
+                        <li class="toc-item"><a href="#authentication" class="toc-link">Authentication & Access</a></li>
+                        <li class="toc-item"><a href="#infrastructure" class="toc-link">Infrastructure Security</a></li>
+                        <li class="toc-item"><a href="#payment-security" class="toc-link">Payment Security</a></li>
+                        <li class="toc-item"><a href="#compliance" class="toc-link">Compliance & Certifications</a></li>
+                        <li class="toc-item"><a href="#incident-response" class="toc-link">Incident Response</a></li>
+                        <li class="toc-item"><a href="#security-practices" class="toc-link">Security Practices</a></li>
+                        <li class="toc-item"><a href="#reporting" class="toc-link">Security Reporting</a></li>
+                    </ul>
+                </aside>
+
+                <div class="legal-content">
+                    <div class="legal-section" id="security-overview">
+                        <h2>1. Security Overview</h2>
+                        
+                        <p>At Mynco, security is not just a feature—it's fundamental to everything we do. We understand that you trust us with sensitive client data and payment information, and we take that responsibility seriously.</p>
+                        
+                        <p>Our security approach is built on multiple layers of protection, from the infrastructure level to the application level, ensuring that your data remains secure at every step.</p>
+                        
+                        <h3>1.1 Security Philosophy</h3>
+                        <p>We follow industry best practices and implement security by design principles. Our security measures are continuously updated and tested to protect against evolving threats.</p>
+                    </div>
+
+                    <div class="legal-section" id="data-protection">
+                        <h2>2. Data Protection</h2>
+                        
+                        <h3>2.1 Encryption</h3>
+                        <p>All data is encrypted both in transit and at rest:</p>
+                        <ul>
+                            <li><strong>In Transit:</strong> TLS 1.3 encryption for all communications</li>
+                            <li><strong>At Rest:</strong> AES-256 encryption for stored data</li>
+                            <li><strong>File Storage:</strong> Encrypted file storage with secure access controls</li>
+                            <li><strong>Database:</strong> Encrypted database with key management</li>
+                        </ul>
+
+                        <h3>2.2 Data Classification</h3>
+                        <p>We classify data based on sensitivity and apply appropriate security controls:</p>
+                        <ul>
+                            <li><strong>Public Data:</strong> Marketing materials, public documentation</li>
+                            <li><strong>Internal Data:</strong> User preferences, analytics data</li>
+                            <li><strong>Confidential Data:</strong> Client information, project files</li>
+                            <li><strong>Restricted Data:</strong> Payment information, authentication credentials</li>
+                        </ul>
+
+                        <h3>2.3 Data Retention</h3>
+                        <p>We implement strict data retention policies to ensure data is only kept for as long as necessary and securely deleted when no longer needed.</p>
+                    </div>
+
+                    <div class="legal-section" id="authentication">
+                        <h2>3. Authentication & Access Control</h2>
+                        
+                        <h3>3.1 Multi-Factor Authentication</h3>
+                        <p>We support and recommend multi-factor authentication (MFA) for all user accounts to provide an additional layer of security beyond passwords.</p>
+                        
+                        <h3>3.2 Password Security</h3>
+                        <p>We enforce strong password policies and use secure password hashing algorithms to protect user credentials.</p>
+                        
+                        <h3>3.3 Session Management</h3>
+                        <p>Secure session management with automatic timeout and the ability to revoke sessions remotely.</p>
+                        
+                        <h3>3.4 Role-Based Access Control</h3>
+                        <p>Access to different features and data is controlled based on user roles and permissions, ensuring users only have access to what they need.</p>
+                    </div>
+
+                    <div class="legal-section" id="infrastructure">
+                        <h2>4. Infrastructure Security</h2>
+                        
+                        <h3>4.1 Cloud Security</h3>
+                        <p>Our infrastructure is built on secure cloud platforms with enterprise-grade security features:</p>
+                        <ul>
+                            <li>Firebase (Google Cloud Platform) for backend services</li>
+                            <li>Vercel for hosting and CDN</li>
+                            <li>Stripe for payment processing</li>
+                            <li>Regular security audits and penetration testing</li>
+                        </ul>
+
+                        <h3>4.2 Network Security</h3>
+                        <p>We implement multiple layers of network security:</p>
+                        <ul>
+                            <li>DDoS protection and mitigation</li>
+                            <li>Web Application Firewall (WAF)</li>
+                            <li>Intrusion detection and prevention</li>
+                            <li>Regular vulnerability scanning</li>
+                        </ul>
+
+                        <h3>4.3 Physical Security</h3>
+                        <p>Our cloud providers maintain strict physical security controls at their data centers, including 24/7 monitoring, biometric access controls, and environmental controls.</p>
+                    </div>
+
+                    <div class="legal-section" id="payment-security">
+                        <h2>5. Payment Security</h2>
+                        
+                        <h3>5.1 PCI DSS Compliance</h3>
+                        <p>We use Stripe as our payment processor, which is PCI DSS Level 1 compliant—the highest level of certification available in the payments industry.</p>
+                        
+                        <h3>5.2 Secure Payment Processing</h3>
+                        <p>Payment information is processed securely through Stripe's infrastructure:</p>
+                        <ul>
+                            <li>No sensitive payment data stored on our servers</li>
+                            <li>Tokenized payment information</li>
+                            <li>Fraud detection and prevention</li>
+                            <li>Secure payment APIs</li>
+                        </ul>
+
+                        <h3>5.3 Payment Verification</h3>
+                        <p>We implement additional verification measures for high-value transactions and suspicious activity detection.</p>
+                    </div>
+
+                    <div class="legal-section" id="compliance">
+                        <h2>6. Compliance & Certifications</h2>
+                        
+                        <h3>6.1 GDPR Compliance</h3>
+                        <p>We are committed to GDPR compliance and provide users with control over their personal data, including the right to access, modify, and delete their information.</p>
+                        
+                        <h3>6.2 SOC 2 Type II</h3>
+                        <p>We are working towards SOC 2 Type II certification to demonstrate our commitment to security, availability, and confidentiality.</p>
+                        
+                        <h3>6.3 Industry Standards</h3>
+                        <p>We follow industry security standards and best practices, including:</p>
+                        <ul>
+                            <li>OWASP security guidelines</li>
+                            <li>NIST cybersecurity framework</li>
+                            <li>ISO 27001 information security standards</li>
+                        </ul>
+                    </div>
+
+                    <div class="legal-section" id="incident-response">
+                        <h2>7. Incident Response</h2>
+                        
+                        <h3>7.1 Security Monitoring</h3>
+                        <p>We maintain 24/7 security monitoring to detect and respond to potential security incidents quickly.</p>
+                        
+                        <h3>7.2 Incident Response Plan</h3>
+                        <p>We have a comprehensive incident response plan that includes:</p>
+                        <ul>
+                            <li>Immediate incident detection and assessment</li>
+                            <li>Containment and mitigation procedures</li>
+                            <li>Communication protocols for affected users</li>
+                            <li>Post-incident analysis and improvement</li>
+                        </ul>
+
+                        <h3>7.3 User Notification</h3>
+                        <p>In the event of a security incident that affects user data, we will notify affected users within 72 hours as required by GDPR.</p>
+                    </div>
+
+                    <div class="legal-section" id="security-practices">
+                        <h2>8. Security Practices</h2>
+                        
+                        <h3>8.1 Secure Development</h3>
+                        <p>We follow secure development practices:</p>
+                        <ul>
+                            <li>Code security reviews</li>
+                            <li>Automated security testing</li>
+                            <li>Dependency vulnerability scanning</li>
+                            <li>Regular security training for developers</li>
+                        </ul>
+
+                        <h3>8.2 Regular Security Assessments</h3>
+                        <p>We conduct regular security assessments including:</p>
+                        <ul>
+                            <li>Penetration testing</li>
+                            <li>Vulnerability assessments</li>
+                            <li>Security audits</li>
+                            <li>Third-party security reviews</li>
+                        </ul>
+
+                        <h3>8.3 Employee Security</h3>
+                        <p>All employees undergo security training and background checks, and access to sensitive data is limited to those who need it for their job functions.</p>
+                    </div>
+
+                    <div class="legal-section" id="reporting">
+                        <h2>9. Security Reporting</h2>
+                        
+                        <h3>9.1 Bug Bounty Program</h3>
+                        <p>We welcome security researchers to report vulnerabilities through our responsible disclosure program. We will acknowledge and respond to all legitimate security reports.</p>
+                        
+                        <h3>9.2 Security Contact</h3>
+                        <p>If you discover a security vulnerability or have security concerns, please contact us immediately:</p>
+                        
+                        <div class="contact-info">
+                            <h4>Security Team</h4>
+                            <p><strong>Email:</strong> <a href="mailto:security@mynco.app">security@mynco.app</a></p>
+                            <p><strong>PGP Key:</strong> Available upon request</p>
+                            <p><strong>Response Time:</strong> We aim to respond to security reports within 24 hours</p>
+                        </div>
+
+                        <h3>9.3 Responsible Disclosure</h3>
+                        <p>We ask that security researchers:</p>
+                        <ul>
+                            <li>Report vulnerabilities privately to our security team</li>
+                            <li>Allow us reasonable time to fix issues before public disclosure</li>
+                            <li>Not access or modify user data without permission</li>
+                            <li>Not perform destructive testing</li>
+                        </ul>
+                    </div>
+
+                    <div class="contact-info">
+                        <h4>General Security Inquiries</h4>
+                        <p>For general security questions or concerns, please contact us:</p>
+                        <p><strong>Email:</strong> <a href="mailto:security@mynco.app">security@mynco.app</a></p>
+                        <p><strong>Address:</strong> Mynco Inc., [Your Business Address]</p>
+                        <p><strong>Security Officer:</strong> <a href="mailto:cso@mynco.app">cso@mynco.app</a></p>
+                    </div>
+
+                    <div class="last-updated">
+                        <p>Last Updated: January 15, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer sera injecté ici -->
+    <div id="footer-container"></div>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Table of Contents navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('.legal-section');
+            
+            // Smooth scroll for TOC links
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Update active TOC link based on scroll position
+            function updateActiveTOCLink() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // Update on scroll
+            window.addEventListener('scroll', utils.debounce(updateActiveTOCLink, 10));
+            
+            // Initial update
+            updateActiveTOCLink();
+        });
+    </script>
+</body>
+</html>

@@ -87,10 +87,10 @@ const footerHTML = `
         <div class="footer-bottom">
             <p>&copy; 2025 Mynco Inc. Made with ❤️ for freelancers worldwide.</p>
             <div class="footer-links">
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms of Service</a>
-                <a href="/cookies">Cookie Policy</a>
-                <a href="/security">Security</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="cookies.html">Cookie Policy</a>
+                <a href="security.html">Security</a>
             </div>
         </div>
     </div>
@@ -208,6 +208,29 @@ function initNavigation() {
             }
         });
     }, 100);
+
+    // Header hide/show on scroll
+    let lastScrollTop = 0;
+    const header = document.querySelector('.header');
+    const scrollThreshold = 100; // Minimum scroll before hiding header
+    
+    if (header) {
+        window.addEventListener('scroll', utils.debounce(() => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Only hide/show if we've scrolled enough
+            if (Math.abs(scrollTop - lastScrollTop) > 10) {
+                if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+                    // Scrolling down - hide header
+                    header.classList.add('header-hidden');
+                } else if (scrollTop < lastScrollTop) {
+                    // Scrolling up - show header
+                    header.classList.remove('header-hidden');
+                }
+                lastScrollTop = scrollTop;
+            }
+        }, 10)); // Small debounce for smooth performance
+    }
 }
 
 // Global utility functions

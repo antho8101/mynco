@@ -1,5 +1,6 @@
 @import url('components.css');
 @import url('landing.css');
+@import url('legal.css'); 
 
 :root {
     --mint-primary: #00D084;
