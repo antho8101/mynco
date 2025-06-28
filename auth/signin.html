@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Mynco</title>
-    <meta name="description" content="Create your Mynco account. Start building professional client portals.">
+    <title>Sign In - Mynco</title>
+    <meta name="description" content="Sign in to your Mynco account. Access your professional client portals and manage your projects.">
     <link rel="icon" type="image/svg+xml" href="/assets/images/logo.svg">
     
     <!-- Fonts -->
@@ -34,8 +34,8 @@
             <!-- Auth Form -->
             <form id="authForm" class="auth-form">
                 <div class="form-header">
-                    <h1 id="formTitle">Create your account</h1>
-                    <p id="formSubtitle">Start building professional client portals</p>
+                    <h1 id="formTitle">Welcome back</h1>
+                    <p id="formSubtitle">Sign in to your Mynco account</p>
                 </div>
 
                 <!-- Email Field -->
@@ -57,18 +57,14 @@
                     </div>
                 </div>
 
-                <!-- Terms -->
+                <!-- Forgot Password -->
                 <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="terms" required>
-                        <span class="checkmark"></span>
-                        I agree to the <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>
-                    </label>
+                    <a href="/auth/forgot-password.html" class="forgot-link">Forgot your password?</a>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary full-width" id="submitBtn">
-                    <span class="btn-text">Create account</span>
+                    <span class="btn-text">Sign in</span>
                     <div class="btn-loading hidden">
                         <div class="spinner"></div>
                     </div>
@@ -94,7 +90,7 @@
 
                 <!-- Toggle Mode -->
                 <div class="auth-toggle">
-                    <p>Already have an account? <a href="/auth/signin.html">Sign in</a></p>
+                    <p>Don't have an account? <a href="/auth/signup.html">Sign up</a></p>
                 </div>
             </form>
         </div>
@@ -102,6 +98,6 @@
 
     <!-- Scripts -->
     <script type="module" src="/assets/js/firebase-config.js"></script>
-    <script type="module" src="/assets/js/signup.js"></script>
+    <script type="module" src="/assets/js/signin.js"></script>
 </body>
-</html>
+</html> 
