@@ -1,10 +1,3 @@
-// Import Firebase Auth functions
-import { 
-    signInWithEmailAndPassword, 
-    signInWithPopup, 
-    GoogleAuthProvider
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
 // Wait for Firebase to be initialized
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(initSignIn, 100);
@@ -32,7 +25,7 @@ function initSignIn() {
     }
 
     // Initialize Google Provider
-    const googleProvider = new GoogleAuthProvider();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
 
     // Password visibility toggle
     passwordToggle.addEventListener('click', function() {
@@ -65,7 +58,7 @@ function initSignIn() {
 
         try {
             // Sign in
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await auth.signInWithEmailAndPassword(email, password);
             console.log('Signed in successfully:', userCredential.user);
             showSuccess('Welcome back!');
             
@@ -86,7 +79,7 @@ function initSignIn() {
         setLoading(true);
         
         try {
-            const result = await signInWithPopup(auth, googleProvider);
+            const result = await auth.signInWithPopup(googleProvider);
             console.log('Google sign in successful:', result.user);
             showSuccess('Welcome!');
             

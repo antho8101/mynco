@@ -1,10 +1,3 @@
-// Import Firebase Auth functions
-import { 
-    createUserWithEmailAndPassword, 
-    signInWithPopup, 
-    GoogleAuthProvider
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
 // Wait for Firebase to be initialized
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(initSignUp, 100);
@@ -14,6 +7,7 @@ function initSignUp() {
     const auth = window.firebaseAuth;
     if (!auth) {
         console.error('Firebase Auth not initialized');
+        showError('Authentication service not available. Please refresh the page.');
         return;
     }
 
@@ -21,13 +15,18 @@ function initSignUp() {
     const authForm = document.getElementById('authForm');
     const submitBtn = document.getElementById('submitBtn');
     const btnText = document.querySelector('.btn-text');
-    const googleSignIn = document.getElementById('googleSignIn');
+    const googleSignUp = document.getElementById('googleSignUp');
     const passwordToggle = document.querySelector('.password-toggle');
     const passwordInput = document.getElementById('password');
     const terms = document.getElementById('terms');
 
+    if (!authForm) {
+        console.error('Auth form not found');
+        return;
+    }
+
     // Initialize Google Provider
-    const googleProvider = new GoogleAuthProvider();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
 
     // Password visibility toggle
     passwordToggle.addEventListener('click', function() {
@@ -47,14 +46,9 @@ function initSignUp() {
     authForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
+        const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-
-        // Validation
-        if (!terms.checked) {
-            showError('Please accept the Terms of Service and Privacy Policy');
-            return;
-        }
 
         if (password.length < 6) {
             showError('Password must be at least 6 characters long');
@@ -65,10 +59,16 @@ function initSignUp() {
         setLoading(true);
 
         try {
-            // Create account
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            console.log('Account created:', userCredential.user);
-            showSuccess('Account created successfully!');
+            // Create user
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            
+            // Update profile with name
+            await userCredential.user.updateProfile({
+                displayName: name
+            });
+            
+            console.log('Account created successfully:', userCredential.user);
+            showSuccess('Account created successfully! Welcome to Mynco!');
             
             // Redirect to dashboard after a short delay
             setTimeout(() => {
@@ -82,14 +82,14 @@ function initSignUp() {
         }
     });
 
-    // Google Sign In
-    googleSignIn.addEventListener('click', async function() {
+    // Google Sign Up
+    googleSignUp.addEventListener('click', async function() {
         setLoading(true);
         
         try {
-            const result = await signInWithPopup(auth, googleProvider);
-            console.log('Google sign in:', result.user);
-            showSuccess('Welcome!');
+            const result = await auth.signInWithPopup(googleProvider);
+            console.log('Google sign up successful:', result.user);
+            showSuccess('Welcome to Mynco!');
             
             // Redirect to dashboard after a short delay
             setTimeout(() => {
@@ -108,14 +108,17 @@ function initSignUp() {
         let message = 'An error occurred. Please try again.';
         
         switch (error.code) {
-            case 'auth/email-already-in-use':
-                message = 'An account with this email already exists.';
-                break;
             case 'auth/invalid-email':
                 message = 'Please enter a valid email address.';
                 break;
+            case 'auth/email-already-in-use':
+                message = 'An account with this email already exists.';
+                break;
             case 'auth/weak-password':
-                message = 'Password should be at least 6 characters long.';
+                message = 'Password should be at least 6 characters.';
+                break;
+            case 'auth/too-many-requests':
+                message = 'Too many failed attempts. Please try again later.';
                 break;
             case 'auth/popup-closed-by-user':
                 message = 'Sign up was cancelled.';
@@ -131,12 +134,12 @@ function initSignUp() {
             btnText.classList.add('hidden');
             document.querySelector('.btn-loading').classList.remove('hidden');
             submitBtn.disabled = true;
-            googleSignIn.disabled = true;
+            googleSignUp.disabled = true;
         } else {
             btnText.classList.remove('hidden');
             document.querySelector('.btn-loading').classList.add('hidden');
             submitBtn.disabled = false;
-            googleSignIn.disabled = false;
+            googleSignUp.disabled = false;
         }
     }
 
