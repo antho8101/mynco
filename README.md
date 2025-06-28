@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Mynco Logo](assets/images/myncologo+tucan.png)
+<img src="assets/images/myncologo+tucan.png" alt="Mynco Logo" width="250">
 
 **Turn any client into a premium experience**
 
