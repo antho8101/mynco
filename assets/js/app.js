@@ -11,8 +11,8 @@ const headerHTML = `
             <li><a href="index.html#pricing">Pricing</a></li>
         </ul>
         <div class="nav-actions">
-            <a href="auth/login.html" class="btn btn-secondary">Sign In</a>
-            <a href="auth/signup.html" class="btn btn-primary">Get Started</a>
+            <a href="/auth/login.html?mode=signin" class="btn btn-secondary">Sign In</a>
+            <a href="/auth/login.html" class="btn btn-primary">Get Started</a>
         </div>
     </nav>
 </header>
