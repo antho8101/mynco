@@ -52,7 +52,7 @@ function initDashboard() {
     signOutBtn.addEventListener('click', function() {
         console.log('Signing out...');
         // Here you would implement Firebase sign out
-        window.location.href = '/auth/signin.html';
+        window.location.href = 'https://www.mynco.app/auth/signin.html';
     });
 
     // Create project button
@@ -72,7 +72,7 @@ function initDashboard() {
             } else {
                 console.log('User is signed out');
                 // Redirect to login if not authenticated
-                window.location.href = '/auth/signin.html';
+                window.location.href = 'https://www.mynco.app/auth/signin.html';
             }
         });
     } else if (isDevelopment) {
