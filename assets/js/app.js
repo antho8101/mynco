@@ -74,19 +74,19 @@ const footerHTML = `
                     <li><a href="index.html#features">Features</a></li>
                     <li><a href="index.html#pricing">Pricing</a></li>
                     <li><a href="https://docs.mynco.app">API Docs</a></li>
-                    <li><a href="/status">Status</a></li>
-                    <li><a href="/changelog">Changelog</a></li>
+                    <li><a href="status.html">Status</a></li>
+                    <li><a href="changelog.html">Changelog</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
                 <h4>Company</h4>
                 <ul>
-                    <li><a href="/about">About</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="https://blog.mynco.app">Blog</a></li>
-                    <li><a href="/careers">Careers</a></li>
-                    <li><a href="/press">Press Kit</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="press.html">Press Kit</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             
@@ -102,10 +102,10 @@ const footerHTML = `
         <div class="footer-bottom">
             <p>&copy; 2025 Mynco Inc. Made with ❤️ for freelancers worldwide.</p>
             <div class="footer-links">
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms of Service</a>
-                <a href="/cookies">Cookie Policy</a>
-                <a href="/security">Security</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="cookies.html">Cookie Policy</a>
+                <a href="security.html">Security</a>
             </div>
         </div>
     </div>
@@ -188,6 +188,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Global utilities
     initGlobalUtils();
     
+    // Initialize back to top button
+    initBackToTop();
+    
     console.log('🚀 Mynco app initialized');
 });
 
@@ -201,7 +204,16 @@ function injectComponents() {
     }
     
     if (footerContainer) {
-        footerContainer.innerHTML = footerHTML;
+        // Detect current page depth to adjust relative paths
+        const pathDepth = window.location.pathname.split('/').length - 2; // -2 for root and filename
+        const basePath = pathDepth > 0 ? '../'.repeat(pathDepth) : '';
+        
+        // Replace relative paths in footer with correct depth
+        let adjustedFooterHTML = footerHTML
+            .replace(/href="([^"#]+\.html)"/g, `href="${basePath}$1"`)
+            .replace(/href="index\.html#/g, `href="${basePath}index.html#`);
+        
+        footerContainer.innerHTML = adjustedFooterHTML;
     }
     
     // Ajoute le cookie banner au body
@@ -398,3 +410,76 @@ const utils = {
 
 // Make utils available globally
 window.myncoUtils = utils;
+
+// ===================================
+// GLOBAL BACK TO TOP FUNCTIONALITY
+// ===================================
+
+// Initialize back to top button on all pages
+function initBackToTop() {
+    // Check if button already exists
+    let backToTopButton = document.querySelector('.back-to-top');
+    
+    // If no button exists, create one
+    if (!backToTopButton) {
+        backToTopButton = document.createElement('button');
+        backToTopButton.className = 'back-to-top';
+        backToTopButton.setAttribute('aria-label', 'Back to top');
+        backToTopButton.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        `;
+        document.body.appendChild(backToTopButton);
+    }
+    
+    // Show/hide button based on scroll position
+    function toggleBackToTopButton() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    }
+    
+    // Smooth scroll to top with custom animation
+    function scrollToTop() {
+        const startPosition = window.pageYOffset;
+        const targetPosition = 0;
+        const distance = startPosition - targetPosition;
+        const duration = 800; // 800ms pour l'animation
+        let start = null;
+        
+        function animation(currentTime) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const run = easeInOutQuad(timeElapsed, startPosition, -distance, duration);
+            window.scrollTo(0, run);
+            
+            if (timeElapsed < duration) {
+                requestAnimationFrame(animation);
+            }
+        }
+        
+        // Fonction d'easing pour une animation plus fluide
+        function easeInOutQuad(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+        
+        requestAnimationFrame(animation);
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', utils.debounce(toggleBackToTopButton, 10));
+    backToTopButton.addEventListener('click', scrollToTop);
+    
+    // Check initial scroll position
+    toggleBackToTopButton();
+    
+    console.log('🔝 Back to top button initialized');
+}

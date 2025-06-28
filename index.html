@@ -6,6 +6,10 @@
     <title>Mynco - Turn any client into a premium experience</title>
     <meta name="description" content="Stop sending Google Drive links. Create professional client portals that get you paid faster. The simplest client onboarding tool for freelancers.">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -13,6 +17,9 @@
     <link rel="stylesheet" href="assets/css/globals.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/landing.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
     <!-- Header sera injecté ici -->
@@ -31,7 +38,7 @@
                     </p>
                     
                     <div class="hero-cta">
-                        <a href="/auth/signup.html" class="btn btn-primary">Create my first portal 🚀</a>
+                        <a href="auth/signup.html" class="btn btn-primary">Create my first portal <i data-lucide="rocket"></i></a>
                         <a href="#demo" class="btn btn-secondary">Watch demo</a>
                     </div>
                     
@@ -54,13 +61,13 @@
                 <div class="hero-visual">
                     <!-- Floating elements -->
                     <div class="floating-element payment">
-                        💳 €2,500 received
+                        <i data-lucide="credit-card"></i> €2,500 received
                     </div>
                     <div class="floating-element notification">
-                        🔔 New message from client
+                        <i data-lucide="bell"></i> New message from client
                     </div>
                     <div class="floating-element security">
-                        🔒 End-to-end encrypted
+                        <i data-lucide="lock"></i> End-to-end encrypted
                     </div>
                     
                     <div class="mockup">
@@ -80,18 +87,18 @@
                             
                             <div class="demo-chat">
                                 <div class="chat-message">
-                                    <strong>You:</strong> Here's the first design version 👆
+                                    <strong>You:</strong> Here's the first design version <i data-lucide="arrow-up"></i>
                                 </div>
                                 <div class="chat-message">
                                     <strong>Martin:</strong> Love it! Can you change the header color?
                                 </div>
                                 <div class="chat-message">
-                                    <strong>You:</strong> Done! Final files are ready for download ✨
+                                    <strong>You:</strong> Done! Final files are ready for download <i data-lucide="sparkles"></i>
                                 </div>
                             </div>
                             
                             <div class="file-upload">
-                                📁 final-design.figma • website-mockups.jpg
+                                <i data-lucide="folder"></i> final-design.figma • website-mockups.jpg
                                 <br><small class="file-price">Ready for download • €2,500</small>
                             </div>
                         </div>
@@ -164,15 +171,15 @@
                         </div>
                         <div class="project-card-mini">
                             <div class="project-name">Bakery Website</div>
-                            <div class="project-status">🟢 Active • €2,500</div>
+                            <div class="project-status"><i data-lucide="circle" style="color: #00D084; fill: #00D084;"></i> Active • €2,500</div>
                         </div>
                         <div class="project-card-mini">
                             <div class="project-name">Logo Design</div>
-                            <div class="project-status">💰 Paid • €800</div>
+                            <div class="project-status"><i data-lucide="dollar-sign"></i> Paid • €800</div>
                         </div>
                         <div class="project-card-mini">
                             <div class="project-name">App Mockups</div>
-                            <div class="project-status">⏳ Pending • €1,200</div>
+                            <div class="project-status"><i data-lucide="clock"></i> Pending • €1,200</div>
                         </div>
                     </div>
                 </div>
@@ -193,14 +200,14 @@
                         </div>
                         <div class="chat-mini">
                             <div class="chat-bubble">
-                                <strong>You:</strong> Final designs ready! 🎉
+                                <strong>You:</strong> Final designs ready! <i data-lucide="party-popper"></i>
                             </div>
                             <div class="chat-bubble">
                                 <strong>Martin:</strong> Perfect! Love the colors
                             </div>
                         </div>
                         <div class="file-preview">
-                            📁 bakery-final.zip
+                            <i data-lucide="folder"></i> bakery-final.zip
                             <br>Ready for download
                         </div>
                     </div>
@@ -215,7 +222,7 @@
                     <div class="mockup-screen">
                         <div class="payment-success">
                             <div class="payment-amount">€2,500.00</div>
-                            <div class="payment-status">✅ Payment received</div>
+                            <div class="payment-status"><i data-lucide="check-circle" style="color: #00D084;"></i> Payment received</div>
                         </div>
                         <div class="invoice-line">
                             <div class="invoice-item">
@@ -294,21 +301,21 @@
                 <!-- Demo features highlights -->
                 <div class="demo-highlights">
                     <div class="demo-highlight">
-                        <div class="highlight-icon">⚡</div>
+                        <div class="highlight-icon"><i data-lucide="zap"></i></div>
                         <div class="highlight-text">
                             <h4>30-second setup</h4>
                             <p>From signup to first client portal</p>
                         </div>
                     </div>
                     <div class="demo-highlight">
-                        <div class="highlight-icon">🎨</div>
+                        <div class="highlight-icon"><i data-lucide="palette"></i></div>
                         <div class="highlight-text">
                             <h4>Instant branding</h4>
                             <p>Professional look, zero configuration</p>
                         </div>
                     </div>
                     <div class="demo-highlight">
-                        <div class="highlight-icon">💰</div>
+                        <div class="highlight-icon"><i data-lucide="dollar-sign"></i></div>
                         <div class="highlight-text">
                             <h4>One-click payments</h4>
                             <p>Client pays, downloads, done</p>
@@ -329,37 +336,37 @@
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
+                    <div class="feature-icon"><i data-lucide="target"></i></div>
                     <h3>Zero-setup client portals</h3>
                     <p>Create stunning, professional client experiences in 30 seconds. No configuration, no complexity. Just professional results.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">💳</div>
+                    <div class="feature-icon"><i data-lucide="credit-card"></i></div>
                     <h3>Pay-to-download system</h3>
                     <p>Client approves work, pays instantly, downloads automatically. Stripe integration handles everything. No more payment chasing.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">💬</div>
+                    <div class="feature-icon"><i data-lucide="message-circle"></i></div>
                     <h3>Built-in communication</h3>
                     <p>Real-time chat keeps everything organized. Clients love the clarity, you love the simplicity. No more email chaos.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">📁</div>
+                    <div class="feature-icon"><i data-lucide="folder"></i></div>
                     <h3>Secure file delivery</h3>
                     <p>Drag & drop uploads with instant previews. Watermarked previews, secure downloads. Professional file management made simple.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
+                    <div class="feature-icon"><i data-lucide="bell"></i></div>
                     <h3>Smart notifications</h3>
                     <p>Keep clients informed with automated updates. Project progress, payment confirmations, delivery notifications. Set it and forget it.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
                     <h3>Simple analytics</h3>
                     <p>See client engagement, track downloads, monitor payments. Understand your business with clean, actionable insights.</p>
                 </div>
@@ -433,9 +440,9 @@
                 <div class="step">
                     <div class="step-number">
                         1
-                        <div class="step-icon">🎯</div>
+                        <div class="step-icon"><i data-lucide="target"></i></div>
                     </div>
-                    <div class="step-visual">📋</div>
+                    <div class="step-visual"><i data-lucide="clipboard"></i></div>
                     <h3>Create client portal</h3>
                     <p>New client signed? Set up their branded portal in 30 seconds. Add project details and deliverables.</p>
                 </div>
@@ -443,9 +450,9 @@
                 <div class="step">
                     <div class="step-number">
                         2
-                        <div class="step-icon">🔗</div>
+                        <div class="step-icon"><i data-lucide="link"></i></div>
                     </div>
-                    <div class="step-visual">✨</div>
+                    <div class="step-visual"><i data-lucide="sparkles"></i></div>
                     <h3>Send professional link</h3>
                     <p>Client gets instant access to a beautiful, professional project workspace. No sign-up required.</p>
                 </div>
@@ -453,9 +460,9 @@
                 <div class="step">
                     <div class="step-number">
                         3
-                        <div class="step-icon">💰</div>
+                        <div class="step-icon"><i data-lucide="dollar-sign"></i></div>
                     </div>
-                    <div class="step-visual">🎉</div>
+                    <div class="step-visual"><i data-lucide="party-popper"></i></div>
                     <h3>Get paid automatically</h3>
                     <p>Client approves, pays, downloads. You get notified and paid instantly. Professional billing, every time.</p>
                 </div>
@@ -484,7 +491,7 @@
                         <li>"Powered by Mynco" branding</li>
                         <li>Email support</li>
                     </ul>
-                    <a href="/auth/signup.html" class="btn btn-secondary full-width">Start free</a>
+                                            <a href="auth/signup.html" class="btn btn-secondary full-width">Start free</a>
                 </div>
                 
                 <div class="pricing-card featured">
@@ -499,7 +506,7 @@
                         <li>Analytics dashboard</li>
                         <li>Priority support</li>
                     </ul>
-                    <a href="/auth/signup.html" class="btn btn-primary full-width">Start trial</a>
+                                            <a href="auth/signup.html" class="btn btn-primary full-width">Start trial</a>
                 </div>
                 
                 <div class="pricing-card">
@@ -525,19 +532,14 @@
         <div class="container">
             <h2>Stop looking amateur. Start looking like Apple.</h2>
             <p>Join thousands of freelancers transforming their client delivery with professional portals</p>
-            <a href="/auth/signup.html" class="btn btn-primary">Create my first portal</a>
+                                <a href="auth/signup.html" class="btn btn-primary">Create my first portal</a>
         </div>
     </section>
 
     <!-- Footer sera injecté ici -->
     <div id="footer-container"></div>
 
-    <!-- Back to top button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-        </svg>
-    </button>
+
 
     <!-- Avant les scripts existants -->
     <div id="cookie-banner-container"></div>
@@ -547,23 +549,8 @@
     <script src="assets/js/cookies.js"></script>  <!-- ← Après app.js -->
     <script src="assets/js/landing.js"></script>
     <script>
-        // Back to top functionality
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+        // Initialize Lucide icons
+        lucide.createIcons();
     </script>
 
 </body>

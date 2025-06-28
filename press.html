@@ -6,6 +6,10 @@
     <title>Press Kit - Mynco</title>
     <meta name="description" content="Press kit and media resources for Mynco. Download logos, company information, and contact details for journalists and media.">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -13,6 +17,9 @@
     <link rel="stylesheet" href="assets/css/globals.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/press.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
     <div id="header-container"></div>
@@ -280,7 +287,7 @@
                 </div>
                 <div class="use-cases-grid">
                     <div class="use-case-card">
-                        <div class="use-case-icon">🎨</div>
+                        <div class="use-case-icon"><i data-lucide="palette"></i></div>
                         <h3>Design Agencies</h3>
                         <p>Deliver brand guidelines, mockups, and design assets with professional presentation that impresses clients and speeds up approval processes.</p>
                         <div class="use-case-stats">
@@ -288,7 +295,7 @@
                         </div>
                     </div>
                     <div class="use-case-card">
-                        <div class="use-case-icon">💻</div>
+                        <div class="use-case-icon"><i data-lucide="laptop"></i></div>
                         <h3>Web Developers</h3>
                         <p>Share project updates, collect feedback, and showcase completed websites with interactive demos and progress tracking.</p>
                         <div class="use-case-stats">
@@ -296,7 +303,7 @@
                         </div>
                     </div>
                     <div class="use-case-card">
-                        <div class="use-case-icon">📱</div>
+                        <div class="use-case-icon"><i data-lucide="smartphone"></i></div>
                         <h3>App Developers</h3>
                         <p>Distribute beta versions, collect user feedback, and manage app store submissions with streamlined client communication.</p>
                         <div class="use-case-stats">
@@ -304,7 +311,7 @@
                         </div>
                     </div>
                     <div class="use-case-card">
-                        <div class="use-case-icon">📊</div>
+                        <div class="use-case-icon"><i data-lucide="bar-chart-3"></i></div>
                         <h3>Consultants</h3>
                         <p>Deliver reports, presentations, and strategic documents with branded portals that enhance credibility and professionalism.</p>
                         <div class="use-case-stats">
@@ -323,37 +330,37 @@
                 </div>
                 <div class="downloads-grid">
                     <div class="download-card">
-                        <div class="download-icon">🎨</div>
+                        <div class="download-icon"><i data-lucide="palette"></i></div>
                         <h3>Logo Package</h3>
                         <p>High-resolution logos in various formats and colors</p>
                         <button class="btn btn-secondary" disabled>Coming soon</button>
                     </div>
                     <div class="download-card">
-                        <div class="download-icon">📸</div>
+                        <div class="download-icon"><i data-lucide="camera"></i></div>
                         <h3>Product Screenshots</h3>
                         <p>Latest screenshots of the Mynco platform</p>
                         <button class="btn btn-secondary" disabled>Coming soon</button>
                     </div>
                     <div class="download-card">
-                        <div class="download-icon">👥</div>
+                        <div class="download-icon"><i data-lucide="users"></i></div>
                         <h3>Team Photos</h3>
                         <p>Professional photos of our team members</p>
                         <button class="btn btn-secondary" disabled>Coming soon</button>
                     </div>
                     <div class="download-card">
-                        <div class="download-icon">📄</div>
+                        <div class="download-icon"><i data-lucide="file-text"></i></div>
                         <h3>Company Fact Sheet</h3>
                         <p>Key facts and figures about Mynco</p>
                         <button class="btn btn-secondary" disabled>Coming soon</button>
                     </div>
                     <div class="download-card">
-                        <div class="download-icon">🎥</div>
+                        <div class="download-icon"><i data-lucide="video"></i></div>
                         <h3>Product Demo Video</h3>
                         <p>High-quality demo video for media use</p>
                         <button class="btn btn-secondary" disabled>Coming soon</button>
                     </div>
                     <div class="download-card">
-                        <div class="download-icon">📊</div>
+                        <div class="download-icon"><i data-lucide="bar-chart-3"></i></div>
                         <h3>Infographics</h3>
                         <p>Visual assets for articles and presentations</p>
                         <button class="btn btn-secondary" disabled>Coming soon</button>
@@ -428,21 +435,21 @@
                     
                     <div class="contact-methods">
                         <div class="contact-method">
-                            <div class="contact-icon">📧</div>
+                            <div class="contact-icon"><i data-lucide="mail"></i></div>
                             <div class="contact-details">
                                 <h4>Press Inquiries</h4>
                                 <a href="mailto:press@mynco.app">press@mynco.app</a>
                             </div>
                         </div>
                         <div class="contact-method">
-                            <div class="contact-icon">📱</div>
+                            <div class="contact-icon"><i data-lucide="smartphone"></i></div>
                             <div class="contact-details">
                                 <h4>General Contact</h4>
                                 <a href="mailto:hello@mynco.app">hello@mynco.app</a>
                             </div>
                         </div>
                         <div class="contact-method">
-                            <div class="contact-icon">🔗</div>
+                            <div class="contact-icon"><i data-lucide="link"></i></div>
                             <div class="contact-details">
                                 <h4>LinkedIn</h4>
                                 <a href="https://linkedin.com/company/mynco" target="_blank">linkedin.com/company/mynco</a>
@@ -466,32 +473,12 @@
     
     <div id="footer-container"></div>
     
-    <!-- Back to top button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-        </svg>
-    </button>
+
     
     <script src="assets/js/app.js"></script>
     <script>
-        // Back to top functionality
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+        // Initialize Lucide icons
+        lucide.createIcons();
     </script>
 </body>
 </html> 

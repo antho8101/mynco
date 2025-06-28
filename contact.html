@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Mynco</title>
     <meta name="description" content="Get in touch with the Mynco team. We're here to help with any questions about our client portal platform for freelancers.">
-    <link rel="icon" type="image/svg+xml" href="/assets/images/logo.svg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/globals.css">
+    <link rel="stylesheet" href="assets/css/globals.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/contact.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
     <div id="header-container"></div>
@@ -35,7 +41,7 @@
                         
                         <div class="contact-methods">
                             <div class="contact-method">
-                                <div class="contact-icon">📧</div>
+                                <div class="contact-icon"><i data-lucide="mail"></i></div>
                                 <div class="contact-details">
                                     <h3>Email</h3>
                                     <p>For general inquiries and support</p>
@@ -44,7 +50,7 @@
                             </div>
                             
                             <div class="contact-method">
-                                <div class="contact-icon">💬</div>
+                                <div class="contact-icon"><i data-lucide="message-circle"></i></div>
                                 <div class="contact-details">
                                     <h3>Live Chat</h3>
                                     <p>Get instant help during business hours</p>
@@ -53,7 +59,7 @@
                             </div>
                             
                             <div class="contact-method">
-                                <div class="contact-icon">📱</div>
+                                <div class="contact-icon"><i data-lucide="smartphone"></i></div>
                                 <div class="contact-details">
                                     <h3>Social Media</h3>
                                     <p>Follow us for updates and tips</p>
@@ -168,32 +174,12 @@
     
     <div id="footer-container"></div>
     
-    <!-- Back to top button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-        </svg>
-    </button>
+
     
     <script src="assets/js/app.js"></script>
     <script>
-        // Back to top functionality
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+        // Initialize Lucide icons
+        lucide.createIcons();
 
         // Form handling
         const contactForm = document.getElementById('contactForm');
@@ -248,11 +234,13 @@
                     // Show success message
                     contactForm.innerHTML = `
                         <div class="success-message">
-                            <div class="success-icon">✅</div>
+                            <div class="success-icon"><i data-lucide="check-circle" style="color: #00D084; width: 48px; height: 48px;"></i></div>
                             <h3>Message Sent!</h3>
                             <p>Thank you for reaching out. We'll get back to you within 2 hours.</p>
                         </div>
                     `;
+                    // Re-initialize Lucide icons for dynamically added content
+                    lucide.createIcons();
                 } else {
                     throw new Error('Failed to send message');
                 }
@@ -260,12 +248,14 @@
                 // Error
                 contactForm.innerHTML = `
                     <div class="error-message">
-                        <div class="error-icon">❌</div>
+                        <div class="error-icon"><i data-lucide="x-circle" style="color: #ef4444; width: 48px; height: 48px;"></i></div>
                         <h3>Oops! Something went wrong</h3>
                         <p>Please try again or email us directly at hello@mynco.app</p>
                         <button type="button" class="btn btn-secondary" onclick="location.reload()">Try Again</button>
                     </div>
                 `;
+                // Re-initialize Lucide icons for dynamically added content
+                lucide.createIcons();
             }
         });
     </script>

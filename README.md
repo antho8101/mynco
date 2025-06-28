@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Mynco Logo](https://via.placeholder.com/200x80/00D084/FFFFFF?text=mynco)
+![Mynco Logo](assets/images/myncologo+tucan.png)
 
 **Turn any client into a premium experience**
 

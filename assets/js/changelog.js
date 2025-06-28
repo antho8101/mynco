@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // GitHub API configuration
-    const GITHUB_API_URL = 'https://api.github.com/repos/antho8101/mynco/commits';
+    const GITHUB_API_URL = 'https://api.github.com/repos/antho8101/mynco/commits?per_page=100';
     const GITHUB_REPO_URL = 'https://github.com/antho8101/mynco/commit/';
     
     // Back to top functionality
@@ -30,19 +30,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fetch and display real GitHub commits
     async function loadRealChangelog() {
+        console.log('🔄 Loading changelog from GitHub API...', GITHUB_API_URL);
+        
         try {
             const response = await fetch(GITHUB_API_URL);
+            console.log('📡 API Response status:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
             const commits = await response.json();
+            console.log('📊 GitHub commits loaded:', commits.length);
             
             if (commits.length > 0) {
                 // Group commits by month
                 const commitsByMonth = groupCommitsByMonth(commits);
+                console.log('📅 Commits grouped by month:', Object.keys(commitsByMonth));
                 
                 // Generate changelog HTML
                 generateChangelogHTML(commitsByMonth);
                 
                 // Update stats
-                updateStats(commits.length);
+                updateStats(commits.length, commitsByMonth);
                 
                 // Calculate and update real uptime
                 updateRealUptime();
@@ -52,10 +62,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     initFilters();
                     initTimelineAnimations();
                     initHoverEffects();
+                    applyPaginationFade();
+                    
+                    // Reinitialize Lucide icons
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
                 }, 100);
+            } else {
+                console.warn('⚠️ No commits found in GitHub API response');
             }
         } catch (error) {
-            console.error('Error loading changelog:', error);
+            console.error('❌ Error loading changelog:', error);
+            console.log('📌 Falling back to static content');
             // Fallback to static content if API fails
         }
     }
@@ -63,12 +82,23 @@ document.addEventListener('DOMContentLoaded', function() {
     function groupCommitsByMonth(commits) {
         const months = {};
         
-        commits.forEach(commit => {
-            const date = new Date(commit.commit.author.date);
+        commits.forEach((commit, index) => {
+            const rawDate = commit.commit.author.date;
+            const date = new Date(rawDate);
             const monthKey = date.toLocaleDateString('en-US', { 
                 year: 'numeric', 
                 month: 'long' 
             });
+            
+            // Debug les premières dates pour voir le problème
+            if (index < 3) {
+                console.log(`📅 Commit ${index + 1} date:`, {
+                    raw: rawDate,
+                    parsed: date,
+                    monthKey: monthKey,
+                    message: commit.commit.message.substring(0, 50) + '...'
+                });
+            }
             
             if (!months[monthKey]) {
                 months[monthKey] = [];
@@ -82,14 +112,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function generateChangelogHTML(commitsByMonth) {
         const timelineContainer = document.querySelector('.changelog-timeline');
-        if (!timelineContainer) return;
+        if (!timelineContainer) {
+            console.error('❌ Timeline container not found');
+            return;
+        }
         
         let html = '';
+        let totalItemsGenerated = 0;
         
         Object.keys(commitsByMonth).forEach(monthKey => {
             const commits = commitsByMonth[monthKey];
             const monthName = monthKey.split(' ')[0];
             const year = monthKey.split(' ')[1];
+            
+            totalItemsGenerated += commits.length;
             
             html += `
                 <div class="timeline-month" data-category="new improvement fix security">
@@ -106,6 +142,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         timelineContainer.innerHTML = html;
+        
+        console.log('🏗️ HTML generated:', {
+            totalItemsGenerated,
+            monthsGenerated: Object.keys(commitsByMonth).length,
+            finalItemsInDOM: document.querySelectorAll('.timeline-item').length
+        });
     }
     
     function generateCommitHTML(commit) {
@@ -165,12 +207,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function getTypeIcon(type) {
         const icons = {
-            new: '🆕',
-            improvement: '⚡',
-            fix: '🐛',
-            security: '🔒'
+            new: '<i data-lucide="sparkles"></i>',
+            improvement: '<i data-lucide="zap"></i>',
+            fix: '<i data-lucide="bug"></i>',
+            security: '<i data-lucide="lock"></i>'
         };
-        return icons[type] || '⚡';
+        return icons[type] || '<i data-lucide="zap"></i>';
     }
     
     function getTypeLabel(type) {
@@ -183,10 +225,32 @@ document.addEventListener('DOMContentLoaded', function() {
         return labels[type] || 'Improvement';
     }
     
-    function updateStats(totalCommits) {
+    function updateStats(totalCommits, commitsByMonth) {
+        console.log('📈 Updating stats...', { totalCommits, commitsByMonth });
+        
         const statNumbers = document.querySelectorAll('.stat-number');
-        if (statNumbers.length >= 2) {
-            statNumbers[1].textContent = totalCommits;
+        console.log('🔢 Found stat elements:', statNumbers.length);
+        
+        if (statNumbers.length >= 3) {
+            // Calculate updates this month
+            const currentMonth = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long' 
+            });
+            const thisMonthCommits = commitsByMonth[currentMonth] ? commitsByMonth[currentMonth].length : 0;
+            
+            // Update stats
+            statNumbers[0].textContent = thisMonthCommits; // Updates this month
+            statNumbers[1].textContent = totalCommits;     // Total updates
+            // statNumbers[2] is uptime, calculated separately
+            
+            console.log('✅ Stats updated:', {
+                thisMonth: thisMonthCommits,
+                total: totalCommits,
+                currentMonth
+            });
+        } else {
+            console.warn('⚠️ Not enough stat elements found');
         }
     }
 
@@ -359,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Animate timeline items on scroll
+    // Animate timeline items on scroll - PRESERVE FADE EFFECT
     function initTimelineAnimations() {
         const timelineItems = document.querySelectorAll('.timeline-item');
         
@@ -367,7 +431,12 @@ document.addEventListener('DOMContentLoaded', function() {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
                     setTimeout(() => {
-                        entry.target.style.opacity = '1';
+                        // PRESERVE fade effect - don't overwrite opacity for fade items
+                        const fadeLevel = entry.target.getAttribute('data-fade-level');
+                        if (!fadeLevel) {
+                            entry.target.style.opacity = '1';
+                        }
+                        // Always apply transform animation
                         entry.target.style.transform = 'translateX(0)';
                     }, index * 100); // Stagger animation
                 }
@@ -375,24 +444,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { threshold: 0.1 });
         
         timelineItems.forEach(item => {
-            item.style.opacity = '0';
+            // PRESERVE fade effect during initial setup
+            const fadeLevel = item.getAttribute('data-fade-level');
+            if (!fadeLevel) {
+                item.style.opacity = '0';
+            }
+            // Always apply initial transform
             item.style.transform = 'translateX(-20px)';
             item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(item);
         });
     }
 
-    // Hover effects for timeline items
+    // Hover effects for timeline items - PRESERVE FADE EFFECT
     function initHoverEffects() {
         const timelineItems = document.querySelectorAll('.timeline-item');
         
         timelineItems.forEach(item => {
             item.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-4px) scale(1.02)';
+                // Don't modify opacity on hover - preserve fade effect
             });
             
             item.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
+                // Don't modify opacity on hover leave - preserve fade effect
             });
         });
     }
@@ -420,10 +496,84 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Apply PERMANENT pagination fade effect and hide items
+    function applyPaginationFade() {
+        const allTimelineItems = document.querySelectorAll('.timeline-item');
+        const loadMoreSection = document.getElementById('loadMoreSection');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        
+        console.log('🎨 Applying PERMANENT fade effect to', allTimelineItems.length, 'items');
+        
+        // Apply PERMANENT fade effect to items 13, 14, 15 and hide items after 15
+        allTimelineItems.forEach((item, index) => {
+            if (index === 12) {
+                item.style.opacity = '0.8';
+                item.style.setProperty('opacity', '0.8', 'important');
+                item.classList.remove('hidden-initially');
+                item.setAttribute('data-fade-level', 'fade-13');
+                console.log('🎨 Item 13 set to opacity 0.8');
+            } else if (index === 13) {
+                item.style.opacity = '0.5';
+                item.style.setProperty('opacity', '0.5', 'important');
+                item.classList.remove('hidden-initially');
+                item.setAttribute('data-fade-level', 'fade-14');
+                console.log('🎨 Item 14 set to opacity 0.5');
+            } else if (index === 14) {
+                item.style.opacity = '0.2';
+                item.style.setProperty('opacity', '0.2', 'important');
+                item.classList.remove('hidden-initially');
+                item.setAttribute('data-fade-level', 'fade-15');
+                console.log('🎨 Item 15 set to opacity 0.2');
+            } else if (index >= 15) {
+                item.classList.add('hidden-initially');
+                item.style.display = 'none';
+            } else {
+                item.style.opacity = '1';
+                item.classList.remove('hidden-initially');
+            }
+        });
+        
+        // Show/hide load more section based on total items
+        if (loadMoreSection) {
+            if (allTimelineItems.length > 15) {
+                loadMoreSection.style.display = 'block';
+                console.log('🎯 Load more section positioned to overlap last visible item');
+            } else {
+                loadMoreSection.style.display = 'none';
+            }
+        }
+        
+        // Handle "Show All Updates" button
+        if (loadMoreBtn && !loadMoreBtn.getAttribute('data-fade-listener')) {
+            loadMoreBtn.setAttribute('data-fade-listener', 'true');
+            loadMoreBtn.addEventListener('click', function() {
+                document.body.classList.add('show-all');
+                loadMoreSection.style.display = 'none';
+                
+                // Show all hidden items but PRESERVE fade effect on 13, 14, 15
+                allTimelineItems.forEach(item => {
+                    item.classList.remove('hidden-initially');
+                    item.style.display = 'flex';
+                    
+                    // Only restore full opacity for non-fade items
+                    if (!item.getAttribute('data-fade-level')) {
+                        item.style.opacity = '1';
+                    }
+                    // Items with data-fade-level keep their fade opacity!
+                });
+            });
+        }
+    }
+
     // Initialize all functions
     initBackToTop();
     loadRealChangelog(); // Load real GitHub commits
     initKeyboardShortcuts();
+    
+    // Apply fade effect to static content initially
+    setTimeout(() => {
+        applyPaginationFade();
+    }, 500);
     
     console.log('🚀 Changelog page initialized with real GitHub data');
 }); 

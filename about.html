@@ -6,6 +6,10 @@
     <title>About - Mynco</title>
     <meta name="description" content="Discover the story behind Mynco, created by an entrepreneur who needed the perfect tool for client portals.">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -13,6 +17,9 @@
     <link rel="stylesheet" href="assets/css/globals.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/about.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
     <div id="header-container"></div>
@@ -45,7 +52,7 @@
                     <div class="story-visual">
                         <div class="story-mockup">
                             <div class="story-mockup-content">
-                                💡
+                                <i data-lucide="lightbulb" style="width: 48px; height: 48px;"></i>
                             </div>
                         </div>
                     </div>
@@ -61,17 +68,17 @@
                 </div>
                 <div class="values-grid">
                     <div class="value-card">
-                        <div class="value-icon">🎯</div>
+                        <div class="value-icon"><i data-lucide="target"></i></div>
                         <h3>Problem solving</h3>
                         <p>We create products that address real needs. Every feature is designed to simplify your daily work.</p>
                     </div>
                     <div class="value-card">
-                        <div class="value-icon">🌍</div>
+                        <div class="value-icon"><i data-lucide="globe"></i></div>
                         <h3>Positive impact</h3>
                         <p>We believe that by providing adapted solutions, we make the world better, one project at a time.</p>
                     </div>
                     <div class="value-card">
-                        <div class="value-icon">⚡</div>
+                        <div class="value-icon"><i data-lucide="zap"></i></div>
                         <h3>Simplicity</h3>
                         <p>Complexity is not a virtue. We prioritize simplicity and efficiency in everything we create.</p>
                     </div>
@@ -117,12 +124,7 @@
     
     <div id="footer-container"></div>
     
-    <!-- Back to top button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-        </svg>
-    </button>
+
     
     <script src="assets/js/app.js"></script>
     <script>
@@ -140,23 +142,8 @@
             });
         });
         
-        // Back to top functionality
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+        // Initialize Lucide icons
+        lucide.createIcons();
     </script>
 </body>
 </html> 
