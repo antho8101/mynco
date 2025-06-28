@@ -17,6 +17,10 @@
     {
       "source": "/press",
       "destination": "/press.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
     }
   ],
   "headers": [
