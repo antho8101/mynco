@@ -68,7 +68,7 @@ const footerHTML = `
                     <li><a href="https://blog.mynco.app">Blog</a></li>
                     <li><a href="/careers">Careers</a></li>
                     <li><a href="/press">Press Kit</a></li>
-                    <li><a href="mailto:hello@mynco.app">Contact</a></li>
+                    <li><a href="/contact">Contact</a></li>
                 </ul>
             </div>
             
