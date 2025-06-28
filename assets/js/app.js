@@ -75,11 +75,8 @@ const footerHTML = `
             <div class="footer-section">
                 <h4>Support</h4>
                 <ul>
-                    <li><a href="https://help.mynco.app">Help Center</a></li>
-                    <li><a href="https://docs.mynco.app">Documentation</a></li>
-                    <li><a href="https://community.mynco.app">Community</a></li>
-                    <li><a href="https://security.mynco.app">Security</a></li>
-                    <li><a href="/enterprise">Enterprise</a></li>
+                    <li><a href="https://help.mynco.app" target="_blank">Help Center</a></li>
+                    <li><a href="https://doc.mynco.app" target="_blank">Documentation</a></li>
                 </ul>
             </div>
         </div>
