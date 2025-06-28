@@ -81,6 +81,41 @@
     margin-bottom: 24px;
 }
 
+.story-signature {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #E5E7EB;
+}
+
+.signature-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--mint-primary);
+}
+
+.signature-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.signature-text strong {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.signature-text span {
+    font-size: 14px;
+    color: var(--mint-primary);
+    font-weight: 500;
+}
+
 .story-visual {
     position: relative;
     height: 500px;
