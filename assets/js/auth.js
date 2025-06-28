@@ -35,12 +35,12 @@ function initAuth() {
     const passwordInput = document.getElementById('password');
 
     // State
-    let isSignUp = true;
+    let isSignUp = false; // Default to sign in mode
 
     // Check URL parameters for mode
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('mode') === 'signin') {
-        isSignUp = false;
+    if (urlParams.get('mode') === 'signup') {
+        isSignUp = true;
         updateFormMode();
     }
 
@@ -71,12 +71,15 @@ function initAuth() {
             termsCheckbox.classList.add('hidden');
         }
         
-        // Re-attach event listener
-        document.getElementById('toggleMode').addEventListener('click', function(e) {
-            e.preventDefault();
-            isSignUp = !isSignUp;
-            updateFormMode();
-        });
+        // Re-attach event listener to the new toggle link
+        const newToggleMode = document.getElementById('toggleMode');
+        if (newToggleMode) {
+            newToggleMode.addEventListener('click', function(e) {
+                e.preventDefault();
+                isSignUp = !isSignUp;
+                updateFormMode();
+            });
+        }
     }
 
     // Password visibility toggle
