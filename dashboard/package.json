@@ -1,0 +1,13 @@
+{
+  "name": "mynco-dashboard",
+  "version": "1.0.0",
+  "description": "Mynco Dashboard for Team plan",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build required'",
+    "start": "echo 'Static site - serve index.html'"
+  },
+  "keywords": ["dashboard", "mynco", "client-portal"],
+  "author": "Anthony Carayon",
+  "license": "MIT"
+} 
