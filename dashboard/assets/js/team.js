@@ -53,10 +53,15 @@ function initTeam() {
     window.addEventListener('resize', handleResize);
 
     // Modal functionality
-    inviteMemberBtn.addEventListener('click', function() {
+    function openInviteModal() {
         inviteModal.classList.add('show');
         document.body.style.overflow = 'hidden';
-    });
+    }
+
+    // Event listeners for invite buttons
+    if (inviteMemberBtn) {
+        inviteMemberBtn.addEventListener('click', openInviteModal);
+    }
 
     function closeModal() {
         inviteModal.classList.remove('show');
