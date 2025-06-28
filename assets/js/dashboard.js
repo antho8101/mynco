@@ -49,20 +49,10 @@ function initDashboard() {
     });
 
     // Sign out functionality
-    signOutBtn.addEventListener('click', async function() {
-        if (isDevelopment) {
-            // In development, just show a message
-            alert('Sign out disabled in development mode');
-            return;
-        }
-        
-        try {
-            await signOut(auth);
-            console.log('User signed out');
-            window.location.href = '/auth/login.html';
-        } catch (error) {
-            console.error('Sign out error:', error);
-        }
+    signOutBtn.addEventListener('click', function() {
+        console.log('Signing out...');
+        // Here you would implement Firebase sign out
+        window.location.href = '/auth/signin.html';
     });
 
     // Create project button
@@ -82,7 +72,7 @@ function initDashboard() {
             } else {
                 console.log('User is signed out');
                 // Redirect to login if not authenticated
-                window.location.href = '/auth/login.html';
+                window.location.href = '/auth/signin.html';
             }
         });
     } else if (isDevelopment) {

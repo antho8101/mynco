@@ -59,7 +59,7 @@ function initDashboard() {
         try {
             await signOut(auth);
             console.log('User signed out');
-            window.location.href = '/auth/login.html';
+            window.location.href = '/auth/signin.html';
         } catch (error) {
             console.error('Sign out error:', error);
         }
@@ -82,7 +82,7 @@ function initDashboard() {
             } else {
                 console.log('User is signed out');
                 // Redirect to login if not authenticated
-                window.location.href = '/auth/login.html';
+                window.location.href = '/auth/signin.html';
             }
         });
     } else if (isDevelopment) {
