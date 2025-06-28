@@ -360,7 +360,7 @@ body {
 .nav-section-bottom {
     margin-top: auto;
     margin-bottom: 0;
-    padding-bottom: 0;
+    padding-bottom: 10px;
 }
 
 .nav-section-bottom .nav-link {

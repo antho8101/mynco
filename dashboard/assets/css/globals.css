@@ -1,7 +1,3 @@
-@import url('components.css');
-@import url('landing.css');
-@import url('legal.css'); 
-
 :root {
     --mint-primary: #00D084;
     --mint-dark: #00A866;
@@ -16,10 +12,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    user-select: none;                    /* ← Ajoute ça */
-    -webkit-user-select: none;            /* ← Safari */
-    -moz-user-select: none;               /* ← Firefox */
-    -ms-user-select: none;                /* ← IE/Edge */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 body {
@@ -27,8 +23,161 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background: var(--bg-light);
-    user-select: text;                    /* ← Permet la sélection du texte dans le body */
+    user-select: text;
     -webkit-user-select: text;
     -moz-user-select: text;
     -ms-user-select: text;
+}
+
+/* Lucide Icons Global Styles */
+[data-lucide] {
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-block;
+    vertical-align: middle;
+    stroke-width: 2;
+    color: inherit;
+    flex-shrink: 0; /* Empêche la compression des icônes */
+}
+
+/* Icons next to text - proper spacing and alignment */
+.btn [data-lucide] {
+    margin-left: 8px;
+    vertical-align: text-bottom; /* Meilleur alignement pour les boutons */
+}
+
+/* Floating elements spacing */
+.floating-element [data-lucide] {
+    margin-right: 8px;
+    vertical-align: text-top;
+}
+
+/* Chat messages spacing */
+.chat-message [data-lucide],
+.chat-bubble [data-lucide] {
+    margin-left: 6px;
+    vertical-align: text-bottom;
+}
+
+/* File elements spacing */
+.file-upload [data-lucide],
+.file-preview [data-lucide] {
+    margin-right: 8px;
+    vertical-align: text-top;
+}
+
+/* Status elements spacing */
+.project-status [data-lucide],
+.payment-status [data-lucide] {
+    margin-right: 6px;
+    vertical-align: text-top;
+}
+
+/* Success/Error messages */
+.success-message [data-lucide],
+.error-message [data-lucide] {
+    margin-right: 12px;
+}
+
+/* Welcome messages */
+.welcome-section h1 [data-lucide] {
+    margin-left: 8px;
+    vertical-align: text-bottom;
+}
+
+/* Icon containers */
+.feature-icon [data-lucide],
+.highlight-icon [data-lucide],
+.step-icon [data-lucide],
+.step-visual [data-lucide],
+.use-case-icon [data-lucide],
+.download-icon [data-lucide],
+.contact-icon [data-lucide],
+.value-icon [data-lucide] {
+    width: 24px;
+    height: 24px;
+    color: var(--mint-primary);
+}
+
+/* Filter icons in changelog */
+.filter-icon [data-lucide] {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+/* ================================
+   GLOBAL MYNCO ELEMENTS
+   ================================ */
+
+/* Smooth scroll behavior for the whole site */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers - Mynco Green */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--mint-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--mint-dark);
+}
+
+/* Back to top button - Global styling */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--mint-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 208, 132, 0.3);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--mint-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 208, 132, 0.4);
+}
+
+.back-to-top svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
 }
