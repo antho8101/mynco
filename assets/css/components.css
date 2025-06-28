@@ -121,10 +121,33 @@
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.logo:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.logo-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon svg {
+    color: var(--mint-primary);
+}
+
+.logo-text {
     font-size: 28px;
     font-weight: 700;
     color: var(--mint-primary);
-    text-decoration: none;
+    line-height: 1;
 }
 
 .nav-links {
@@ -192,12 +215,24 @@
 }
 
 .footer-brand .logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    margin-bottom: 16px;
+    transition: all 0.2s ease;
+}
+
+.footer-brand .logo:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.footer-brand .logo-text {
     font-size: 32px;
     font-weight: 700;
     color: var(--mint-primary);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 16px;
+    line-height: 1;
 }
 
 .footer-brand p {
@@ -212,15 +247,15 @@
 }
 
 .social-link {
-    width: 40px;
-    height: 40px;
-    background: var(--bg-light);
-    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    background: var(--bg-light);
     color: var(--text-gray);
+    border-radius: 8px;
+    text-decoration: none;
     transition: all 0.2s ease;
     border: 1px solid #E5E7EB;
 }
