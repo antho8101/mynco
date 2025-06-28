@@ -11,10 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initSignIn() {
+    console.log('🔧 Initializing Sign In...');
+    
     const auth = window.firebaseAuth;
-    if (!auth) {
-        console.error('Firebase Auth not initialized');
-        return;
+    const isTestMode = !auth;
+    
+    if (isTestMode) {
+        console.log('⚠️ Test mode: Firebase Auth not available, using mock authentication');
+    } else {
+        console.log('✅ Firebase Auth found:', auth);
     }
 
     // DOM Elements
@@ -25,8 +30,19 @@ function initSignIn() {
     const passwordToggle = document.querySelector('.password-toggle');
     const passwordInput = document.getElementById('password');
 
-    // Initialize Google Provider
-    const googleProvider = new GoogleAuthProvider();
+    if (!authForm) {
+        console.error('❌ Auth form not found');
+        return;
+    }
+    
+    console.log('✅ Form elements found');
+
+    // Initialize Google Provider (only if Firebase available)
+    let googleProvider = null;
+    if (!isTestMode) {
+        googleProvider = new GoogleAuthProvider();
+        console.log('✅ Google provider initialized');
+    }
 
     // Password visibility toggle
     passwordToggle.addEventListener('click', function() {
@@ -45,51 +61,98 @@ function initSignIn() {
     // Form submission
     authForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+        console.log('🚀 Form submitted');
         
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+        
+        console.log('📧 Email:', email);
+        console.log('🔑 Password length:', password.length);
 
         if (password.length < 6) {
+            console.log('❌ Password too short');
             showError('Password must be at least 6 characters long');
             return;
         }
 
         // Show loading state
+        console.log('⏳ Setting loading state...');
         setLoading(true);
 
         try {
-            // Sign in
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            console.log('Signed in:', userCredential.user);
-            showSuccess('Welcome back!');
-            
-            // Redirect to dashboard after a short delay
-            setTimeout(() => {
-                window.location.href = '/dashboard/';
-            }, 1500);
+            if (isTestMode) {
+                // Test mode: simulate authentication
+                console.log('🧪 Test mode: Simulating authentication...');
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+                
+                // Mock successful authentication
+                console.log('✅ Mock authentication successful');
+                showSuccess('Welcome back! (Test Mode)');
+                
+                // Redirect to dashboard after a short delay
+                console.log('🔄 Redirecting to dashboard...');
+                setTimeout(() => {
+                    console.log('🏠 Navigating to /dashboard/');
+                    window.location.href = '/dashboard/';
+                }, 1500);
+            } else {
+                console.log('🔐 Attempting real Firebase sign in...');
+                // Real Firebase authentication
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                console.log('✅ Signed in successfully:', userCredential.user);
+                showSuccess('Welcome back!');
+                
+                // Redirect to dashboard after a short delay
+                console.log('🔄 Redirecting to dashboard...');
+                setTimeout(() => {
+                    console.log('🏠 Navigating to /dashboard/');
+                    window.location.href = '/dashboard/';
+                }, 1500);
+            }
         } catch (error) {
-            console.error('Auth error:', error);
+            console.error('❌ Auth error:', error);
+            if (error.code) {
+                console.error('Error code:', error.code);
+                console.error('Error message:', error.message);
+            }
             handleAuthError(error);
         } finally {
+            console.log('🏁 Removing loading state...');
             setLoading(false);
         }
     });
 
     // Google Sign In
     googleSignIn.addEventListener('click', async function() {
+        console.log('🔗 Google sign in clicked');
         setLoading(true);
         
         try {
-            const result = await signInWithPopup(auth, googleProvider);
-            console.log('Google sign in:', result.user);
-            showSuccess('Welcome!');
-            
-            // Redirect to dashboard after a short delay
-            setTimeout(() => {
-                window.location.href = '/dashboard/';
-            }, 1500);
+            if (isTestMode) {
+                // Test mode: simulate Google authentication
+                console.log('🧪 Test mode: Simulating Google authentication...');
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                console.log('✅ Mock Google authentication successful');
+                showSuccess('Welcome! (Test Mode)');
+                
+                setTimeout(() => {
+                    console.log('🏠 Navigating to /dashboard/');
+                    window.location.href = '/dashboard/';
+                }, 1500);
+            } else {
+                console.log('🔐 Attempting real Google sign in...');
+                const result = await signInWithPopup(auth, googleProvider);
+                console.log('✅ Google sign in successful:', result.user);
+                showSuccess('Welcome!');
+                
+                setTimeout(() => {
+                    console.log('🏠 Navigating to /dashboard/');
+                    window.location.href = '/dashboard/';
+                }, 1500);
+            }
         } catch (error) {
-            console.error('Google auth error:', error);
+            console.error('❌ Google auth error:', error);
             handleAuthError(error);
         } finally {
             setLoading(false);
@@ -176,4 +239,6 @@ function initSignIn() {
         const formHeader = document.querySelector('.form-header');
         formHeader.parentNode.insertBefore(successDiv, formHeader.nextSibling);
     }
+
+    console.log('✅ Sign in form initialized' + (isTestMode ? ' (TEST MODE)' : ''));
 } 
