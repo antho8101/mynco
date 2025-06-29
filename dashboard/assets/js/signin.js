@@ -66,8 +66,17 @@ function initSignIn() {
             
             // Wait a moment for Firebase to save auth data
             setTimeout(() => {
-                window.location.href = 'https://dashboard.mynco.app/';
-            }, 1000);
+                console.log('🚀 Attempting redirect to dashboard...');
+                try {
+                    // Use replace instead of href to avoid back button issues
+                    window.location.replace('https://dashboard.mynco.app/');
+                    console.log('✅ Redirect command executed');
+                } catch (error) {
+                    console.error('❌ Redirect failed:', error);
+                    // Fallback: try with href
+                    window.location.href = 'https://dashboard.mynco.app/';
+                }
+            }, 1500); // Slightly longer delay
         } catch (error) {
             console.error('Auth error:', error);
             handleAuthError(error);
@@ -89,8 +98,17 @@ function initSignIn() {
             
             // Wait a moment for Firebase to save auth data
             setTimeout(() => {
-                window.location.href = 'https://dashboard.mynco.app/';
-            }, 1000);
+                console.log('🚀 Attempting redirect to dashboard...');
+                try {
+                    // Use replace instead of href to avoid back button issues
+                    window.location.replace('https://dashboard.mynco.app/');
+                    console.log('✅ Redirect command executed');
+                } catch (error) {
+                    console.error('❌ Redirect failed:', error);
+                    // Fallback: try with href
+                    window.location.href = 'https://dashboard.mynco.app/';
+                }
+            }, 1500); // Slightly longer delay
         } catch (error) {
             console.error('Google auth error:', error);
             handleAuthError(error);
