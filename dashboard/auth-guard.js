@@ -95,15 +95,16 @@ async function checkAuthentication() {
                 }
             }, 10000);
         } else {
-            console.log('⏳ Auth Guard: No local auth data, quick check...');
-            // Only wait 5 seconds if no local auth data
+            console.log('⏳ Auth Guard: No local auth data, extended check...');
+            // Give more time when no local auth data (user might be coming from signin)
+            // Wait up to 8 seconds to allow for network latency and Firebase initialization
             authCheckTimeout = setTimeout(() => {
                 if (!authStateResolved) {
-                    console.log('❌ Auth Guard: No auth data and timeout reached - redirecting to signin');
+                    console.log('❌ Auth Guard: No auth data after extended wait - redirecting to signin');
                     authStateResolved = true;
                     window.location.replace('auth/signin.html');
                 }
-            }, 5000);
+            }, 8000);
         }
         
         // Listen for auth state changes

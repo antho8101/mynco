@@ -231,9 +231,18 @@
                 console.log('🔐 Auth data found, keeping loading screen until verification...');
                 // Dashboard content will be shown by auth-guard.js once Firebase confirms
             } else {
-                // No auth data found, redirect to signin
-                console.log('❌ No auth data found, redirecting to signin');
-                window.location.replace('auth/signin.html');
+                // No obvious auth data found, but give Firebase time to load
+                // Sometimes Firebase auth state isn't immediately visible in localStorage
+                console.log('⚠️ No obvious auth data found, but waiting for Firebase to load...');
+                setTimeout(() => {
+                    // Only redirect if we're still not authenticated after 3 seconds
+                    if (window.firebaseAuth && window.firebaseAuth.currentUser) {
+                        console.log('✅ User found after waiting, staying on dashboard');
+                    } else {
+                        console.log('❌ No user found after waiting, redirecting to signin');
+                        window.location.replace('auth/signin.html');
+                    }
+                }, 3000);
             }
         })();
     </script>
