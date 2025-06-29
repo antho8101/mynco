@@ -88,11 +88,16 @@ async function checkAuthentication() {
                         dashboardContent.classList.add('auth-verified');
                     }
                     
-                    // Hide loading screen
+                    // Hide loading screen using the CORRECT method (fade-out)
                     const loadingScreen = document.getElementById('loading-screen');
                     if (loadingScreen) {
                         setTimeout(() => {
-                            loadingScreen.style.display = 'none';
+                            console.log('🎯 DEBUG: Hiding loading screen with fade-out...');
+                            loadingScreen.classList.add('fade-out');
+                            setTimeout(() => {
+                                console.log('✅ DEBUG: Loading screen completely hidden');
+                                loadingScreen.style.display = 'none';
+                            }, 500);
                         }, 500);
                     }
                 }
@@ -163,11 +168,16 @@ async function checkAuthentication() {
                     dashboardContent.classList.add('auth-verified');
                 }
                 
-                // Hide loading screen
+                // Hide loading screen using the CORRECT method (fade-out)
                 const loadingScreen = document.getElementById('loading-screen');
                 if (loadingScreen) {
                     setTimeout(() => {
-                        loadingScreen.style.display = 'none';
+                        console.log('🎯 DEBUG: Hiding loading screen with fade-out...');
+                        loadingScreen.classList.add('fade-out');
+                        setTimeout(() => {
+                            console.log('✅ DEBUG: Loading screen completely hidden');
+                            loadingScreen.style.display = 'none';
+                        }, 500);
                     }, 500); // Small delay for smooth transition
                 }
             }
