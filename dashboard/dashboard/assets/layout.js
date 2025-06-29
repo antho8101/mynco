@@ -315,7 +315,7 @@ class Layout {
                     if (window.firebaseAuth) {
                         await window.firebaseAuth.signOut();
                         console.log('User signed out');
-                        window.location.href = '/auth/signin.html';
+                        window.location.href = 'https://mynco.app/auth/signin.html';
                     }
                 } catch (error) {
                     console.error('Sign out error:', error);

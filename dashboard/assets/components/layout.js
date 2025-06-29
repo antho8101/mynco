@@ -312,13 +312,13 @@ class Layout {
                             await window.firebaseAuth.signOut();
                             console.log('✅ User signed out');
                             // Redirect to auth signin page
-                            window.location.replace('../auth/signin.html');
+                            window.location.replace('https://mynco.app/auth/signin.html');
                         }
                     }
                 } catch (error) {
                     console.error('❌ Sign out error:', error);
                     // Fallback redirect even if sign out fails
-                    window.location.replace('../auth/signin.html');
+                    window.location.replace('https://mynco.app/auth/signin.html');
                 }
             });
         }
