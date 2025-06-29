@@ -65,7 +65,6 @@ function initSignIn() {
             // Sign in with modern Firebase API
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log('✅ DEBUG SIGNIN: Sign in successful:', userCredential.user.email);
-            alert('✅ DEBUG SIGNIN: Connexion réussie pour ' + userCredential.user.email);
             
             // Wait for Firebase to persist auth state before redirecting
             showSuccess('Connexion réussie ! Redirection...');
@@ -74,7 +73,6 @@ function initSignIn() {
             console.log('⏳ DEBUG SIGNIN: Waiting before redirect...');
             setTimeout(() => {
                 console.log('🚀 DEBUG SIGNIN: Attempting redirect to dashboard...');
-                alert('🚀 DEBUG SIGNIN: Redirection vers le dashboard...');
                 try {
                     // Use replace instead of href to avoid back button issues
                     console.log('🔄 DEBUG SIGNIN: Using absolute redirect to dashboard');
@@ -82,20 +80,17 @@ function initSignIn() {
                     console.log('✅ DEBUG SIGNIN: Redirect command executed');
                 } catch (error) {
                     console.error('❌ DEBUG SIGNIN: Redirect failed:', error);
-                    alert('❌ DEBUG SIGNIN: Erreur de redirection - ' + error.message);
                     // Fallback: try with href
                     try {
                         console.log('🔄 DEBUG SIGNIN: Trying fallback with window.location.href');
                         window.location.href = 'https://dashboard.mynco.app/';
                     } catch (fallbackError) {
                         console.error('❌ DEBUG SIGNIN: Fallback redirect also failed:', fallbackError);
-                        alert('❌ DEBUG SIGNIN: Erreur fallback - ' + fallbackError.message);
                     }
                 }
             }, 4000); // BEAUCOUP plus de temps pour être sûr !
         } catch (error) {
             console.error('❌ DEBUG SIGNIN: Auth error:', error);
-            alert('❌ DEBUG SIGNIN: Erreur d\'authentification - ' + error.message);
             handleAuthError(error);
         } finally {
             setLoading(false);
@@ -111,7 +106,6 @@ function initSignIn() {
             
             const result = await signInWithPopup(auth, googleProvider);
             console.log('✅ DEBUG GOOGLE: Google sign in successful:', result.user.email);
-            alert('✅ DEBUG GOOGLE: Connexion Google réussie pour ' + result.user.email);
             
             // Wait for Firebase to persist auth state before redirecting
             showSuccess('Connexion Google réussie ! Redirection...');
@@ -120,7 +114,6 @@ function initSignIn() {
             console.log('⏳ DEBUG GOOGLE: Waiting before redirect...');
             setTimeout(() => {
                 console.log('🚀 DEBUG GOOGLE: Attempting redirect to dashboard...');
-                alert('🚀 DEBUG GOOGLE: Redirection vers le dashboard...');
                 try {
                     // Use replace instead of href to avoid back button issues
                     console.log('🔄 DEBUG GOOGLE: Using absolute redirect to dashboard');
@@ -128,20 +121,17 @@ function initSignIn() {
                     console.log('✅ DEBUG GOOGLE: Redirect command executed');
                 } catch (error) {
                     console.error('❌ DEBUG GOOGLE: Redirect failed:', error);
-                    alert('❌ DEBUG GOOGLE: Erreur de redirection - ' + error.message);
                     // Fallback: try with href
                     try {
                         console.log('🔄 DEBUG GOOGLE: Trying fallback with window.location.href');
                         window.location.href = 'https://dashboard.mynco.app/';
                     } catch (fallbackError) {
                         console.error('❌ DEBUG GOOGLE: Fallback redirect also failed:', fallbackError);
-                        alert('❌ DEBUG GOOGLE: Erreur fallback - ' + fallbackError.message);
                     }
                 }
             }, 4000); // BEAUCOUP plus de temps pour être sûr !
         } catch (error) {
             console.error('❌ DEBUG GOOGLE: Google auth error:', error);
-            alert('❌ DEBUG GOOGLE: Erreur Google - ' + error.message);
             handleAuthError(error);
         } finally {
             setLoading(false);
