@@ -180,10 +180,52 @@
             font-size: 2rem;
             color: white;
         }
+        
+        /* Keep loading screen visible, hide dashboard content until auth verified */
+        .dashboard-content {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .dashboard-content.auth-verified {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Ensure loading screen is visible by default */
+        #loading-screen {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
     </style>
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Quick auth check to prevent flash -->
+    <script>
+        // Quick check for auth data to prevent dashboard flash
+        (function() {
+            // Check if we have Firebase auth data
+            const hasAuth = Object.keys(localStorage).some(key => 
+                key.includes('firebase') && key.includes('auth')
+            ) || Object.keys(sessionStorage).some(key => 
+                key.includes('firebase') && key.includes('auth')
+            );
+            
+            if (hasAuth) {
+                // User likely authenticated, prepare to show dashboard when auth-guard confirms
+                console.log('🔐 Auth data found, keeping loading screen until verification...');
+                // Dashboard content will be shown by auth-guard.js once Firebase confirms
+            } else {
+                // No auth data, redirect immediately
+                console.log('❌ No auth data, redirecting to signin...');
+                window.location.replace('https://mynco.app/auth/signin.html');
+            }
+        })();
+    </script>
     
     <!-- Auth will be handled by auth-guard.js after page load -->
 </head>

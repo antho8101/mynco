@@ -73,10 +73,19 @@ async function checkAuthentication() {
                 if (!authStateResolved) {
                     console.log('⚠️ Auth Guard: Auth check timeout, but local data exists. Allowing access.');
                     authStateResolved = true;
-                    // Hide loading screen if it exists
+                    
+                    // Show dashboard content
+                    const dashboardContent = document.querySelector('.dashboard-content');
+                    if (dashboardContent) {
+                        dashboardContent.classList.add('auth-verified');
+                    }
+                    
+                    // Hide loading screen
                     const loadingScreen = document.getElementById('loading-screen');
                     if (loadingScreen) {
-                        loadingScreen.style.display = 'none';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
                     }
                 }
             }, 3000);
@@ -108,10 +117,18 @@ async function checkAuthentication() {
                 console.log('✅ Auth Guard: User is authenticated:', user.email);
                 // User is signed in, dashboard access confirmed
                 
-                // Hide loading screen if it exists
+                // Show dashboard content and hide loading screen
+                const dashboardContent = document.querySelector('.dashboard-content');
+                if (dashboardContent) {
+                    dashboardContent.classList.add('auth-verified');
+                }
+                
+                // Hide loading screen
                 const loadingScreen = document.getElementById('loading-screen');
                 if (loadingScreen) {
-                    loadingScreen.style.display = 'none';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500); // Small delay for smooth transition
                 }
             } else {
                 console.log('❌ Auth Guard: User not authenticated, redirecting to signin');
