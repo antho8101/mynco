@@ -85,20 +85,31 @@ async function checkAuthentication() {
                     // Show dashboard content
                     const dashboardContent = document.querySelector('.dashboard-content');
                     if (dashboardContent) {
+                        console.log('🎯 DEBUG: (TIMEOUT) Dashboard content element found');
+                        console.log('🎯 DEBUG: (TIMEOUT) Dashboard content classes BEFORE:', dashboardContent.className);
                         dashboardContent.classList.add('auth-verified');
+                        console.log('🎯 DEBUG: (TIMEOUT) Dashboard content classes AFTER:', dashboardContent.className);
+                        console.log('✅ DEBUG: (TIMEOUT) auth-verified class added to dashboard');
+                    } else {
+                        console.error('❌ DEBUG: (TIMEOUT) Dashboard content element NOT FOUND!');
                     }
                     
                     // Hide loading screen using the CORRECT method (fade-out)
                     const loadingScreen = document.getElementById('loading-screen');
                     if (loadingScreen) {
                         setTimeout(() => {
-                            console.log('🎯 DEBUG: Hiding loading screen with fade-out...');
+                            console.log('🎯 DEBUG: (TIMEOUT) Hiding loading screen with fade-out...');
+                            console.log('🎯 DEBUG: (TIMEOUT) Loading screen classes BEFORE:', loadingScreen.className);
                             loadingScreen.classList.add('fade-out');
+                            console.log('🎯 DEBUG: (TIMEOUT) Loading screen classes AFTER fade-out:', loadingScreen.className);
                             setTimeout(() => {
-                                console.log('✅ DEBUG: Loading screen completely hidden');
+                                console.log('✅ DEBUG: (TIMEOUT) Loading screen completely hidden');
                                 loadingScreen.style.display = 'none';
+                                console.log('🎯 DEBUG: (TIMEOUT) Loading screen final style:', loadingScreen.style.cssText);
                             }, 500);
                         }, 500);
+                    } else {
+                        console.error('❌ DEBUG: (TIMEOUT) Loading screen element NOT FOUND!');
                     }
                 }
             }, 20000); // ÉNORME délai pour debug !
@@ -165,7 +176,14 @@ async function checkAuthentication() {
                 // Show dashboard content and hide loading screen
                 const dashboardContent = document.querySelector('.dashboard-content');
                 if (dashboardContent) {
+                    console.log('🎯 DEBUG: Dashboard content element found');
+                    console.log('🎯 DEBUG: Dashboard content classes BEFORE:', dashboardContent.className);
+                    console.log('🎯 DEBUG: Dashboard content style BEFORE:', dashboardContent.style.cssText);
                     dashboardContent.classList.add('auth-verified');
+                    console.log('🎯 DEBUG: Dashboard content classes AFTER:', dashboardContent.className);
+                    console.log('✅ DEBUG: auth-verified class added to dashboard');
+                } else {
+                    console.error('❌ DEBUG: Dashboard content element NOT FOUND!');
                 }
                 
                 // Hide loading screen using the CORRECT method (fade-out)
@@ -173,12 +191,33 @@ async function checkAuthentication() {
                 if (loadingScreen) {
                     setTimeout(() => {
                         console.log('🎯 DEBUG: Hiding loading screen with fade-out...');
+                        console.log('🎯 DEBUG: Loading screen classes BEFORE:', loadingScreen.className);
+                        console.log('🎯 DEBUG: Loading screen style BEFORE:', loadingScreen.style.cssText);
+                        console.log('🎯 DEBUG: Loading screen computed display BEFORE:', window.getComputedStyle(loadingScreen).display);
                         loadingScreen.classList.add('fade-out');
+                        console.log('🎯 DEBUG: Loading screen classes AFTER fade-out:', loadingScreen.className);
                         setTimeout(() => {
                             console.log('✅ DEBUG: Loading screen completely hidden');
                             loadingScreen.style.display = 'none';
+                            console.log('🎯 DEBUG: Loading screen final style:', loadingScreen.style.cssText);
+                            console.log('🎯 DEBUG: Loading screen final computed display:', window.getComputedStyle(loadingScreen).display);
+                            
+                            // FINAL DEBUG CHECK
+                            setTimeout(() => {
+                                console.log('🔍 FINAL DEBUG CHECK:');
+                                const finalLoadingScreen = document.getElementById('loading-screen');
+                                const finalDashboard = document.querySelector('.dashboard-content');
+                                console.log('🔍 Loading screen exists:', !!finalLoadingScreen);
+                                console.log('🔍 Loading screen visible:', finalLoadingScreen ? window.getComputedStyle(finalLoadingScreen).display !== 'none' : 'N/A');
+                                console.log('🔍 Dashboard exists:', !!finalDashboard);
+                                console.log('🔍 Dashboard classes:', finalDashboard ? finalDashboard.className : 'N/A');
+                                console.log('🔍 Dashboard visibility:', finalDashboard ? window.getComputedStyle(finalDashboard).visibility : 'N/A');
+                                console.log('🔍 Dashboard opacity:', finalDashboard ? window.getComputedStyle(finalDashboard).opacity : 'N/A');
+                            }, 1000);
                         }, 500);
                     }, 500); // Small delay for smooth transition
+                } else {
+                    console.error('❌ DEBUG: Loading screen element NOT FOUND!');
                 }
             }
         });
