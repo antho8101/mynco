@@ -59,11 +59,12 @@ async function checkAuthentication() {
     try {
         // AJOUT: Alert pour debug
         console.log('🚀 DEBUG: Auth Guard starting...');
-        // alert('🚀 DEBUG: Auth Guard starting...');
+        alert('🚀 DEBUG AUTH-GUARD: Démarrage de la vérification auth...');
         
         // First, check if we have local auth data to avoid immediate redirect
         const hasLocalAuth = hasLocalAuthData();
         console.log('🔍 DEBUG: Has local auth data:', hasLocalAuth);
+        alert('🔍 DEBUG: Données auth locales trouvées: ' + hasLocalAuth);
         
         const auth = await waitForAuth();
         console.log('🔥 DEBUG: Firebase auth obtained');
@@ -74,7 +75,7 @@ async function checkAuthentication() {
         
         if (hasLocalAuth) {
             console.log('⏳ Auth Guard: Waiting for auth state (user likely authenticated)...');
-            // Wait up to 8 seconds if we have local auth data (ENCORE PLUS de temps!)
+            // Wait up to 10 seconds if we have local auth data (BEAUCOUP PLUS de temps!)
             authCheckTimeout = setTimeout(() => {
                 if (!authStateResolved) {
                     console.log('⚠️ DEBUG: Auth check timeout with local data - ALLOWING ACCESS');
@@ -95,10 +96,10 @@ async function checkAuthentication() {
                         }, 500);
                     }
                 }
-            }, 8000); // ENCORE plus de temps !
+            }, 10000); // BEAUCOUP plus de temps !
         } else {
             console.log('⏳ Auth Guard: No local auth data, quick check...');
-            // Only wait 3 seconds if no local auth data (plus de temps aussi!)
+            // Only wait 5 seconds if no local auth data (plus de temps aussi!)
             authCheckTimeout = setTimeout(() => {
                 if (!authStateResolved) {
                     console.log('❌ DEBUG: No auth data and timeout reached - REDIRECTING');
@@ -106,7 +107,7 @@ async function checkAuthentication() {
                     authStateResolved = true;
                     window.location.replace('auth/signin.html');
                 }
-            }, 3000); // Plus de temps !
+            }, 5000); // Plus de temps !
         }
         
         // Listen for auth state changes
@@ -170,7 +171,11 @@ async function checkAuthentication() {
                 // User is not signed in, redirect to signin page
                 setTimeout(() => {
                     console.log('🔄 DEBUG: Redirecting to auth/signin.html in 1 second...');
-                    window.location.replace('auth/signin.html');
+                    alert('🔄 DEBUG AUTH-GUARD: Redirection vers signin dans 1 seconde...');
+                    setTimeout(() => {
+                        console.log('🚀 DEBUG: Executing redirect to auth/signin.html');
+                        window.location.replace('auth/signin.html');
+                    }, 1000);
                 }, 1000); // Délai pour voir l'alert
             }
         });

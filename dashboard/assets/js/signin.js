@@ -77,8 +77,8 @@ function initSignIn() {
                 alert('🚀 DEBUG SIGNIN: Redirection vers le dashboard...');
                 try {
                     // Use replace instead of href to avoid back button issues
-                    console.log('🔄 DEBUG SIGNIN: Using window.location.replace("../")');
-                    window.location.replace('../');
+                    console.log('🔄 DEBUG SIGNIN: Using absolute redirect to dashboard');
+                    window.location.replace('https://dashboard.mynco.app/');
                     console.log('✅ DEBUG SIGNIN: Redirect command executed');
                 } catch (error) {
                     console.error('❌ DEBUG SIGNIN: Redirect failed:', error);
@@ -86,7 +86,7 @@ function initSignIn() {
                     // Fallback: try with href
                     try {
                         console.log('🔄 DEBUG SIGNIN: Trying fallback with window.location.href');
-                        window.location.href = '../';
+                        window.location.href = 'https://dashboard.mynco.app/';
                     } catch (fallbackError) {
                         console.error('❌ DEBUG SIGNIN: Fallback redirect also failed:', fallbackError);
                         alert('❌ DEBUG SIGNIN: Erreur fallback - ' + fallbackError.message);
@@ -123,8 +123,8 @@ function initSignIn() {
                 alert('🚀 DEBUG GOOGLE: Redirection vers le dashboard...');
                 try {
                     // Use replace instead of href to avoid back button issues
-                    console.log('🔄 DEBUG GOOGLE: Using window.location.replace("../")');
-                    window.location.replace('../');
+                    console.log('🔄 DEBUG GOOGLE: Using absolute redirect to dashboard');
+                    window.location.replace('https://dashboard.mynco.app/');
                     console.log('✅ DEBUG GOOGLE: Redirect command executed');
                 } catch (error) {
                     console.error('❌ DEBUG GOOGLE: Redirect failed:', error);
@@ -132,7 +132,7 @@ function initSignIn() {
                     // Fallback: try with href
                     try {
                         console.log('🔄 DEBUG GOOGLE: Trying fallback with window.location.href');
-                        window.location.href = '../';
+                        window.location.href = 'https://dashboard.mynco.app/';
                     } catch (fallbackError) {
                         console.error('❌ DEBUG GOOGLE: Fallback redirect also failed:', fallbackError);
                         alert('❌ DEBUG GOOGLE: Erreur fallback - ' + fallbackError.message);
