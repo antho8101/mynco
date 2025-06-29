@@ -40,14 +40,14 @@ async function checkAuthentication() {
             } else {
                 console.log('❌ Auth Guard: User not authenticated, redirecting to signin');
                 // User is not signed in, redirect to signin page
-                window.location.replace('https://mynco.app/auth/signin.html');
+                window.location.replace('auth/signin.html');
             }
         });
         
     } catch (error) {
         console.error('❌ Auth Guard: Error checking authentication:', error);
         // On error, redirect to signin for safety
-        window.location.replace('https://mynco.app/auth/signin.html');
+        window.location.replace('auth/signin.html');
     }
 }
 
@@ -62,11 +62,11 @@ window.signOutUser = async function() {
         }
         
         // Redirect to signin page
-        window.location.replace('https://mynco.app/auth/signin.html');
+        window.location.replace('auth/signin.html');
     } catch (error) {
         console.error('❌ Error signing out:', error);
         // Even if signout fails, redirect to signin
-        window.location.replace('https://mynco.app/auth/signin.html');
+        window.location.replace('auth/signin.html');
     }
 };
 
