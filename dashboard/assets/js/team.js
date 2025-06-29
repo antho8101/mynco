@@ -7,10 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function initTeam() {
     // DOM Elements
-    const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const mainContent = document.querySelector('.main-content');
-    const footer = document.querySelector('.dashboard-footer');
     const inviteMemberBtn = document.getElementById('inviteMemberBtn');
     const inviteModal = document.getElementById('inviteModal');
     const closeInviteModal = document.getElementById('closeInviteModal');
@@ -18,50 +14,11 @@ function initTeam() {
     const inviteForm = document.getElementById('inviteForm');
     const exportTeamBtn = document.getElementById('exportTeamBtn');
 
-    // Sidebar toggle functionality
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('sidebar-collapsed');
-            if (footer) {
-                footer.classList.toggle('sidebar-collapsed');
-            }
-        });
-    }
-
-    // Responsive sidebar behavior
-    function handleResize() {
-        if (window.innerWidth <= 1024) {
-            sidebar.classList.add('collapsed');
-            mainContent.classList.add('sidebar-collapsed');
-            if (footer) {
-                footer.classList.add('sidebar-collapsed');
-            }
-        } else {
-            sidebar.classList.remove('collapsed');
-            mainContent.classList.remove('sidebar-collapsed');
-            if (footer) {
-                footer.classList.remove('sidebar-collapsed');
-            }
-        }
-    }
-
-    // Handle initial resize
-    handleResize();
-
-    // Listen for window resize
-    window.addEventListener('resize', handleResize);
-
     // Modal functionality
-    function openInviteModal() {
+    inviteMemberBtn.addEventListener('click', function() {
         inviteModal.classList.add('show');
         document.body.style.overflow = 'hidden';
-    }
-
-    // Event listeners for invite buttons
-    if (inviteMemberBtn) {
-        inviteMemberBtn.addEventListener('click', openInviteModal);
-    }
+    });
 
     function closeModal() {
         inviteModal.classList.remove('show');
@@ -355,15 +312,6 @@ function initTeam() {
         searchInput.addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase();
             filterMembers(query);
-        });
-    }
-
-    // Support button functionality
-    const supportBtn = document.getElementById('supportBtn');
-    if (supportBtn) {
-        supportBtn.addEventListener('click', function() {
-            // Open support page or modal
-            window.open('mailto:support@mynco.app?subject=Dashboard Support Request', '_blank');
         });
     }
 

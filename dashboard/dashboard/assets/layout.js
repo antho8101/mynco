@@ -299,26 +299,26 @@ class Layout {
         // Sign out functionality
         if (signOutBtn) {
             signOutBtn.addEventListener('click', async function() {
+                // Check if we're in development mode
+                const isDevelopment = window.location.hostname === 'localhost' || 
+                                     window.location.hostname === '127.0.0.1' ||
+                                     window.location.hostname.includes('192.168.') ||
+                                     window.location.hostname.includes('10.0.') ||
+                                     window.location.hostname.includes('172.');
+
+                if (isDevelopment) {
+                    alert('Sign out disabled in development mode');
+                    return;
+                }
+                
                 try {
-                    console.log('🚪 Layout: Sign out button clicked');
-                    
-                    // Use the global sign out function from auth-guard.js if available
-                    if (window.signOutUser) {
-                        console.log('🔗 Layout: Using global signOutUser function');
-                        window.signOutUser();
-                    } else {
-                        console.log('🔐 Layout: Using direct Firebase sign out');
-                        if (window.firebaseAuth) {
-                            await window.firebaseAuth.signOut();
-                            console.log('✅ User signed out');
-                            // Redirect to auth signin page
-                            window.location.replace('../auth/signin.html');
-                        }
+                    if (window.firebaseAuth) {
+                        await window.firebaseAuth.signOut();
+                        console.log('User signed out');
+                        window.location.href = '/auth/signin.html';
                     }
                 } catch (error) {
-                    console.error('❌ Sign out error:', error);
-                    // Fallback redirect even if sign out fails
-                    window.location.replace('../auth/signin.html');
+                    console.error('Sign out error:', error);
                 }
             });
         }

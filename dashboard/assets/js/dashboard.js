@@ -24,7 +24,6 @@ function initDashboard() {
     const sidebar = document.getElementById('sidebar');
     const sidebarToggle = document.getElementById('sidebarToggle');
     const mainContent = document.querySelector('.main-content');
-    const footer = document.querySelector('.dashboard-footer');
     const userMenuBtn = document.getElementById('userMenuBtn');
     const userDropdown = document.getElementById('userDropdown');
     const userMenu = document.querySelector('.user-menu');
@@ -35,9 +34,6 @@ function initDashboard() {
     sidebarToggle.addEventListener('click', function() {
         sidebar.classList.toggle('collapsed');
         mainContent.classList.toggle('sidebar-collapsed');
-        if (footer) {
-            footer.classList.toggle('sidebar-collapsed');
-        }
     });
 
     // User menu dropdown
@@ -53,20 +49,10 @@ function initDashboard() {
     });
 
     // Sign out functionality
-    signOutBtn.addEventListener('click', async function() {
-        if (isDevelopment) {
-            // In development, just show a message
-            alert('Sign out disabled in development mode');
-            return;
-        }
-        
-        try {
-            await signOut(auth);
-            console.log('User signed out');
-            window.location.href = '/auth/signin.html';
-        } catch (error) {
-            console.error('Sign out error:', error);
-        }
+    signOutBtn.addEventListener('click', function() {
+        console.log('Signing out...');
+        // Here you would implement Firebase sign out
+        window.location.href = 'https://www.mynco.app/auth/signin.html';
     });
 
     // Create project button
@@ -86,7 +72,7 @@ function initDashboard() {
             } else {
                 console.log('User is signed out');
                 // Redirect to login if not authenticated
-                window.location.href = '/auth/signin.html';
+                window.location.href = 'https://www.mynco.app/auth/signin.html';
             }
         });
     } else if (isDevelopment) {
@@ -160,15 +146,9 @@ function initDashboard() {
         if (window.innerWidth <= 1024) {
             sidebar.classList.add('collapsed');
             mainContent.classList.add('sidebar-collapsed');
-            if (footer) {
-                footer.classList.add('sidebar-collapsed');
-            }
         } else {
             sidebar.classList.remove('collapsed');
             mainContent.classList.remove('sidebar-collapsed');
-            if (footer) {
-                footer.classList.remove('sidebar-collapsed');
-            }
         }
     }
 
@@ -191,15 +171,6 @@ function initDashboard() {
             userMenu.classList.remove('open');
         }
     });
-
-    // Support button functionality
-    const supportBtn = document.getElementById('supportBtn');
-    if (supportBtn) {
-        supportBtn.addEventListener('click', function() {
-            // Open support page or modal
-            window.open('mailto:support@mynco.app?subject=Dashboard Support Request', '_blank');
-        });
-    }
 
     console.log('🎛️ Dashboard initialized' + (isDevelopment ? ' (DEV MODE)' : ''));
 }
