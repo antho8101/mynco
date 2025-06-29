@@ -33,8 +33,9 @@ window.signOutUser = async function() {
         await signOut(auth);
         console.log('✅ User signed out successfully');
         
-        // Redirect to landing page
-        window.location.href = '/';
+        // Redirect to the main landing page 
+        // Replace current location to prevent going back to dashboard
+        window.location.replace('../index.html');
     } catch (error) {
         console.error('❌ Error signing out:', error);
         alert('Erreur lors de la déconnexion. Veuillez réessayer.');

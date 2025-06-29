@@ -164,8 +164,8 @@ class Sidebar {
                     window.signOutUser();
                 } else {
                     console.error('Sign out function not available');
-                    // Fallback: redirect to landing page
-                    window.location.href = '/';
+                    // Fallback: redirect to main landing page
+                    window.location.replace('../index.html');
                 }
             });
         }
