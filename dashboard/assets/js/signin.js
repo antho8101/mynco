@@ -84,9 +84,15 @@ function initSignIn() {
                     console.error('❌ DEBUG SIGNIN: Redirect failed:', error);
                     alert('❌ DEBUG SIGNIN: Erreur de redirection - ' + error.message);
                     // Fallback: try with href
-                    window.location.href = '../';
+                    try {
+                        console.log('🔄 DEBUG SIGNIN: Trying fallback with window.location.href');
+                        window.location.href = '../';
+                    } catch (fallbackError) {
+                        console.error('❌ DEBUG SIGNIN: Fallback redirect also failed:', fallbackError);
+                        alert('❌ DEBUG SIGNIN: Erreur fallback - ' + fallbackError.message);
+                    }
                 }
-            }, 2000); // Plus de temps pour être sûr
+            }, 4000); // BEAUCOUP plus de temps pour être sûr !
         } catch (error) {
             console.error('❌ DEBUG SIGNIN: Auth error:', error);
             alert('❌ DEBUG SIGNIN: Erreur d\'authentification - ' + error.message);
@@ -124,9 +130,15 @@ function initSignIn() {
                     console.error('❌ DEBUG GOOGLE: Redirect failed:', error);
                     alert('❌ DEBUG GOOGLE: Erreur de redirection - ' + error.message);
                     // Fallback: try with href
-                    window.location.href = '../';
+                    try {
+                        console.log('🔄 DEBUG GOOGLE: Trying fallback with window.location.href');
+                        window.location.href = '../';
+                    } catch (fallbackError) {
+                        console.error('❌ DEBUG GOOGLE: Fallback redirect also failed:', fallbackError);
+                        alert('❌ DEBUG GOOGLE: Erreur fallback - ' + fallbackError.message);
+                    }
                 }
-            }, 2000); // Plus de temps pour être sûr
+            }, 4000); // BEAUCOUP plus de temps pour être sûr !
         } catch (error) {
             console.error('❌ DEBUG GOOGLE: Google auth error:', error);
             alert('❌ DEBUG GOOGLE: Erreur Google - ' + error.message);

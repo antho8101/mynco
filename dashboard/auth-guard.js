@@ -117,12 +117,28 @@ async function checkAuthentication() {
             }
             
             console.log('👤 DEBUG: Auth state changed. User exists:', !!user);
+            
+            // DETAIL CHECK: Log all localStorage and sessionStorage keys
+            console.log('🔍 DEBUG: LocalStorage keys:', Object.keys(localStorage));
+            console.log('🔍 DEBUG: SessionStorage keys:', Object.keys(sessionStorage));
+            
             if (user) {
                 console.log('✅ DEBUG: User email:', user.email);
-                alert('✅ DEBUG: Utilisateur connecté - ' + user.email);
+                console.log('✅ DEBUG: User UID:', user.uid);
+                console.log('✅ DEBUG: User verified:', user.emailVerified);
+                alert('✅ DEBUG: Utilisateur connecté - ' + user.email + ' (UID: ' + user.uid + ')');
             } else {
                 console.log('❌ DEBUG: No user found');
-                alert('❌ DEBUG: Aucun utilisateur trouvé');
+                console.log('❌ DEBUG: Auth currentUser:', auth.currentUser);
+                
+                // Check if there's any auth data in storage
+                const authKeys = Object.keys(localStorage).filter(key => key.includes('firebase') || key.includes('auth'));
+                console.log('❌ DEBUG: Firebase keys in localStorage:', authKeys);
+                
+                const sessionAuthKeys = Object.keys(sessionStorage).filter(key => key.includes('firebase') || key.includes('auth'));
+                console.log('❌ DEBUG: Firebase keys in sessionStorage:', sessionAuthKeys);
+                
+                alert('❌ DEBUG: Aucun utilisateur trouvé malgré les données locales');
             }
             
             authStateResolved = true;
@@ -153,6 +169,7 @@ async function checkAuthentication() {
                 console.log('❌ Auth Guard: User not authenticated, redirecting to signin');
                 // User is not signed in, redirect to signin page
                 setTimeout(() => {
+                    console.log('🔄 DEBUG: Redirecting to auth/signin.html in 1 second...');
                     window.location.replace('auth/signin.html');
                 }, 1000); // Délai pour voir l'alert
             }
