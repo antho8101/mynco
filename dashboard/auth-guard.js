@@ -57,10 +57,16 @@ function waitForAuth() {
 // Main auth check function
 async function checkAuthentication() {
     try {
+        // AJOUT: Alert pour debug
+        console.log('🚀 DEBUG: Auth Guard starting...');
+        // alert('🚀 DEBUG: Auth Guard starting...');
+        
         // First, check if we have local auth data to avoid immediate redirect
         const hasLocalAuth = hasLocalAuthData();
+        console.log('🔍 DEBUG: Has local auth data:', hasLocalAuth);
         
         const auth = await waitForAuth();
+        console.log('🔥 DEBUG: Firebase auth obtained');
         
         // Give more time for auth state to be determined if we have local data
         let authCheckTimeout;
@@ -68,10 +74,11 @@ async function checkAuthentication() {
         
         if (hasLocalAuth) {
             console.log('⏳ Auth Guard: Waiting for auth state (user likely authenticated)...');
-            // Wait up to 5 seconds if we have local auth data (plus de temps!)
+            // Wait up to 8 seconds if we have local auth data (ENCORE PLUS de temps!)
             authCheckTimeout = setTimeout(() => {
                 if (!authStateResolved) {
-                    console.log('⚠️ Auth Guard: Auth check timeout, but local data exists. Allowing access.');
+                    console.log('⚠️ DEBUG: Auth check timeout with local data - ALLOWING ACCESS');
+                    alert('⚠️ DEBUG: Auth timeout mais données locales trouvées - Accès autorisé');
                     authStateResolved = true;
                     
                     // Show dashboard content
@@ -88,24 +95,36 @@ async function checkAuthentication() {
                         }, 500);
                     }
                 }
-            }, 5000); // Plus de temps !
+            }, 8000); // ENCORE plus de temps !
         } else {
             console.log('⏳ Auth Guard: No local auth data, quick check...');
-            // Only wait 2 seconds if no local auth data (plus de temps aussi!)
+            // Only wait 3 seconds if no local auth data (plus de temps aussi!)
             authCheckTimeout = setTimeout(() => {
                 if (!authStateResolved) {
-                    console.log('❌ Auth Guard: No auth data and timeout reached, redirecting');
+                    console.log('❌ DEBUG: No auth data and timeout reached - REDIRECTING');
+                    alert('❌ DEBUG: Pas de données auth + timeout - Redirection vers signin');
                     authStateResolved = true;
                     window.location.replace('auth/signin.html');
                 }
-            }, 2000); // Plus de temps !
+            }, 3000); // Plus de temps !
         }
         
         // Listen for auth state changes
         auth.onAuthStateChanged((user) => {
-            if (authStateResolved) return; // Prevent multiple calls
+            if (authStateResolved) {
+                console.log('⚠️ DEBUG: Auth state change IGNORED (already resolved)');
+                return; // Prevent multiple calls
+            }
             
-            console.log('👤 Auth Guard: Auth state changed:', !!user);
+            console.log('👤 DEBUG: Auth state changed. User exists:', !!user);
+            if (user) {
+                console.log('✅ DEBUG: User email:', user.email);
+                alert('✅ DEBUG: Utilisateur connecté - ' + user.email);
+            } else {
+                console.log('❌ DEBUG: No user found');
+                alert('❌ DEBUG: Aucun utilisateur trouvé');
+            }
+            
             authStateResolved = true;
             
             // Clear timeout since we got a definitive answer
@@ -133,14 +152,19 @@ async function checkAuthentication() {
             } else {
                 console.log('❌ Auth Guard: User not authenticated, redirecting to signin');
                 // User is not signed in, redirect to signin page
-                window.location.replace('auth/signin.html');
+                setTimeout(() => {
+                    window.location.replace('auth/signin.html');
+                }, 1000); // Délai pour voir l'alert
             }
         });
         
     } catch (error) {
         console.error('❌ Auth Guard: Error checking authentication:', error);
+        alert('❌ DEBUG: Erreur Auth Guard - ' + error.message);
         // On error, redirect to signin for safety
-        window.location.replace('auth/signin.html');
+        setTimeout(() => {
+            window.location.replace('auth/signin.html');
+        }, 2000);
     }
 }
 

@@ -60,28 +60,36 @@ function initSignIn() {
         setLoading(true);
 
         try {
+            console.log('🚀 DEBUG SIGNIN: Starting sign in process...');
+            
             // Sign in with modern Firebase API
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            console.log('Signed in successfully:', userCredential.user);
+            console.log('✅ DEBUG SIGNIN: Sign in successful:', userCredential.user.email);
+            alert('✅ DEBUG SIGNIN: Connexion réussie pour ' + userCredential.user.email);
             
             // Wait for Firebase to persist auth state before redirecting
             showSuccess('Connexion réussie ! Redirection...');
             
             // Wait a moment for Firebase to save auth data
+            console.log('⏳ DEBUG SIGNIN: Waiting before redirect...');
             setTimeout(() => {
-                console.log('🚀 Attempting redirect to dashboard...');
+                console.log('🚀 DEBUG SIGNIN: Attempting redirect to dashboard...');
+                alert('🚀 DEBUG SIGNIN: Redirection vers le dashboard...');
                 try {
                     // Use replace instead of href to avoid back button issues
+                    console.log('🔄 DEBUG SIGNIN: Using window.location.replace("../")');
                     window.location.replace('../');
-                    console.log('✅ Redirect command executed');
+                    console.log('✅ DEBUG SIGNIN: Redirect command executed');
                 } catch (error) {
-                    console.error('❌ Redirect failed:', error);
+                    console.error('❌ DEBUG SIGNIN: Redirect failed:', error);
+                    alert('❌ DEBUG SIGNIN: Erreur de redirection - ' + error.message);
                     // Fallback: try with href
                     window.location.href = '../';
                 }
-            }, 1500); // Slightly longer delay
+            }, 2000); // Plus de temps pour être sûr
         } catch (error) {
-            console.error('Auth error:', error);
+            console.error('❌ DEBUG SIGNIN: Auth error:', error);
+            alert('❌ DEBUG SIGNIN: Erreur d\'authentification - ' + error.message);
             handleAuthError(error);
         } finally {
             setLoading(false);
@@ -93,27 +101,35 @@ function initSignIn() {
         setLoading(true);
         
         try {
+            console.log('🚀 DEBUG GOOGLE: Starting Google sign in...');
+            
             const result = await signInWithPopup(auth, googleProvider);
-            console.log('Google sign in successful:', result.user);
+            console.log('✅ DEBUG GOOGLE: Google sign in successful:', result.user.email);
+            alert('✅ DEBUG GOOGLE: Connexion Google réussie pour ' + result.user.email);
             
             // Wait for Firebase to persist auth state before redirecting
             showSuccess('Connexion Google réussie ! Redirection...');
             
             // Wait a moment for Firebase to save auth data
+            console.log('⏳ DEBUG GOOGLE: Waiting before redirect...');
             setTimeout(() => {
-                console.log('🚀 Attempting redirect to dashboard...');
+                console.log('🚀 DEBUG GOOGLE: Attempting redirect to dashboard...');
+                alert('🚀 DEBUG GOOGLE: Redirection vers le dashboard...');
                 try {
                     // Use replace instead of href to avoid back button issues
+                    console.log('🔄 DEBUG GOOGLE: Using window.location.replace("../")');
                     window.location.replace('../');
-                    console.log('✅ Redirect command executed');
+                    console.log('✅ DEBUG GOOGLE: Redirect command executed');
                 } catch (error) {
-                    console.error('❌ Redirect failed:', error);
+                    console.error('❌ DEBUG GOOGLE: Redirect failed:', error);
+                    alert('❌ DEBUG GOOGLE: Erreur de redirection - ' + error.message);
                     // Fallback: try with href
                     window.location.href = '../';
                 }
-            }, 1500); // Slightly longer delay
+            }, 2000); // Plus de temps pour être sûr
         } catch (error) {
-            console.error('Google auth error:', error);
+            console.error('❌ DEBUG GOOGLE: Google auth error:', error);
+            alert('❌ DEBUG GOOGLE: Erreur Google - ' + error.message);
             handleAuthError(error);
         } finally {
             setLoading(false);
