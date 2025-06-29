@@ -1,15 +1,7 @@
 // Authentication Guard for Dashboard
 // This script checks if user is authenticated before allowing access to dashboard
 
-console.log('🛡️ Auth Guard: Checking authentication...');
-
-// Immediately hide the main content until authentication is verified
-document.addEventListener('DOMContentLoaded', function() {
-    const mainContent = document.querySelector('main');
-    if (mainContent) {
-        mainContent.style.visibility = 'hidden';
-    }
-});
+console.log('🛡️ Auth Guard: Final authentication verification...');
 
 // Wait for Firebase to initialize
 function waitForAuth() {
@@ -38,13 +30,7 @@ async function checkAuthentication() {
             
             if (user) {
                 console.log('✅ Auth Guard: User is authenticated:', user.email);
-                // User is signed in, allow access to dashboard
-                
-                // Show the main content
-                const mainContent = document.querySelector('main');
-                if (mainContent) {
-                    mainContent.style.visibility = 'visible';
-                }
+                // User is signed in, dashboard access confirmed
                 
                 // Hide loading screen if it exists
                 const loadingScreen = document.getElementById('loading-screen');
