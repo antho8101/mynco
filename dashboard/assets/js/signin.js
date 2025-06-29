@@ -66,8 +66,7 @@ function initSignIn() {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log('✅ DEBUG SIGNIN: Sign in successful:', userCredential.user.email);
             
-            // Wait for Firebase to persist auth state before redirecting
-            showSuccess('Connexion réussie ! Redirection...');
+            // Keep loading state for smooth transition
             
             // Wait a moment for Firebase to save auth data
             console.log('⏳ DEBUG SIGNIN: Waiting before redirect...');
@@ -92,7 +91,6 @@ function initSignIn() {
         } catch (error) {
             console.error('❌ DEBUG SIGNIN: Auth error:', error);
             handleAuthError(error);
-        } finally {
             setLoading(false);
         }
     });
@@ -107,8 +105,7 @@ function initSignIn() {
             const result = await signInWithPopup(auth, googleProvider);
             console.log('✅ DEBUG GOOGLE: Google sign in successful:', result.user.email);
             
-            // Wait for Firebase to persist auth state before redirecting
-            showSuccess('Connexion Google réussie ! Redirection...');
+            // Keep loading state for smooth transition
             
             // Wait a moment for Firebase to save auth data
             console.log('⏳ DEBUG GOOGLE: Waiting before redirect...');
@@ -133,7 +130,6 @@ function initSignIn() {
         } catch (error) {
             console.error('❌ DEBUG GOOGLE: Google auth error:', error);
             handleAuthError(error);
-        } finally {
             setLoading(false);
         }
     });
@@ -202,20 +198,5 @@ function initSignIn() {
         }, 5000);
     }
 
-    function showSuccess(message) {
-        // Remove existing messages
-        const existingMessage = document.querySelector('.success-message');
-        if (existingMessage) {
-            existingMessage.remove();
-        }
 
-        // Create success message
-        const successDiv = document.createElement('div');
-        successDiv.className = 'success-message';
-        successDiv.textContent = message;
-        
-        // Insert after form header
-        const formHeader = document.querySelector('.form-header');
-        formHeader.parentNode.insertBefore(successDiv, formHeader.nextSibling);
-    }
 } 
