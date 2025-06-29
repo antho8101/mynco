@@ -72,7 +72,7 @@ function initSignUp() {
             
             // Redirect to dashboard after a short delay
             setTimeout(() => {
-                window.location.href = 'https://dashboard.mynco.app/';
+                window.location.href = '../';
             }, 1500);
         } catch (error) {
             console.error('Auth error:', error);
@@ -93,7 +93,7 @@ function initSignUp() {
             
             // Redirect to dashboard after a short delay
             setTimeout(() => {
-                window.location.href = 'https://dashboard.mynco.app/';
+                window.location.href = '../';
             }, 1500);
         } catch (error) {
             console.error('Google auth error:', error);

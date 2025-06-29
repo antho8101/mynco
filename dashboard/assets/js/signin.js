@@ -69,12 +69,12 @@ function initSignIn() {
                 console.log('🚀 Attempting redirect to dashboard...');
                 try {
                     // Use replace instead of href to avoid back button issues
-                    window.location.replace('https://dashboard.mynco.app/');
+                    window.location.replace('../');
                     console.log('✅ Redirect command executed');
                 } catch (error) {
                     console.error('❌ Redirect failed:', error);
                     // Fallback: try with href
-                    window.location.href = 'https://dashboard.mynco.app/';
+                    window.location.href = '../';
                 }
             }, 1500); // Slightly longer delay
         } catch (error) {
@@ -101,12 +101,12 @@ function initSignIn() {
                 console.log('🚀 Attempting redirect to dashboard...');
                 try {
                     // Use replace instead of href to avoid back button issues
-                    window.location.replace('https://dashboard.mynco.app/');
+                    window.location.replace('../');
                     console.log('✅ Redirect command executed');
                 } catch (error) {
                     console.error('❌ Redirect failed:', error);
                     // Fallback: try with href
-                    window.location.href = 'https://dashboard.mynco.app/';
+                    window.location.href = '../';
                 }
             }, 1500); // Slightly longer delay
         } catch (error) {
