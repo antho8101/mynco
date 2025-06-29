@@ -102,11 +102,11 @@
 
     <!-- Scripts -->
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    
-    <!-- Firebase Config -->
-    <script>
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
         // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDxi77BKXC7A9WQdVVQygNtGYz1Pi9WMwc",
@@ -119,12 +119,18 @@
         };
         
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        window.firebaseAuth = firebase.auth();
+        console.log('🔥 Initializing Firebase...');
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        // Make auth available globally
+        window.firebaseAuth = auth;
+        window.firebaseApp = app;
+        
         console.log('✅ Firebase Auth initialized');
     </script>
     
     <!-- Auth Script -->
-    <script src="../assets/js/signin.js"></script>
+    <script type="module" src="../assets/js/signin.js"></script>
 </body>
 </html> 

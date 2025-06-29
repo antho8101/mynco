@@ -1,3 +1,6 @@
+// Import Firebase functions
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 // Wait for Firebase to be initialized
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(initSignUp, 100);
@@ -26,7 +29,7 @@ function initSignUp() {
     }
 
     // Initialize Google Provider
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
 
     // Password visibility toggle
     passwordToggle.addEventListener('click', function() {
@@ -59,11 +62,11 @@ function initSignUp() {
         setLoading(true);
 
         try {
-            // Create user
-            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            // Create user with modern Firebase API
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             
-            // Update profile with name
-            await userCredential.user.updateProfile({
+            // Update profile with name using modern API
+            await updateProfile(userCredential.user, {
                 displayName: name
             });
             
@@ -87,7 +90,7 @@ function initSignUp() {
         setLoading(true);
         
         try {
-            const result = await auth.signInWithPopup(googleProvider);
+            const result = await signInWithPopup(auth, googleProvider);
             console.log('Google sign up successful:', result.user);
             showSuccess('Welcome to Mynco!');
             

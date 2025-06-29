@@ -3,6 +3,41 @@
 
 console.log('🛡️ Auth Guard: Final authentication verification...');
 
+// Check if we already have auth data stored locally (for faster verification)
+function hasLocalAuthData() {
+    try {
+        // Check Firebase persistence storage
+        const firebaseKeys = Object.keys(localStorage).find(key => 
+            key.startsWith('firebase:authUser:') || 
+            key.includes('firebase') || 
+            key.includes('auth')
+        );
+        
+        if (firebaseKeys) {
+            console.log('🔐 Auth Guard: Found local auth data');
+            return true;
+        }
+        
+        // Also check sessionStorage
+        const sessionKeys = Object.keys(sessionStorage).find(key => 
+            key.startsWith('firebase:authUser:') || 
+            key.includes('firebase') || 
+            key.includes('auth')
+        );
+        
+        if (sessionKeys) {
+            console.log('🔐 Auth Guard: Found session auth data');
+            return true;
+        }
+        
+        console.log('⚠️ Auth Guard: No local auth data found');
+        return false;
+    } catch (error) {
+        console.error('❌ Auth Guard: Error checking local auth data:', error);
+        return false;
+    }
+}
+
 // Wait for Firebase to initialize
 function waitForAuth() {
     return new Promise((resolve) => {
@@ -22,20 +57,78 @@ function waitForAuth() {
 // Main auth check function
 async function checkAuthentication() {
     try {
+        // First, check if we have local auth data to avoid immediate redirect
+        const hasLocalAuth = hasLocalAuthData();
+        
         const auth = await waitForAuth();
+        
+        // Give more time for auth state to be determined if we have local data
+        let authCheckTimeout;
+        let authStateResolved = false;
+        
+        if (hasLocalAuth) {
+            console.log('⏳ Auth Guard: Waiting for auth state (user likely authenticated)...');
+            // Wait up to 5 seconds if we have local auth data (plus de temps!)
+            authCheckTimeout = setTimeout(() => {
+                if (!authStateResolved) {
+                    console.log('⚠️ Auth Guard: Auth check timeout, but local data exists. Allowing access.');
+                    authStateResolved = true;
+                    
+                    // Show dashboard content
+                    const dashboardContent = document.querySelector('.dashboard-content');
+                    if (dashboardContent) {
+                        dashboardContent.classList.add('auth-verified');
+                    }
+                    
+                    // Hide loading screen
+                    const loadingScreen = document.getElementById('loading-screen');
+                    if (loadingScreen) {
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }
+                }
+            }, 5000); // Plus de temps !
+        } else {
+            console.log('⏳ Auth Guard: No local auth data, quick check...');
+            // Only wait 2 seconds if no local auth data (plus de temps aussi!)
+            authCheckTimeout = setTimeout(() => {
+                if (!authStateResolved) {
+                    console.log('❌ Auth Guard: No auth data and timeout reached, redirecting');
+                    authStateResolved = true;
+                    window.location.replace('auth/signin.html');
+                }
+            }, 2000); // Plus de temps !
+        }
         
         // Listen for auth state changes
         auth.onAuthStateChanged((user) => {
+            if (authStateResolved) return; // Prevent multiple calls
+            
             console.log('👤 Auth Guard: Auth state changed:', !!user);
+            authStateResolved = true;
+            
+            // Clear timeout since we got a definitive answer
+            if (authCheckTimeout) {
+                clearTimeout(authCheckTimeout);
+            }
             
             if (user) {
                 console.log('✅ Auth Guard: User is authenticated:', user.email);
                 // User is signed in, dashboard access confirmed
                 
-                // Hide loading screen if it exists
+                // Show dashboard content and hide loading screen
+                const dashboardContent = document.querySelector('.dashboard-content');
+                if (dashboardContent) {
+                    dashboardContent.classList.add('auth-verified');
+                }
+                
+                // Hide loading screen
                 const loadingScreen = document.getElementById('loading-screen');
                 if (loadingScreen) {
-                    loadingScreen.style.display = 'none';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500); // Small delay for smooth transition
                 }
             } else {
                 console.log('❌ Auth Guard: User not authenticated, redirecting to signin');
