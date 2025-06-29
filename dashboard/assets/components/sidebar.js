@@ -17,11 +17,20 @@ class Sidebar {
     }
 
     render() {
+        // Check if sidebar already exists to avoid duplicates
+        const existingSidebar = document.getElementById('sidebar');
+        if (existingSidebar) {
+            console.log('🔄 Sidebar: Updating existing sidebar instead of creating new one');
+            return;
+        }
+
         const sidebarHTML = `
             <aside class="sidebar ${this.isCollapsed ? 'collapsed' : ''}" id="sidebar">
                 <div class="sidebar-header">
                     <div class="logo">
                         <a href="/" class="logo-container">
+
+                        
                             <div class="logo-icon">
                                 <svg width="32" height="32" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
                                     <g transform="matrix(-1.34657,0,0,1.34657,1201.44,-177.905)">
@@ -77,7 +86,7 @@ class Sidebar {
                     <div class="nav-section">
                         <ul class="nav-menu">
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link" data-tooltip="Overview">
+                                <a href="/dashboard" class="nav-link" data-tooltip="Overview">
                                     <i data-lucide="layout-dashboard"></i>
                                     <span>Overview</span>
                                 </a>
@@ -102,7 +111,7 @@ class Sidebar {
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="team.html" class="nav-link" data-tooltip="Team">
+                                <a href="/dashboard/team" class="nav-link" data-tooltip="Team">
                                     <i data-lucide="users"></i>
                                     <span>Team</span>
                                 </a>
@@ -114,7 +123,7 @@ class Sidebar {
                     <div class="nav-section nav-section-bottom">
                         <ul class="nav-menu">
                             <li class="nav-item">
-                                <a href="organization-settings.html" class="nav-link" data-tooltip="Organization Settings">
+                                <a href="/dashboard/settings" class="nav-link" data-tooltip="Organization">
                                     <i data-lucide="building"></i>
                                     <span>Organization</span>
                                 </a>
@@ -137,6 +146,12 @@ class Sidebar {
     attachEventListeners() {
         // Toggle functionality will be handled by Layout component
         this.highlightActiveLink();
+        
+        // Listen for route changes to update active navigation
+        window.addEventListener('routeContentLoaded', (e) => {
+            console.log('🎯 Sidebar: Route changed to', e.detail.route);
+            this.highlightActiveLink(e.detail.route);
+        });
         
         // Sign out functionality
         const signOutBtn = document.getElementById('signOutBtn');
@@ -204,18 +219,79 @@ class Sidebar {
         }
     }
 
-    highlightActiveLink() {
-        const currentPath = window.location.pathname;
+    highlightActiveLink(routePath = null) {
+        // Use provided route or current URL
+        const currentPath = routePath || window.location.pathname;
         const navLinks = document.querySelectorAll('.nav-link');
         
+        console.log('🎯 Sidebar: Highlighting active link for path:', currentPath);
+        console.log('🔢 Sidebar: Found', navLinks.length, 'nav links');
+        
+        // Remove active class from all links first
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Add active class to the matching link
+        let foundMatch = false;
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
-            if (href === currentPath || 
-                (currentPath.includes('dashboard') && href === '/dashboard/' && currentPath.endsWith('/')) ||
-                (currentPath.includes('team') && href === 'team.html')) {
+            console.log('🔍 Checking link:', href, 'against path:', currentPath);
+            
+            let isActive = false;
+            
+            // Exact match
+            if (href === currentPath) {
+                isActive = true;
+            }
+            // Handle dashboard root variations
+            else if ((currentPath === '/dashboard' || currentPath === '/dashboard/' || currentPath === '/') && 
+                     (href === '/dashboard' || href === '/dashboard/' || href === 'index.html')) {
+                isActive = true;
+            }
+            // Handle other routes
+            else if (currentPath === '/dashboard/team' && (href === '/dashboard/team' || href === 'team.html')) {
+                isActive = true;
+            }
+            else if (currentPath === '/dashboard/projects' && href === '/dashboard/projects') {
+                isActive = true;
+            }
+            else if (currentPath === '/dashboard/clients' && href === '/dashboard/clients') {
+                isActive = true;
+            }
+            else if (currentPath === '/dashboard/analytics' && href === '/dashboard/analytics') {
+                isActive = true;
+            }
+            else if (currentPath === '/dashboard/settings' && href === '/dashboard/settings') {
+                isActive = true;
+            }
+            
+            if (isActive) {
+                console.log('✅ Sidebar: Setting active for link:', href);
                 link.classList.add('active');
+                foundMatch = true;
+                
+                // Double-check that the class was actually added
+                setTimeout(() => {
+                    const hasActive = link.classList.contains('active');
+                    console.log('🔍 Sidebar: Verification - Link has active class:', hasActive);
+                    if (!hasActive) {
+                        console.error('❌ Sidebar: Failed to set active class! Trying again...');
+                        link.classList.add('active');
+                    }
+                }, 50);
             }
         });
+        
+        if (!foundMatch) {
+            console.warn('⚠️ Sidebar: No matching link found for path:', currentPath);
+        }
+        
+        // Final verification
+        setTimeout(() => {
+            const activeLinks = document.querySelectorAll('.nav-link.active');
+            console.log('🎯 Sidebar: Final verification - Active links count:', activeLinks.length);
+        }, 100);
     }
 
     toggle() {

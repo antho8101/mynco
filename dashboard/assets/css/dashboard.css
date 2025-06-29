@@ -168,8 +168,8 @@ body {
 }
 
 .logo-icon svg {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     color: white;
 }
 
@@ -360,12 +360,12 @@ body {
 .nav-section-bottom {
     margin-top: auto;
     margin-bottom: 0;
-    padding-bottom: 10px;
+    padding: 0 0 0.8rem 0;
 }
 
 .nav-section-bottom .nav-link {
     margin-bottom: 0;
-    padding-bottom: calc(0.75rem + 10px);
+    padding: 0.75rem 1.5rem;
 }
 
 .nav-menu {
@@ -397,9 +397,9 @@ body {
 }
 
 .nav-link.active {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    border-left-color: white;
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: white !important;
+    border-left: 3px solid white !important;
 }
 
 .nav-link svg {
@@ -561,7 +561,8 @@ body {
     box-shadow: 0 4px 12px rgba(0, 208, 132, 0.3);
 }
 
-.btn svg {
+.btn svg,
+.btn [data-lucide] {
     width: 18px;
     height: 18px;
 }

@@ -42,7 +42,6 @@ body {
 
 /* Icons next to text - proper spacing and alignment */
 .btn [data-lucide] {
-    margin-left: 8px;
     vertical-align: text-bottom; /* Meilleur alignement pour les boutons */
 }
 

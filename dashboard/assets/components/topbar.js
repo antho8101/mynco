@@ -4,7 +4,7 @@ class Topbar {
         this.config = {
             searchPlaceholder: 'Search projects, clients...',
             primaryButtonText: 'Create Project',
-            primaryButtonIcon: '<path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>',
+            primaryButtonIcon: 'plus',
             primaryButtonAction: () => console.log('Primary button clicked'),
             ...config
         };
@@ -23,6 +23,11 @@ class Topbar {
         topbar.className = 'topbar';
         topbar.innerHTML = this.getTopbarHTML();
         document.body.insertBefore(topbar, document.body.firstChild);
+        
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     }
 
     getTopbarHTML() {
@@ -63,7 +68,7 @@ class Topbar {
                     </div>
                 </div>
                 <button class="btn btn-primary" id="primaryActionBtn">
-                    <svg viewBox="0 0 24 24" fill="currentColor">${this.config.primaryButtonIcon}</svg>
+                    <i data-lucide="${this.config.primaryButtonIcon}"></i>
                     <span>${this.config.primaryButtonText}</span>
                 </button>
             </div>
@@ -159,4 +164,42 @@ class Topbar {
             badge.style.display = 'none';
         }
     }
+    
+    // Update topbar configuration dynamically
+    updateConfig(newConfig) {
+        // Merge new config with existing
+        this.config = { ...this.config, ...newConfig };
+        
+        // Update search placeholder
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput && this.config.searchPlaceholder) {
+            searchInput.placeholder = this.config.searchPlaceholder;
+        }
+        
+        // Update primary button
+        const primaryBtn = document.getElementById('primaryActionBtn');
+        if (primaryBtn) {
+            primaryBtn.innerHTML = `
+                <i data-lucide="${this.config.primaryButtonIcon}"></i>
+                <span>${this.config.primaryButtonText}</span>
+            `;
+            
+            // Re-initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            // Remove old event listener and add new one
+            primaryBtn.replaceWith(primaryBtn.cloneNode(true));
+            const newPrimaryBtn = document.getElementById('primaryActionBtn');
+            if (newPrimaryBtn) {
+                newPrimaryBtn.addEventListener('click', this.config.primaryButtonAction);
+            }
+        }
+    }
+}
+
+// Make Topbar available globally
+if (typeof window !== 'undefined') {
+    window.Topbar = Topbar;
 }
