@@ -3,6 +3,14 @@
 
 console.log('🛡️ Auth Guard: Checking authentication...');
 
+// Immediately hide the main content until authentication is verified
+document.addEventListener('DOMContentLoaded', function() {
+    const mainContent = document.querySelector('main');
+    if (mainContent) {
+        mainContent.style.visibility = 'hidden';
+    }
+});
+
 // Wait for Firebase to initialize
 function waitForAuth() {
     return new Promise((resolve) => {
@@ -31,6 +39,13 @@ async function checkAuthentication() {
             if (user) {
                 console.log('✅ Auth Guard: User is authenticated:', user.email);
                 // User is signed in, allow access to dashboard
+                
+                // Show the main content
+                const mainContent = document.querySelector('main');
+                if (mainContent) {
+                    mainContent.style.visibility = 'visible';
+                }
+                
                 // Hide loading screen if it exists
                 const loadingScreen = document.getElementById('loading-screen');
                 if (loadingScreen) {
