@@ -185,39 +185,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     
-    <!-- CRITICAL: Auth Check Before Page Load -->
-    <script>
-        // Hide entire body until auth is verified
-        document.documentElement.style.visibility = 'hidden';
-        
-        // Check if user has valid Firebase session
-        function checkAuthBeforeLoad() {
-                         // Check for Firebase Auth persistence data
-             const authKeys = ['firebase:authUser:AIzaSyDxi77BKXC7A9WQdVVQygNtGYz1Pi9WMwc:[DEFAULT]'];
-            let hasAuthData = false;
-            
-            for (let key of authKeys) {
-                if (localStorage.getItem(key) || sessionStorage.getItem(key)) {
-                    hasAuthData = true;
-                    break;
-                }
-            }
-            
-            // If no auth data found, redirect immediately
-            if (!hasAuthData) {
-                console.log('🚫 No auth data found, redirecting to signin...');
-                window.location.replace('https://mynco.app/auth/signin.html');
-                return;
-            }
-            
-            // If auth data exists, show page and let Firebase verify
-            console.log('✅ Auth data found, loading dashboard...');
-            document.documentElement.style.visibility = 'visible';
-        }
-        
-        // Run auth check immediately
-        checkAuthBeforeLoad();
-    </script>
+    <!-- Auth will be handled by auth-guard.js after page load -->
 </head>
 <body>
     <!-- Loading Screen -->
