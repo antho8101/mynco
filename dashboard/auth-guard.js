@@ -75,7 +75,7 @@ async function checkAuthentication() {
         
         if (hasLocalAuth) {
             console.log('⏳ Auth Guard: Waiting for auth state (user likely authenticated)...');
-            // Wait up to 10 seconds if we have local auth data (BEAUCOUP PLUS de temps!)
+            // Wait up to 20 seconds if we have local auth data (ÉNORME délai pour debug!)
             authCheckTimeout = setTimeout(() => {
                 if (!authStateResolved) {
                     console.log('⚠️ DEBUG: Auth check timeout with local data - ALLOWING ACCESS');
@@ -96,18 +96,18 @@ async function checkAuthentication() {
                         }, 500);
                     }
                 }
-            }, 10000); // BEAUCOUP plus de temps !
+            }, 20000); // ÉNORME délai pour debug !
         } else {
             console.log('⏳ Auth Guard: No local auth data, quick check...');
-            // Only wait 5 seconds if no local auth data (plus de temps aussi!)
+            // Only wait 15 seconds if no local auth data (énorme délai aussi!)
             authCheckTimeout = setTimeout(() => {
                 if (!authStateResolved) {
-                    console.log('❌ DEBUG: No auth data and timeout reached - REDIRECTING');
-                    alert('❌ DEBUG: Pas de données auth + timeout - Redirection vers signin');
+                    console.log('❌ DEBUG: No auth data and timeout reached - BUT NOT REDIRECTING FOR DEBUG');
+                    alert('❌ DEBUG: Pas de données auth + timeout - MAIS PAS DE REDIRECTION pour debug');
                     authStateResolved = true;
-                    window.location.replace('auth/signin.html');
+                    // Pas de redirection pour debug
                 }
-            }, 5000); // Plus de temps !
+            }, 15000); // Énorme délai pour debug !
         }
         
         // Listen for auth state changes
@@ -139,7 +139,11 @@ async function checkAuthentication() {
                 const sessionAuthKeys = Object.keys(sessionStorage).filter(key => key.includes('firebase') || key.includes('auth'));
                 console.log('❌ DEBUG: Firebase keys in sessionStorage:', sessionAuthKeys);
                 
-                alert('❌ DEBUG: Aucun utilisateur trouvé malgré les données locales');
+                alert('❌ DEBUG: Aucun utilisateur trouvé - MAIS ON NE REDIRIGE PAS pour voir les logs !');
+                
+                // TEMPORAIREMENT DÉSACTIVÉ : Pas de redirection pour déboguer
+                console.log('🚫 DEBUG: Redirection DÉSACTIVÉE temporairement pour debug');
+                return;
             }
             
             authStateResolved = true;
@@ -166,17 +170,6 @@ async function checkAuthentication() {
                         loadingScreen.style.display = 'none';
                     }, 500); // Small delay for smooth transition
                 }
-            } else {
-                console.log('❌ Auth Guard: User not authenticated, redirecting to signin');
-                // User is not signed in, redirect to signin page
-                setTimeout(() => {
-                    console.log('🔄 DEBUG: Redirecting to auth/signin.html in 1 second...');
-                    alert('🔄 DEBUG AUTH-GUARD: Redirection vers signin dans 1 seconde...');
-                    setTimeout(() => {
-                        console.log('🚀 DEBUG: Executing redirect to auth/signin.html');
-                        window.location.replace('auth/signin.html');
-                    }, 1000);
-                }, 1000); // Délai pour voir l'alert
             }
         });
         
