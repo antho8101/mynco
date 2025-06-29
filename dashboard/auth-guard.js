@@ -1,9 +1,7 @@
-// Authentication Guard for Dashboard
-// This script checks if user is authenticated before allowing access to dashboard
-
+// Firebase Authentication Guard for Dashboard
 console.log('🛡️ Auth Guard: Final authentication verification...');
 
-// Check if we already have auth data stored locally (for faster verification)
+// Check if user has local auth data
 function hasLocalAuthData() {
     try {
         // Check Firebase persistence storage
@@ -57,17 +55,14 @@ function waitForAuth() {
 // Main auth check function
 async function checkAuthentication() {
     try {
-        // AJOUT: Alert pour debug
-        console.log('🚀 DEBUG: Auth Guard starting...');
-        alert('🚀 DEBUG AUTH-GUARD: Démarrage de la vérification auth...');
+        console.log('🚀 Auth Guard: Starting authentication verification...');
         
         // First, check if we have local auth data to avoid immediate redirect
         const hasLocalAuth = hasLocalAuthData();
-        console.log('🔍 DEBUG: Has local auth data:', hasLocalAuth);
-        alert('🔍 DEBUG: Données auth locales trouvées: ' + hasLocalAuth);
+        console.log('🔍 Auth Guard: Local auth data found:', hasLocalAuth);
         
         const auth = await waitForAuth();
-        console.log('🔥 DEBUG: Firebase auth obtained');
+        console.log('🔥 Auth Guard: Firebase Auth ready');
         
         // Give more time for auth state to be determined if we have local data
         let authCheckTimeout;
@@ -75,90 +70,60 @@ async function checkAuthentication() {
         
         if (hasLocalAuth) {
             console.log('⏳ Auth Guard: Waiting for auth state (user likely authenticated)...');
-            // Wait up to 20 seconds if we have local auth data (ÉNORME délai pour debug!)
+            // Wait up to 10 seconds if we have local auth data
             authCheckTimeout = setTimeout(() => {
                 if (!authStateResolved) {
-                    console.log('⚠️ DEBUG: Auth check timeout with local data - ALLOWING ACCESS');
-                    alert('⚠️ DEBUG: Auth timeout mais données locales trouvées - Accès autorisé');
+                    console.log('⚠️ Auth Guard: Auth check timeout with local data - allowing access');
                     authStateResolved = true;
                     
                     // Show dashboard content
                     const dashboardContent = document.querySelector('.dashboard-content');
                     if (dashboardContent) {
-                        console.log('🎯 DEBUG: (TIMEOUT) Dashboard content element found');
-                        console.log('🎯 DEBUG: (TIMEOUT) Dashboard content classes BEFORE:', dashboardContent.className);
                         dashboardContent.classList.add('auth-verified');
-                        console.log('🎯 DEBUG: (TIMEOUT) Dashboard content classes AFTER:', dashboardContent.className);
-                        console.log('✅ DEBUG: (TIMEOUT) auth-verified class added to dashboard');
-                    } else {
-                        console.error('❌ DEBUG: (TIMEOUT) Dashboard content element NOT FOUND!');
                     }
                     
-                    // Hide loading screen using the CORRECT method (fade-out)
+                    // Hide loading screen
                     const loadingScreen = document.getElementById('loading-screen');
                     if (loadingScreen) {
                         setTimeout(() => {
-                            console.log('🎯 DEBUG: (TIMEOUT) Hiding loading screen with fade-out...');
-                            console.log('🎯 DEBUG: (TIMEOUT) Loading screen classes BEFORE:', loadingScreen.className);
                             loadingScreen.classList.add('fade-out');
-                            console.log('🎯 DEBUG: (TIMEOUT) Loading screen classes AFTER fade-out:', loadingScreen.className);
                             setTimeout(() => {
-                                console.log('✅ DEBUG: (TIMEOUT) Loading screen completely hidden');
                                 loadingScreen.style.display = 'none';
-                                console.log('🎯 DEBUG: (TIMEOUT) Loading screen final style:', loadingScreen.style.cssText);
                             }, 500);
                         }, 500);
-                    } else {
-                        console.error('❌ DEBUG: (TIMEOUT) Loading screen element NOT FOUND!');
                     }
                 }
-            }, 20000); // ÉNORME délai pour debug !
+            }, 10000);
         } else {
             console.log('⏳ Auth Guard: No local auth data, quick check...');
-            // Only wait 15 seconds if no local auth data (énorme délai aussi!)
+            // Only wait 5 seconds if no local auth data
             authCheckTimeout = setTimeout(() => {
                 if (!authStateResolved) {
-                    console.log('❌ DEBUG: No auth data and timeout reached - BUT NOT REDIRECTING FOR DEBUG');
-                    alert('❌ DEBUG: Pas de données auth + timeout - MAIS PAS DE REDIRECTION pour debug');
+                    console.log('❌ Auth Guard: No auth data and timeout reached - redirecting to signin');
                     authStateResolved = true;
-                    // Pas de redirection pour debug
+                    window.location.replace('auth/signin.html');
                 }
-            }, 15000); // Énorme délai pour debug !
+            }, 5000);
         }
         
         // Listen for auth state changes
         auth.onAuthStateChanged((user) => {
             if (authStateResolved) {
-                console.log('⚠️ DEBUG: Auth state change IGNORED (already resolved)');
                 return; // Prevent multiple calls
             }
             
-            console.log('👤 DEBUG: Auth state changed. User exists:', !!user);
-            
-            // DETAIL CHECK: Log all localStorage and sessionStorage keys
-            console.log('🔍 DEBUG: LocalStorage keys:', Object.keys(localStorage));
-            console.log('🔍 DEBUG: SessionStorage keys:', Object.keys(sessionStorage));
+            console.log('👤 Auth Guard: Auth state changed. User exists:', !!user);
             
             if (user) {
-                console.log('✅ DEBUG: User email:', user.email);
-                console.log('✅ DEBUG: User UID:', user.uid);
-                console.log('✅ DEBUG: User verified:', user.emailVerified);
-                alert('✅ DEBUG: Utilisateur connecté - ' + user.email + ' (UID: ' + user.uid + ')');
+                console.log('✅ Auth Guard: User authenticated:', user.email);
             } else {
-                console.log('❌ DEBUG: No user found');
-                console.log('❌ DEBUG: Auth currentUser:', auth.currentUser);
-                
-                // Check if there's any auth data in storage
-                const authKeys = Object.keys(localStorage).filter(key => key.includes('firebase') || key.includes('auth'));
-                console.log('❌ DEBUG: Firebase keys in localStorage:', authKeys);
-                
-                const sessionAuthKeys = Object.keys(sessionStorage).filter(key => key.includes('firebase') || key.includes('auth'));
-                console.log('❌ DEBUG: Firebase keys in sessionStorage:', sessionAuthKeys);
-                
-                alert('❌ DEBUG: Aucun utilisateur trouvé - MAIS ON NE REDIRIGE PAS pour voir les logs !');
-                
-                // TEMPORAIREMENT DÉSACTIVÉ : Pas de redirection pour déboguer
-                console.log('🚫 DEBUG: Redirection DÉSACTIVÉE temporairement pour debug');
+                console.log('❌ Auth Guard: No user found - redirecting to signin');
+                authStateResolved = true;
+                // Clear timeout since we got a definitive answer
+                if (authCheckTimeout) {
+                    clearTimeout(authCheckTimeout);
+                }
+                window.location.replace('auth/signin.html');
                 return;
             }
             
@@ -173,58 +138,28 @@ async function checkAuthentication() {
                 console.log('✅ Auth Guard: User is authenticated:', user.email);
                 // User is signed in, dashboard access confirmed
                 
-                // Show dashboard content and hide loading screen
+                // Show dashboard content
                 const dashboardContent = document.querySelector('.dashboard-content');
                 if (dashboardContent) {
-                    console.log('🎯 DEBUG: Dashboard content element found');
-                    console.log('🎯 DEBUG: Dashboard content classes BEFORE:', dashboardContent.className);
-                    console.log('🎯 DEBUG: Dashboard content style BEFORE:', dashboardContent.style.cssText);
                     dashboardContent.classList.add('auth-verified');
-                    console.log('🎯 DEBUG: Dashboard content classes AFTER:', dashboardContent.className);
-                    console.log('✅ DEBUG: auth-verified class added to dashboard');
-                } else {
-                    console.error('❌ DEBUG: Dashboard content element NOT FOUND!');
                 }
                 
-                // Hide loading screen using the CORRECT method (fade-out)
+                // Hide loading screen with smooth transition
                 const loadingScreen = document.getElementById('loading-screen');
                 if (loadingScreen) {
                     setTimeout(() => {
-                        console.log('🎯 DEBUG: Hiding loading screen with fade-out...');
-                        console.log('🎯 DEBUG: Loading screen classes BEFORE:', loadingScreen.className);
-                        console.log('🎯 DEBUG: Loading screen style BEFORE:', loadingScreen.style.cssText);
-                        console.log('🎯 DEBUG: Loading screen computed display BEFORE:', window.getComputedStyle(loadingScreen).display);
                         loadingScreen.classList.add('fade-out');
-                        console.log('🎯 DEBUG: Loading screen classes AFTER fade-out:', loadingScreen.className);
                         setTimeout(() => {
-                            console.log('✅ DEBUG: Loading screen completely hidden');
                             loadingScreen.style.display = 'none';
-                            console.log('🎯 DEBUG: Loading screen final style:', loadingScreen.style.cssText);
-                            console.log('🎯 DEBUG: Loading screen final computed display:', window.getComputedStyle(loadingScreen).display);
-                            
-                            // FINAL DEBUG CHECK
-                            setTimeout(() => {
-                                console.log('🔍 FINAL DEBUG CHECK:');
-                                const finalLoadingScreen = document.getElementById('loading-screen');
-                                const finalDashboard = document.querySelector('.dashboard-content');
-                                console.log('🔍 Loading screen exists:', !!finalLoadingScreen);
-                                console.log('🔍 Loading screen visible:', finalLoadingScreen ? window.getComputedStyle(finalLoadingScreen).display !== 'none' : 'N/A');
-                                console.log('🔍 Dashboard exists:', !!finalDashboard);
-                                console.log('🔍 Dashboard classes:', finalDashboard ? finalDashboard.className : 'N/A');
-                                console.log('🔍 Dashboard visibility:', finalDashboard ? window.getComputedStyle(finalDashboard).visibility : 'N/A');
-                                console.log('🔍 Dashboard opacity:', finalDashboard ? window.getComputedStyle(finalDashboard).opacity : 'N/A');
-                            }, 1000);
+                            console.log('✅ Auth Guard: Loading screen hidden, dashboard ready');
                         }, 500);
-                    }, 500); // Small delay for smooth transition
-                } else {
-                    console.error('❌ DEBUG: Loading screen element NOT FOUND!');
+                    }, 500);
                 }
             }
         });
         
     } catch (error) {
         console.error('❌ Auth Guard: Error checking authentication:', error);
-        alert('❌ DEBUG: Erreur Auth Guard - ' + error.message);
         // On error, redirect to signin for safety
         setTimeout(() => {
             window.location.replace('auth/signin.html');

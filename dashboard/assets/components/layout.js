@@ -311,16 +311,12 @@ class Layout {
                         if (window.firebaseAuth) {
                             await window.firebaseAuth.signOut();
                             console.log('✅ User signed out');
-                            // TEMP DEBUG: Disable redirect to debug auth issues
-                            console.log('⚠️ TEMP DEBUG: Sign out redirect disabled');
-                            // window.location.replace('auth/signin.html');
+                            window.location.replace('auth/signin.html');
                         }
                     }
                 } catch (error) {
                     console.error('❌ Sign out error:', error);
-                    // TEMP DEBUG: Disable fallback redirect to debug auth issues
-                    console.log('⚠️ TEMP DEBUG: Sign out fallback redirect disabled');
-                    // window.location.replace('auth/signin.html');
+                    window.location.replace('auth/signin.html');
                 }
             });
         }

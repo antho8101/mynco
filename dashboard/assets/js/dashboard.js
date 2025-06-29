@@ -51,9 +51,7 @@ function initDashboard() {
     // Sign out functionality
     signOutBtn.addEventListener('click', function() {
         console.log('Signing out...');
-        // TEMP DEBUG: Disable sign out redirect to debug auth issues
-        console.log('⚠️ TEMP DEBUG: Sign out redirect disabled');
-        // window.location.href = 'auth/signin.html';
+        window.location.href = 'auth/signin.html';
     });
 
     // Create project button
@@ -72,9 +70,7 @@ function initDashboard() {
                 updateUserInfo(user);
             } else {
                 console.log('User is signed out');
-                // TEMP DEBUG: Disable auth redirect to debug auth issues
-                console.log('⚠️ TEMP DEBUG: Auth check redirect disabled');
-                // window.location.href = 'auth/signin.html';
+                window.location.href = 'auth/signin.html';
             }
         });
     } else if (isDevelopment) {

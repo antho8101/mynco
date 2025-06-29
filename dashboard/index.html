@@ -231,10 +231,9 @@
                 console.log('🔐 Auth data found, keeping loading screen until verification...');
                 // Dashboard content will be shown by auth-guard.js once Firebase confirms
             } else {
-                // TEMP DEBUG: Disable immediate redirect to debug auth state
-                console.log('❌ No auth data, but DEBUG MODE - not redirecting');
-                console.log('⚠️ TEMP DEBUG: This redirect is disabled to debug auth issues');
-                // window.location.replace('auth/signin.html');
+                // No auth data found, redirect to signin
+                console.log('❌ No auth data found, redirecting to signin');
+                window.location.replace('auth/signin.html');
             }
         })();
     </script>
