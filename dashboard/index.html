@@ -193,11 +193,22 @@
             opacity: 1;
         }
         
-        /* Ensure loading screen is visible by default */
-        #loading-screen {
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
+        /* Ensure loading screen is visible by default but can be overridden */
+        #loading-screen:not(.fade-out) {
+            display: flex;
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* When fade-out is applied, hide completely */
+        #loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* Force hide when display none is set */
+        #loading-screen[style*="display: none"] {
+            display: none !important;
         }
     </style>
     
