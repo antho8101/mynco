@@ -86,7 +86,19 @@
             return isEuropeanTZ || isEuropeanLang;
         }
         
-        // Configuration par défaut basée sur la région
+        // TEMPORAIRE: Consentement accordé pour tous (debugging Tag Assistant)
+        console.log('🔧 DEBUG MODE: Consent granted for all users (Tag Assistant testing)');
+        gtag('consent', 'default', {
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'functionality_storage': 'granted',
+            'security_storage': 'granted'
+        });
+        
+        // Configuration par défaut basée sur la région (DÉSACTIVÉ TEMPORAIREMENT)
+        /*
         if (isEEARegion()) {
             // EEE/Europe : Consentement requis (refusé par défaut)
             gtag('consent', 'default', {
@@ -110,6 +122,7 @@
             });
             console.log('🌍 Non-EEA region detected - Full tracking enabled');
         }
+        */
         
         // Exposer la fonction pour le cookie manager
         window.isEEARegion = isEEARegion;
@@ -139,6 +152,16 @@
         
         // Log pour confirmer la configuration
         console.log('✅ Google Analytics configuré avec ID: G-CN00G7DGMK');
+        
+        // Force Tag Assistant detection avec délai
+        setTimeout(() => {
+            console.log('🔧 Tag Assistant Detection Helper - Forçage détection');
+            // Envoyer un événement pour réveiller Tag Assistant
+            gtag('event', 'tag_assistant_wake_up', {
+                'event_category': 'debug',
+                'debug_mode': true
+            });
+        }, 1000);
         
         // Events personnalisés pour le funnel
         function trackSignupClick(source = 'unknown') {
