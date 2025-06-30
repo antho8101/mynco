@@ -40,11 +40,17 @@ function hasLocalAuthData() {
 
 // Wait for Firebase to initialize
 function waitForAuth() {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
+        const maxWaitTime = 10000; // 10 seconds max
+        const startTime = Date.now();
+        
         const checkAuth = () => {
             if (window.firebaseAuth) {
                 console.log('🔐 Auth Guard: Firebase Auth available');
                 resolve(window.firebaseAuth);
+            } else if (Date.now() - startTime > maxWaitTime) {
+                console.error('❌ Auth Guard: Firebase Auth timeout');
+                reject(new Error('Firebase Auth failed to load'));
             } else {
                 console.log('⏳ Auth Guard: Waiting for Firebase Auth...');
                 setTimeout(checkAuth, 100);
@@ -62,50 +68,35 @@ async function checkAuthentication() {
         
         const auth = await waitForAuth();
         
-        // Give more time for auth state to be determined if we have local data
-        let authCheckTimeout;
+        // Set up a more reliable auth state check
         let authStateResolved = false;
+        let authCheckTimeout;
         
-        if (hasLocalAuth) {
-            console.log('⏳ Auth Guard: Waiting for auth state (user likely authenticated)...');
-            // Wait up to 3 seconds if we have local auth data
-            authCheckTimeout = setTimeout(() => {
-                if (!authStateResolved) {
-                    console.log('⚠️ Auth Guard: Auth check timeout, but local data exists. Allowing access.');
-                    authStateResolved = true;
-                    
-                    // Show dashboard content
-                    const dashboardContent = document.querySelector('.dashboard-content');
-                    if (dashboardContent) {
-                        dashboardContent.classList.add('auth-verified');
-                    }
-                    
-                    // Hide loading screen
-                    const loadingScreen = document.getElementById('loading-screen');
-                    if (loadingScreen) {
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                        }, 500);
-                    }
+        // If we have local auth data, wait longer for verification
+        const timeoutDuration = hasLocalAuth ? 3000 : 1000;
+        
+        console.log(`⏳ Auth Guard: Checking auth state (timeout: ${timeoutDuration}ms)...`);
+        
+        // Set timeout for fallback behavior
+        authCheckTimeout = setTimeout(() => {
+            if (!authStateResolved) {
+                authStateResolved = true;
+                
+                if (hasLocalAuth) {
+                    console.log('⚠️ Auth Guard: Timeout with local data, allowing access');
+                    showDashboard();
+                } else {
+                    console.log('❌ Auth Guard: No auth data, redirecting to signin');
+                    redirectToSignin();
                 }
-            }, 3000);
-        } else {
-            console.log('⏳ Auth Guard: No local auth data, quick check...');
-            // Only wait 1 second if no local auth data
-            authCheckTimeout = setTimeout(() => {
-                if (!authStateResolved) {
-                    console.log('❌ Auth Guard: No auth data and timeout reached, redirecting');
-                    authStateResolved = true;
-                    window.location.replace('auth/signin.html');
-                }
-            }, 1000);
-        }
+            }
+        }, timeoutDuration);
         
         // Listen for auth state changes
-        auth.onAuthStateChanged((user) => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             if (authStateResolved) return; // Prevent multiple calls
             
-            console.log('👤 Auth Guard: Auth state changed:', !!user);
+            console.log('👤 Auth Guard: Auth state determined:', !!user);
             authStateResolved = true;
             
             // Clear timeout since we got a definitive answer
@@ -113,35 +104,45 @@ async function checkAuthentication() {
                 clearTimeout(authCheckTimeout);
             }
             
+            // Stop listening
+            unsubscribe();
+            
             if (user) {
-                console.log('✅ Auth Guard: User is authenticated:', user.email);
-                // User is signed in, dashboard access confirmed
-                
-                // Show dashboard content and hide loading screen
-                const dashboardContent = document.querySelector('.dashboard-content');
-                if (dashboardContent) {
-                    dashboardContent.classList.add('auth-verified');
-                }
-                
-                // Hide loading screen
-                const loadingScreen = document.getElementById('loading-screen');
-                if (loadingScreen) {
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 500); // Small delay for smooth transition
-                }
+                console.log('✅ Auth Guard: User authenticated:', user.email);
+                showDashboard();
             } else {
-                console.log('❌ Auth Guard: User not authenticated, redirecting to signin');
-                // User is not signed in, redirect to signin page
-                window.location.replace('auth/signin.html');
+                console.log('❌ Auth Guard: User not authenticated');
+                redirectToSignin();
             }
         });
         
     } catch (error) {
         console.error('❌ Auth Guard: Error checking authentication:', error);
         // On error, redirect to signin for safety
-        window.location.replace('auth/signin.html');
+        redirectToSignin();
     }
+}
+
+// Show dashboard content
+function showDashboard() {
+    const dashboardContent = document.querySelector('.dashboard-content');
+    if (dashboardContent) {
+        dashboardContent.classList.add('auth-verified');
+    }
+    
+    // Hide loading screen
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }
+}
+
+// Redirect to signin page
+function redirectToSignin() {
+    console.log('🚪 Redirecting to signin page');
+    window.location.replace('auth/signin.html');
 }
 
 // Update sign out function to redirect to signin instead
@@ -154,12 +155,25 @@ window.signOutUser = async function() {
             console.log('✅ User signed out successfully');
         }
         
+        // Clear any local storage auth data
+        Object.keys(localStorage).forEach(key => {
+            if (key.includes('firebase') || key.includes('auth')) {
+                localStorage.removeItem(key);
+            }
+        });
+        
+        Object.keys(sessionStorage).forEach(key => {
+            if (key.includes('firebase') || key.includes('auth')) {
+                sessionStorage.removeItem(key);
+            }
+        });
+        
         // Redirect to signin page
-        window.location.replace('auth/signin.html');
+        redirectToSignin();
     } catch (error) {
         console.error('❌ Error signing out:', error);
         // Even if signout fails, redirect to signin
-        window.location.replace('auth/signin.html');
+        redirectToSignin();
     }
 };
 
