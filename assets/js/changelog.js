@@ -434,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         // PRESERVE fade effect - don't overwrite opacity for fade items
                         const fadeLevel = entry.target.getAttribute('data-fade-level');
                         if (!fadeLevel) {
-                            entry.target.style.opacity = '1';
+                        entry.target.style.opacity = '1';
                         }
                         // Always apply transform animation
                         entry.target.style.transform = 'translateX(0)';
@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // PRESERVE fade effect during initial setup
             const fadeLevel = item.getAttribute('data-fade-level');
             if (!fadeLevel) {
-                item.style.opacity = '0';
+            item.style.opacity = '0';
             }
             // Always apply initial transform
             item.style.transform = 'translateX(-20px)';

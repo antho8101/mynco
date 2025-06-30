@@ -236,37 +236,7 @@ function initNavigation() {
         });
     }, 100);
 
-    // Handle navigation links to landing page with anchors
-    setTimeout(() => {
-        const navLinks = document.querySelectorAll('.nav-links a[href*="index.html#"]');
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                const anchor = href.split('#')[1];
-                
-                // If we're already on the landing page, use smooth scroll
-                if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
-                    e.preventDefault();
-                    const target = document.querySelector('#' + anchor);
-                    if (target) {
-                        // Use the smooth scroll function from landing.js if available
-                        if (typeof window.myncoUtils !== 'undefined' && window.myncoUtils.smoothScrollToSection) {
-                            window.myncoUtils.smoothScrollToSection(anchor);
-                        } else {
-                            // Fallback to basic smooth scroll
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    }
-                }
-                // If we're on another page, let the normal navigation happen
-                // (redirect to landing page with anchor)
-            });
-        });
-    }, 200);
+    // Dashboard doesn't need landing page navigation - this section removed
 
     // Header hide/show on scroll
     let lastScrollTop = 0;

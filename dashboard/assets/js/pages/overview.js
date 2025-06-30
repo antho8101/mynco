@@ -2,31 +2,15 @@
 class OverviewPage {
     static render() {
         return `
-            <div class="overview-container">
-                <!-- Hero Welcome Section -->
-                <div class="welcome-hero">
-                    <div class="welcome-content">
-                        <h1>Welcome back, Anthony! <span class="wave-emoji">👋</span></h1>
-                        <p class="welcome-subtitle">You have <strong>3 clients waiting</strong> for your attention. Let's keep the momentum going!</p>
-                    </div>
-                    
-                    <!-- Floating Action Elements -->
-                    <div class="floating-actions">
-                        <div class="floating-element urgent-message">
-                            <i data-lucide="message-circle"></i>
-                            <span>Martin sent files</span>
-                        </div>
-                        <div class="floating-element payment-received">
-                            <i data-lucide="credit-card"></i>
-                            <span>€2,500 received</span>
-                        </div>
-                        <div class="floating-element new-project">
-                            <i data-lucide="plus-circle"></i>
-                            <span>Create portal</span>
-                        </div>
-                    </div>
+            <!-- Hero Welcome Section (full width) -->
+            <div class="welcome-hero">
+                <div class="welcome-content">
+                    <h1>Welcome back, Anthony! 👋</h1>
+                    <p class="welcome-subtitle">You have <strong>3 clients waiting</strong> for your attention. Let's keep the momentum going!</p>
                 </div>
+            </div>
 
+            <div class="overview-container">
                 <!-- Priority Actions Row -->
                 <div class="priority-section">
                     <div class="section-header">
@@ -37,55 +21,49 @@ class OverviewPage {
                     <div class="priority-grid">
                         <!-- Urgent Client Messages -->
                         <div class="priority-card urgent">
+                            <span class="priority-time">2h ago</span>
                             <div class="priority-icon urgent">
                                 <i data-lucide="message-circle"></i>
                             </div>
                             <div class="priority-content">
                                 <h3>2 Client Messages</h3>
                                 <p>Martin and Sarah are waiting for your response</p>
-                                <div class="priority-meta">
-                                    <span class="time-ago">2h ago</span>
-                                    <span class="value">€3,300 projects</span>
-                                </div>
                             </div>
                             <div class="priority-action">
                                 <button class="btn btn-urgent">Respond Now</button>
+                                <span class="priority-value">€3,300 projects</span>
                             </div>
                         </div>
 
                         <!-- Pending Deliveries -->
                         <div class="priority-card ready">
+                            <span class="priority-time">Just finished</span>
                             <div class="priority-icon ready">
                                 <i data-lucide="package"></i>
                             </div>
                             <div class="priority-content">
                                 <h3>1 Ready to Deliver</h3>
                                 <p>Bakery redesign completed, waiting for client approval</p>
-                                <div class="priority-meta">
-                                    <span class="time-ago">Just finished</span>
-                                    <span class="value">€2,500</span>
-                                </div>
                             </div>
                             <div class="priority-action">
                                 <button class="btn btn-ready">Send to Client</button>
+                                <span class="priority-value">€2,500</span>
                             </div>
                         </div>
 
                         <!-- Pending Payments -->
                         <div class="priority-card payment">
+                            <span class="priority-time">3 days ago</span>
                             <div class="priority-icon payment">
                                 <i data-lucide="clock"></i>
                             </div>
                             <div class="priority-content">
                                 <h3>€1,200 Pending</h3>
                                 <p>Logo design approved, waiting for payment</p>
-                                <div class="priority-meta">
-                                    <span class="time-ago">3 days ago</span>
-                                    <span class="client">TechStart Inc.</span>
-                                </div>
                             </div>
                             <div class="priority-action">
                                 <button class="btn btn-payment">Send Reminder</button>
+                                <span class="priority-value">TechStart Inc.</span>
                             </div>
                         </div>
                     </div>
@@ -403,35 +381,13 @@ class OverviewPage {
     
     static init() {
         // Initialize overview-specific functionality
-        this.initFloatingElements();
         this.initActivityStream();
         this.initProjectShowcase();
         this.startRealTimeUpdates();
         
         console.log('🎯 Overview page initialized - Mynco Onboarding Dashboard');
     }
-    
-    static initFloatingElements() {
-        // Animate floating action elements
-        const floatingElements = document.querySelectorAll('.floating-element');
-        floatingElements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.5}s`;
-            
-            // Add click handlers for quick actions
-            el.addEventListener('click', () => {
-                if (el.classList.contains('urgent-message')) {
-                    // Navigate to messages
-                    console.log('🔔 Opening client messages...');
-                } else if (el.classList.contains('payment-received')) {
-                    // Show payment details
-                    console.log('💰 Showing payment details...');
-                } else if (el.classList.contains('new-project')) {
-                    // Create new project
-                    console.log('➕ Creating new project...');
-                }
-            });
-        });
-    }
+
     
     static initActivityStream() {
         // Auto-scroll and real-time updates for activity stream

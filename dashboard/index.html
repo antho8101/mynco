@@ -6,8 +6,8 @@
     <title>Dashboard - Mynco</title>
     <meta name="description" content="Mynco Dashboard - Manage your projects, clients, and team.">
     
-    <!-- Base URL for relative paths -->
-    <base href="/">
+    <!-- Base URL for relative paths (removed for Live Server compatibility) -->
+    <!-- <base href="/"> -->
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -19,7 +19,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/globals.css">
     <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css?v=20250629141345">
     <link rel="stylesheet" href="assets/css/team.css">
     
     <!-- Loading Screen & Placeholder Content CSS -->
@@ -260,19 +260,13 @@
                 <span></span>
                 <span></span>
                 <span></span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
     <!-- Dashboard Content Container -->
     <main class="dashboard-content">
-        <!-- Content will be dynamically loaded here -->
-        <div class="container">
-            <div class="welcome-section">
-                <h1>Loading Dashboard... <i data-lucide="loader-2"></i></h1>
-                <p>Please wait while we prepare your dashboard.</p>
-            </div>
-        </div>
+        <!-- Content will be dynamically loaded here by SPA -->
     </main>
 
     <!-- Scripts -->
@@ -289,7 +283,7 @@
     
     <!-- SPA Router and Pages -->
     <script src="assets/js/router.js"></script>
-    <script src="assets/js/pages/overview.js"></script>
+    <script src="assets/js/pages/overview.js?v=20250629105339"></script>
     <script src="assets/js/pages/team.js"></script>
     <script src="assets/js/pages/projects.js"></script>
     <!-- Note: clients, analytics, settings pages will use placeholder content for now -->
@@ -543,10 +537,10 @@
                         primaryButtonText: 'Add Client',
                         primaryButtonIcon: 'user-plus',
                         searchPlaceholder: 'Search clients...',
-                        primaryButtonAction: function() {
+                primaryButtonAction: function() {
                             alert('Add Client functionality coming soon!');
-                        }
-                    });
+                }
+            });
                     break;
                     
                 case '/dashboard/analytics':

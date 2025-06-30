@@ -40,10 +40,23 @@ body {
     flex-shrink: 0; /* Empêche la compression des icônes */
 }
 
-/* Icons next to text - proper spacing and alignment */
+/* Icons dans les boutons - alignement intelligent */
 .btn [data-lucide] {
+    vertical-align: middle;
+    margin-left: 0; /* Reset du margin par défaut */
+    margin-right: 0;
+}
+
+/* Icône AVANT du texte - margin à droite */
+.btn [data-lucide] + span,
+.btn [data-lucide] + * {
     margin-left: 8px;
-    vertical-align: text-bottom; /* Meilleur alignement pour les boutons */
+}
+
+/* Icône APRÈS du texte - margin à gauche */
+.btn span + [data-lucide],
+.btn * + [data-lucide] {
+    margin-left: 8px;
 }
 
 /* Floating elements spacing */
