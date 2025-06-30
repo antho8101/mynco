@@ -117,29 +117,28 @@
     
     <!-- ==================== GOOGLE ANALYTICS 4 ==================== -->
     <!-- Google tag (gtag.js) - ID: G-CN00G7DGMK -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CN00G7DGMK"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-CN00G7DGMK"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+        
+        // Initialisation immédiate avec timestamp
         gtag('js', new Date());
         
-        // Configuration Analytics avec options avancées
+        // Debug pour Tag Assistant
+        console.log('🔧 Google Analytics initialisé');
+        console.log('🔧 dataLayer disponible:', typeof window.dataLayer);
+        console.log('🔧 gtag disponible:', typeof window.gtag);
+        
+        // Configuration Analytics simplifiée pour Tag Assistant
         gtag('config', 'G-CN00G7DGMK', {
-            // Enhanced ecommerce tracking pour SaaS
-            custom_map: {
-                'custom_parameter_1': 'plan_type',
-                'custom_parameter_2': 'signup_source'
-            },
-            // Paramètres de collecte avancée (activés dans interface)
-            allow_google_signals: true,
-            allow_ad_personalization_signals: true,
-            anonymize_ip: false, // Désactivé pour géolocalisation précise
+            // Configuration de base
             send_page_view: true,
-            // Configuration pour les données utilisateur
-            user_id: null, // Sera défini après connexion
-            // Paramètres de conversion
-            send_to: 'G-CN00G7DGMK'
+            allow_google_signals: true
         });
+        
+        // Log pour confirmer la configuration
+        console.log('✅ Google Analytics configuré avec ID: G-CN00G7DGMK');
         
         // Events personnalisés pour le funnel
         function trackSignupClick(source = 'unknown') {
