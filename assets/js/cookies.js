@@ -201,42 +201,52 @@ class CookieManager {
     }
     
     enableAnalytics() {
-        // Google Analytics (quand tu l'ajouteras)
-        /*
-        gtag('consent', 'update', {
-            'analytics_storage': 'granted'
-        });
-        */
+        // Google Consent Mode v2 - Enable analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'denied', // Keep ads denied unless marketing is also enabled
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied'
+            });
+        }
         console.log('Analytics cookies enabled');
     }
     
     disableAnalytics() {
-        // Disable analytics
-        /*
-        gtag('consent', 'update', {
-            'analytics_storage': 'denied'
-        });
-        */
+        // Google Consent Mode v2 - Disable analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied'
+            });
+        }
         console.log('Analytics cookies disabled');
     }
     
     enableMarketing() {
-        // Marketing cookies (Facebook Pixel, etc.)
-        /*
-        gtag('consent', 'update', {
-            'ad_storage': 'granted'
-        });
-        */
+        // Google Consent Mode v2 - Enable marketing/ads
+        if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted'
+            });
+        }
         console.log('Marketing cookies enabled');
     }
     
     disableMarketing() {
-        // Disable marketing
-        /*
-        gtag('consent', 'update', {
-            'ad_storage': 'denied'
-        });
-        */
+        // Google Consent Mode v2 - Disable marketing/ads
+        if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied', 
+                'ad_personalization': 'denied'
+            });
+        }
         console.log('Marketing cookies disabled');
     }
     
@@ -245,12 +255,15 @@ class CookieManager {
         if (this.cookieSettings.analytics) {
             console.log('Event tracked:', eventName, parameters);
             
-            // Google Analytics (quand tu l'ajouteras)
-            /*
+            // Google Analytics 4 event tracking
             if (typeof gtag !== 'undefined') {
-                gtag('event', eventName, parameters);
+                gtag('event', eventName, {
+                    ...parameters,
+                    // Add source information
+                    event_source: 'mynco_landing',
+                    timestamp: Date.now()
+                });
             }
-            */
         }
     }
     

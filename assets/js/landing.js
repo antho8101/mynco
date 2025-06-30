@@ -241,6 +241,61 @@ document.addEventListener('DOMContentLoaded', function() {
         sections.forEach(section => sectionObserver.observe(section));
     }
 
+    // ==================== ANALYTICS AVANCÉS ==================== 
+
+    // Tracking du scroll depth
+    let scrollTracked = false;
+    window.addEventListener('scroll', () => {
+        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        
+        // Track à 50% de scroll
+        if (scrollPercent >= 50 && !scrollTracked) {
+            scrollTracked = true;
+            gtag('event', 'scroll_depth', {
+                'event_category': 'engagement',
+                'event_label': '50_percent',
+                'scroll_percentage': 50
+            });
+        }
+    });
+
+    // Tracking du temps passé sur la page
+    let timeOnPageTracked = false;
+    setTimeout(() => {
+        if (!timeOnPageTracked) {
+            timeOnPageTracked = true;
+            gtag('event', 'time_on_page', {
+                'event_category': 'engagement',
+                'event_label': '30_seconds',
+                'time_spent': 30
+            });
+        }
+    }, 30000); // 30 secondes
+
+    // Tracking des clics sur les liens externes
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link && link.href.includes('dashboard.mynco.app')) {
+            gtag('event', 'external_link_click', {
+                'event_category': 'navigation',
+                'event_label': 'dashboard_link',
+                'link_url': link.href
+            });
+        }
+    });
+
+    // Tracking des features qui intéressent (hover sur pricing)
+    document.querySelectorAll('.pricing-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const planName = card.querySelector('h3').textContent;
+            gtag('event', 'pricing_hover', {
+                'event_category': 'engagement',
+                'event_label': planName.toLowerCase(),
+                'plan_interest': planName
+            });
+        });
+    });
+
     // Initialize all functions
     initHeaderScroll();
     initSmoothScrolling();

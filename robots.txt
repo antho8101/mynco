@@ -1,0 +1,46 @@
+# ==========================================
+# MYNCO ROBOTS.TXT - SEO EXPERT OPTIMIZATION
+# ==========================================
+
+# User-agent global
+User-agent: *
+
+# AUTORISER L'INDEXATION PRINCIPALE
+Allow: /
+Allow: /about.html
+Allow: /contact.html
+Allow: /press.html
+Allow: /terms.html
+Allow: /privacy.html
+Allow: /security.html
+Allow: /assets/css/
+Allow: /assets/images/
+Allow: /assets/js/
+
+# INTERDIRE L'INDEXATION SENSIBLE
+Disallow: /dashboard/
+Disallow: /client/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /*.json$
+Disallow: /test/
+Disallow: /*?*utm_*
+Disallow: /*?*ref=*
+Disallow: /*?*fbclid=*
+
+# BOT-SPECIFIC RULES
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot  
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# SITEMAP LOCATION
+Sitemap: https://mynco.app/sitemap.xml
+
+# CRAWL DELAY (optionnel)
+Crawl-delay: 1 

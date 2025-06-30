@@ -28,7 +28,7 @@ class Sidebar {
             <aside class="sidebar ${this.isCollapsed ? 'collapsed' : ''}" id="sidebar">
                 <div class="sidebar-header">
                     <div class="logo">
-                        <a href="/" class="logo-container">
+                        <a href="https://mynco.app" target="_blank" rel="noopener noreferrer" class="logo-container">
 
                         
                             <div class="logo-icon">
@@ -47,14 +47,18 @@ class Sidebar {
                 <div class="sidebar-profile">
                     <div class="user-menu">
                         <button class="user-avatar" id="userMenuBtn">
-                            <div class="avatar">A</div>
+                            <div class="avatar">
+                                <img src="assets/images/Anthony2.png" alt="Anthony" />
+                            </div>
                             <span class="user-name">Anthony</span>
                             <i class="dropdown-icon" data-lucide="chevron-down"></i>
                         </button>
                         
                         <div class="user-dropdown" id="userDropdown">
                             <div class="dropdown-header">
-                                <div class="avatar">A</div>
+                                <div class="avatar">
+                                    <img src="assets/images/Anthony2.png" alt="Anthony" />
+                                </div>
                                 <div class="user-info">
                                     <div class="user-name">Anthony Carayon</div>
                                     <div class="user-email">anthony@mynco.app</div>
@@ -100,7 +104,7 @@ class Sidebar {
                             </li>
                             <li class="nav-item">
                                 <a href="/dashboard/clients" class="nav-link" data-tooltip="Clients">
-                                    <i data-lucide="users"></i>
+                                    <i data-lucide="handshake"></i>
                                     <span>Clients</span>
                                 </a>
                             </li>
@@ -112,7 +116,7 @@ class Sidebar {
                             </li>
                             <li class="nav-item">
                                 <a href="/dashboard/team" class="nav-link" data-tooltip="Team">
-                                    <i data-lucide="users"></i>
+                                    <i data-lucide="users-round"></i>
                                     <span>Team</span>
                                 </a>
                             </li>

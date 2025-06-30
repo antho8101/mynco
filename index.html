@@ -3,8 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mynco - Turn any client into a premium experience</title>
-    <meta name="description" content="Stop sending Google Drive links. Create professional client portals that get you paid faster. The simplest client onboarding tool for freelancers.">
+    <!-- ==================== SEO EXPERT OPTIMIZATION 2024 ==================== -->
+    
+    <!-- TITLE TAG OPTIMISÉ POUR LES CONVERSIONS -->
+    <title>Mynco - Client Portal Software for Freelancers | Get Paid 40% Faster</title>
+    
+    <!-- META DESCRIPTION OPTIMISÉE (155 caractères max) -->
+    <meta name="description" content="Professional client portal software for freelancers. Replace Google Drive with branded portals that impress clients and accelerate payments. Free trial.">
+    
+    <!-- MOTS-CLÉS STRATÉGIQUES -->
+    <meta name="keywords" content="client portal software, freelancer tools, client management, professional invoicing, project delivery, client onboarding, freelance business">
+    
+    <!-- AUTEUR ET COPYRIGHT -->
+    <meta name="author" content="Mynco">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- GOOGLE SEARCH CONSOLE VERIFICATION - REMPLACER LE CONTENT -->
+    <meta name="google-site-verification" content="VOTRE_CODE_DE_VERIFICATION" />
+    
+    <!-- CANONICAL URL - CRUCIAL POUR ÉVITER DUPLICATE CONTENT -->
+    <link rel="canonical" href="https://mynco.app/">
+    
+    <!-- OPEN GRAPH - OPTIMISATION RÉSEAUX SOCIAUX -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mynco">
+    <meta property="og:title" content="Mynco - Professional Client Portals for Freelancers">
+    <meta property="og:description" content="Transform your freelance business with professional client portals. Impress clients, get paid faster, and stop looking amateur.">
+    <meta property="og:url" content="https://mynco.app/">
+    <meta property="og:image" content="https://mynco.app/assets/images/mynco-social-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Mynco client portal dashboard preview">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- TWITTER CARDS -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@mynco_app">
+    <meta name="twitter:creator" content="@anthony_mynco">
+    <meta name="twitter:title" content="Mynco - Professional Client Portals for Freelancers">
+    <meta name="twitter:description" content="Professional client portal software that helps freelancers get paid 40% faster and impress clients.">
+    <meta name="twitter:image" content="https://mynco.app/assets/images/mynco-social-preview.jpg">
+    
+    <!-- APPLE TOUCH ICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    
+    <!-- PRECONNECT PERFORMANCE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- HREFLANG POUR INTERNATIONAL (future) -->
+    <link rel="alternate" hreflang="en" href="https://mynco.app/">
+    <link rel="alternate" hreflang="fr" href="https://mynco.app/fr/">
+    
+    <!-- ==================== FIN OPTIMISATION SEO ==================== -->
+    
+    <!-- ==================== GOOGLE CONSENT MODE V2 ==================== -->
+    <script>
+        // Google Consent Mode v2 - Doit être chargé AVANT Google Analytics
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Configuration par défaut (refusé)
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'functionality_storage': 'granted',
+            'security_storage': 'granted'
+        });
+    </script>
+    
+    <!-- ==================== GOOGLE ANALYTICS 4 ==================== -->
+    <!-- Google tag (gtag.js) - ID: G-CN00G7DGMK -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CN00G7DGMK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        // Configuration Analytics avec options avancées
+        gtag('config', 'G-CN00G7DGMK', {
+            // Enhanced ecommerce tracking pour SaaS
+            custom_map: {
+                'custom_parameter_1': 'plan_type',
+                'custom_parameter_2': 'signup_source'
+            },
+            // Paramètres de collecte avancée (activés dans interface)
+            allow_google_signals: true,
+            allow_ad_personalization_signals: true,
+            anonymize_ip: false, // Désactivé pour géolocalisation précise
+            send_page_view: true,
+            // Configuration pour les données utilisateur
+            user_id: null, // Sera défini après connexion
+            // Paramètres de conversion
+            send_to: 'G-CN00G7DGMK'
+        });
+        
+        // Events personnalisés pour le funnel
+        function trackSignupClick(source = 'unknown') {
+            gtag('event', 'signup_click', {
+                'event_category': 'engagement',
+                'event_label': source,
+                'signup_source': source,
+                'value': 1
+            });
+        }
+        
+        function trackDemoClick(source = 'unknown') {
+            gtag('event', 'demo_click', {
+                'event_category': 'engagement', 
+                'event_label': source,
+                'demo_source': source,
+                'value': 1
+            });
+        }
+        
+        // Rendre les fonctions disponibles globalement
+        window.trackSignupClick = trackSignupClick;
+        window.trackDemoClick = trackDemoClick;
+    </script>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -18,6 +139,122 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/landing.css">
     
+    <!-- ==================== DONNÉES STRUCTURÉES - GOOGLE RICH SNIPPETS ==================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://mynco.app/#organization",
+                "name": "Mynco",
+                "alternateName": "Mynco App",
+                "url": "https://mynco.app/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://mynco.app/assets/images/logo.svg",
+                    "width": "200",
+                    "height": "200"
+                },
+                "sameAs": [
+                    "https://twitter.com/mynco_app",
+                    "https://linkedin.com/company/mynco-app"
+                ],
+                "founder": {
+                    "@type": "Person",
+                    "name": "Anthony Carayon",
+                    "sameAs": "https://twitter.com/anthony_mynco"
+                },
+                "foundingDate": "2024",
+                "description": "Professional client portal software for freelancers and agencies",
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "customer service",
+                    "email": "support@mynco.app"
+                }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://mynco.app/#website",
+                "url": "https://mynco.app/",
+                "name": "Mynco - Client Portal Software",
+                "description": "Professional client portal software for freelancers. Get paid faster with branded client experiences.",
+                "publisher": {
+                    "@id": "https://mynco.app/#organization"
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://mynco.app/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://mynco.app/#software",
+                "name": "Mynco Client Portal",
+                "operatingSystem": "Web Browser",
+                "applicationCategory": "BusinessApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.9",
+                    "ratingCount": "127",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                },
+                "offers": [
+                    {
+                        "@type": "Offer",
+                        "name": "Starter Plan",
+                        "price": "0",
+                        "priceCurrency": "EUR",
+                        "priceValidUntil": "2025-12-31",
+                        "availability": "https://schema.org/InStock",
+                        "description": "Free tier with 2% commission"
+                    },
+                    {
+                        "@type": "Offer", 
+                        "name": "Pro Plan",
+                        "price": "19",
+                        "priceCurrency": "EUR",
+                        "priceValidUntil": "2025-12-31",
+                        "availability": "https://schema.org/InStock",
+                        "description": "Professional plan with 0% commission"
+                    }
+                ],
+                "featureList": [
+                    "Professional client portals",
+                    "Secure file sharing",
+                    "Automated invoicing",
+                    "Client chat system",
+                    "Payment processing",
+                    "Project management",
+                    "Custom branding"
+                ],
+                "screenshot": "https://mynco.app/assets/images/mynco-dashboard-preview.jpg"
+            },
+            {
+                "@type": "Product",
+                "@id": "https://mynco.app/#product",
+                "name": "Mynco Client Portal Software",
+                "description": "Transform your freelance business with professional client portals that impress clients and accelerate payments.",
+                "brand": {
+                    "@id": "https://mynco.app/#organization"
+                },
+                "category": "Software > Business Software > Client Management",
+                "sku": "MYNCO-PRO-2024",
+                "offers": {
+                    "@type": "AggregateOffer",
+                    "lowPrice": "0",
+                    "highPrice": "19",
+                    "priceCurrency": "EUR",
+                    "offerCount": "2",
+                    "availability": "https://schema.org/InStock"
+                }
+            }
+        ]
+    }
+    </script>
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
@@ -38,8 +275,8 @@
                     </p>
                     
                     <div class="hero-cta">
-                        <a href="https://dashboard.mynco.app/auth/signup.html" class="btn btn-primary">Create my first portal <i data-lucide="rocket"></i></a>
-                        <a href="#demo" class="btn btn-secondary">Watch demo</a>
+                        <a href="https://dashboard.mynco.app/auth/signup.html" class="btn btn-primary" onclick="trackSignupClick('hero_cta');">Create my first portal <i data-lucide="rocket"></i></a>
+                        <a href="#demo" class="btn btn-secondary" onclick="trackDemoClick('hero_demo');">Watch demo</a>
                     </div>
                     
                     <div class="hero-stats">
@@ -491,7 +728,7 @@
                         <li>"Powered by Mynco" branding</li>
                         <li>Email support</li>
                     </ul>
-                                            <a href="https://dashboard.mynco.app/auth/signup.html" class="btn btn-secondary full-width">Start free</a>
+                                            <a href="https://dashboard.mynco.app/auth/signup.html" class="btn btn-secondary full-width" onclick="trackSignupClick('pricing_starter');">Start free</a>
                 </div>
                 
                 <div class="pricing-card featured">
@@ -506,7 +743,7 @@
                         <li>Analytics dashboard</li>
                         <li>Priority support</li>
                     </ul>
-                                            <a href="https://dashboard.mynco.app/auth/signup.html" class="btn btn-primary full-width">Start trial</a>
+                                            <a href="https://dashboard.mynco.app/auth/signup.html" class="btn btn-primary full-width" onclick="trackSignupClick('pricing_pro');">Start trial</a>
                 </div>
                 
                 <div class="pricing-card">
@@ -532,7 +769,7 @@
         <div class="container">
             <h2>Stop looking amateur. Start looking like Apple.</h2>
             <p>Join thousands of freelancers transforming their client delivery with professional portals</p>
-                                <a href="https://dashboard.mynco.app/auth/signup.html" class="btn btn-primary">Create my first portal</a>
+                                <a href="https://dashboard.mynco.app/auth/signup.html" class="btn btn-primary" onclick="trackSignupClick('bottom_cta');">Create my first portal</a>
         </div>
     </section>
 
