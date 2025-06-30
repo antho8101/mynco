@@ -136,20 +136,11 @@
         // Initialisation immédiate avec timestamp
         gtag('js', new Date());
         
-        // Debug pour Tag Assistant
-        console.log('🔧 Google Analytics initialisé');
-        console.log('🔧 dataLayer disponible:', typeof window.dataLayer);
-        console.log('🔧 gtag disponible:', typeof window.gtag);
-        
-        // Configuration Analytics simplifiée pour Tag Assistant
+        // Configuration Analytics simplifiée
         gtag('config', 'G-CN00G7DGMK', {
-            // Configuration de base
             send_page_view: true,
             allow_google_signals: true
         });
-        
-        // Log pour confirmer la configuration
-        console.log('✅ Google Analytics configuré avec ID: G-CN00G7DGMK');
         
         // Events personnalisés pour le funnel
         function trackSignupClick(source = 'unknown') {
@@ -826,46 +817,6 @@
 
     <!-- Avant les scripts existants -->
     <div id="cookie-banner-container"></div>
-
-    <!-- ==================== GOOGLE ANALYTICS 4 (CHARGÉ EN FIN) ==================== -->
-    <!-- Google tag (gtag.js) - ID: G-CN00G7DGMK -->
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-CN00G7DGMK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        
-        // Initialisation immédiate avec timestamp
-        gtag('js', new Date());
-        
-        // Configuration Analytics simplifiée
-        gtag('config', 'G-CN00G7DGMK', {
-            send_page_view: true,
-            allow_google_signals: true
-        });
-        
-        // Events personnalisés pour le funnel
-        function trackSignupClick(source = 'unknown') {
-            gtag('event', 'signup_click', {
-                'event_category': 'engagement',
-                'event_label': source,
-                'signup_source': source,
-                'value': 1
-            });
-        }
-        
-        function trackDemoClick(source = 'unknown') {
-            gtag('event', 'demo_click', {
-                'event_category': 'engagement', 
-                'event_label': source,
-                'demo_source': source,
-                'value': 1
-            });
-        }
-        
-        // Rendre les fonctions disponibles globalement
-        window.trackSignupClick = trackSignupClick;
-        window.trackDemoClick = trackDemoClick;
-    </script>
 
     <!-- Scripts -->
     <script src="assets/js/app.js"></script>
