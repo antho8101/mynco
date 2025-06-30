@@ -1,0 +1,30 @@
+{
+    "name": "Mynco - Client Portal Software for Freelancers",
+    "short_name": "Mynco",
+    "description": "Professional client portal software that helps freelancers get paid 40% faster and impress clients.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#10b981",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "assets/images/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/favicon-32x32.png", 
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "categories": ["business", "productivity", "utilities"],
+    "lang": "en",
+    "dir": "ltr"
+} 
