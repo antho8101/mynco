@@ -66,15 +66,53 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         
-        // Configuration par défaut (refusé)
-        gtag('consent', 'default', {
-            'analytics_storage': 'denied',
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied',
-            'functionality_storage': 'granted',
-            'security_storage': 'granted'
-        });
+        // Fonction pour détecter si l'utilisateur est dans l'EEE (Europe)
+        function isEEARegion() {
+            // Détection basée sur timezone (approximative mais efficace)
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const europeanTimezones = [
+                'Europe/', 'Atlantic/Reykjavik', 'Atlantic/Faroe', 'Atlantic/Madeira',
+                'Atlantic/Canary', 'Atlantic/Azores', 'Arctic/Longyearbyen'
+            ];
+            
+            // Check si timezone européenne
+            const isEuropeanTZ = europeanTimezones.some(tz => timezone.startsWith(tz));
+            
+            // Détection additionnelle via navigateur (langue)
+            const browserLang = navigator.language || navigator.userLanguage;
+            const europeanLangCodes = ['de', 'fr', 'it', 'es', 'nl', 'pl', 'pt', 'sv', 'da', 'no', 'fi', 'el', 'cs', 'hu', 'ro', 'bg', 'hr', 'sk', 'sl', 'et', 'lv', 'lt', 'mt'];
+            const isEuropeanLang = europeanLangCodes.includes(browserLang.split('-')[0]);
+            
+            return isEuropeanTZ || isEuropeanLang;
+        }
+        
+        // Configuration par défaut basée sur la région
+        if (isEEARegion()) {
+            // EEE/Europe : Consentement requis (refusé par défaut)
+            gtag('consent', 'default', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'functionality_storage': 'granted',
+                'security_storage': 'granted'
+            });
+            console.log('🇪🇺 EEA region detected - Consent mode activated');
+        } else {
+            // Reste du monde : Consentement accordé par défaut
+            gtag('consent', 'default', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted',
+                'functionality_storage': 'granted',
+                'security_storage': 'granted'
+            });
+            console.log('🌍 Non-EEA region detected - Full tracking enabled');
+        }
+        
+        // Exposer la fonction pour le cookie manager
+        window.isEEARegion = isEEARegion;
     </script>
     
     <!-- ==================== GOOGLE ANALYTICS 4 ==================== -->

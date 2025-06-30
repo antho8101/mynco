@@ -67,6 +67,19 @@ class CookieManager {
     }
     
     checkCookieConsent() {
+        // Si pas dans EEE, pas besoin de bannière cookies
+        if (typeof window.isEEARegion === 'function' && !window.isEEARegion()) {
+            console.log('🌍 Non-EEA user - Cookie banner not required');
+            // Activer tous les cookies par défaut pour les non-EEE
+            this.cookieSettings = {
+                essential: true,
+                analytics: true,
+                marketing: true
+            };
+            this.applyCookieSettings();
+            return;
+        }
+        
         const consent = localStorage.getItem('cookie-consent');
         const consentDate = localStorage.getItem('cookie-consent-date');
         
@@ -90,7 +103,8 @@ class CookieManager {
                 this.showCookieBanner();
             }
         } else {
-            // No consent found, show banner
+            // No consent found, show banner (EEE users only)
+            console.log('🇪🇺 EEA user - Cookie consent required');
             this.showCookieBanner();
         }
     }
