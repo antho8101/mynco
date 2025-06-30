@@ -67,18 +67,7 @@ class CookieManager {
     }
     
     checkCookieConsent() {
-        // MODE DEBUG: Pas de bannière cookies pour Tag Assistant testing
-        console.log('🔧 DEBUG MODE: Cookie banner disabled for Tag Assistant testing');
-        this.cookieSettings = {
-            essential: true,
-            analytics: true,
-            marketing: true
-        };
-        this.applyCookieSettings();
-        return;
-        
-        // Si pas dans EEE, pas besoin de bannière cookies (DÉSACTIVÉ TEMPORAIREMENT)
-        /*
+        // Si pas dans EEE, pas besoin de bannière cookies
         if (typeof window.isEEARegion === 'function' && !window.isEEARegion()) {
             console.log('🌍 Non-EEA user - Cookie banner not required');
             // Activer tous les cookies par défaut pour les non-EEE
@@ -90,7 +79,6 @@ class CookieManager {
             this.applyCookieSettings();
             return;
         }
-        */
         
         const consent = localStorage.getItem('cookie-consent');
         const consentDate = localStorage.getItem('cookie-consent-date');
