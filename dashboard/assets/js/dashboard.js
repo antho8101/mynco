@@ -170,5 +170,38 @@ function initDashboard() {
         }
     });
 
+    // Initialize topbar scroll behavior
+    initTopbarScroll();
+
     console.log('🎛️ Dashboard initialized' + (isDevelopment ? ' (DEV MODE)' : ''));
+}
+
+// Fonction pour initialiser le scroll du topbar
+function initTopbarScroll() {
+    const topbar = document.querySelector('.topbar');
+    if (topbar) {
+        console.log('🎯 Topbar found, initializing scroll behavior');
+        let topbarLastScrollTop = 0;
+        const scrollThreshold = 100;
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Only hide/show if we've scrolled enough
+            if (Math.abs(scrollTop - topbarLastScrollTop) > 10) {
+                if (scrollTop > topbarLastScrollTop && scrollTop > scrollThreshold) {
+                    // Scrolling down - hide topbar
+                    console.log('📉 Hiding topbar');
+                    topbar.classList.add('topbar-hidden');
+                } else if (scrollTop < topbarLastScrollTop) {
+                    // Scrolling up - show topbar
+                    console.log('📈 Showing topbar');
+                    topbar.classList.remove('topbar-hidden');
+                }
+                topbarLastScrollTop = scrollTop;
+            }
+        });
+    } else {
+        console.log('❌ Topbar not found');
+    }
 }

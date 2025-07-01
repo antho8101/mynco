@@ -241,8 +241,10 @@ function initNavigation() {
     // Header hide/show on scroll
     let lastScrollTop = 0;
     const header = document.querySelector('.header');
+    const topbar = document.querySelector('.topbar');
     const scrollThreshold = 100; // Minimum scroll before hiding header
     
+    // Handle regular header (for non-dashboard pages)
     if (header) {
         window.addEventListener('scroll', utils.debounce(() => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -260,7 +262,65 @@ function initNavigation() {
             }
         }, 10)); // Small debounce for smooth performance
     }
+    
+    // Handle dashboard topbar
+    if (topbar) {
+        console.log('🎯 Topbar found, initializing scroll behavior');
+        let topbarLastScrollTop = 0;
+        window.addEventListener('scroll', utils.debounce(() => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Only hide/show if we've scrolled enough
+            if (Math.abs(scrollTop - topbarLastScrollTop) > 10) {
+                if (scrollTop > topbarLastScrollTop && scrollTop > scrollThreshold) {
+                    // Scrolling down - hide topbar
+                    console.log('📉 Hiding topbar');
+                    topbar.classList.add('topbar-hidden');
+                } else if (scrollTop < topbarLastScrollTop) {
+                    // Scrolling up - show topbar
+                    console.log('📈 Showing topbar');
+                    topbar.classList.remove('topbar-hidden');
+                }
+                topbarLastScrollTop = scrollTop;
+            }
+        }, 10)); // Small debounce for smooth performance
+    } else {
+        console.log('❌ Topbar not found');
+    }
 }
+
+// Fonction dédiée pour initialiser le scroll du topbar du dashboard
+function initTopbarScroll() {
+    const topbar = document.querySelector('.topbar');
+    if (topbar) {
+        console.log('🎯 Topbar found, initializing scroll behavior');
+        let topbarLastScrollTop = 0;
+        const scrollThreshold = 100;
+        
+        window.addEventListener('scroll', utils.debounce(() => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Only hide/show if we've scrolled enough
+            if (Math.abs(scrollTop - topbarLastScrollTop) > 10) {
+                if (scrollTop > topbarLastScrollTop && scrollTop > scrollThreshold) {
+                    // Scrolling down - hide topbar
+                    console.log('📉 Hiding topbar');
+                    topbar.classList.add('topbar-hidden');
+                } else if (scrollTop < topbarLastScrollTop) {
+                    // Scrolling up - show topbar
+                    console.log('📈 Showing topbar');
+                    topbar.classList.remove('topbar-hidden');
+                }
+                topbarLastScrollTop = scrollTop;
+            }
+        }, 10)); // Small debounce for smooth performance
+    } else {
+        console.log('❌ Topbar not found');
+    }
+}
+
+// Rendre la fonction disponible globalement
+window.initTopbarScroll = initTopbarScroll;
 
 // Global utility functions
 function initGlobalUtils() {

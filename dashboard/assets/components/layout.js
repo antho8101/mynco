@@ -36,6 +36,9 @@ class Layout {
             this.updateSidebarToggleIcons(this.sidebar.isCollapsed);
         }
         
+        // Initialize topbar scroll behavior
+        this.initTopbarScroll();
+        
         // Dashboard layout initialized
     }
 
@@ -447,6 +450,35 @@ class Layout {
                 document.documentElement.style.setProperty('--sidebar-width-simple', '0px');
                 document.documentElement.style.setProperty('--sidebar-width-calculated', '0px');
             }
+        }
+    }
+
+    initTopbarScroll() {
+        const topbar = document.querySelector('.topbar');
+        if (topbar) {
+            console.log('🎯 Layout: Topbar found, initializing scroll behavior');
+            let topbarLastScrollTop = 0;
+            const scrollThreshold = 100;
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Only hide/show if we've scrolled enough
+                if (Math.abs(scrollTop - topbarLastScrollTop) > 10) {
+                    if (scrollTop > topbarLastScrollTop && scrollTop > scrollThreshold) {
+                        // Scrolling down - hide topbar
+                        console.log('📉 Layout: Hiding topbar');
+                        topbar.classList.add('topbar-hidden');
+                    } else if (scrollTop < topbarLastScrollTop) {
+                        // Scrolling up - show topbar
+                        console.log('📈 Layout: Showing topbar');
+                        topbar.classList.remove('topbar-hidden');
+                    }
+                    topbarLastScrollTop = scrollTop;
+                }
+            });
+        } else {
+            console.log('❌ Layout: Topbar not found');
         }
     }
 }
